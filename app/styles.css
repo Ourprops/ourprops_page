@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.section1{
+    background-image: url('../public/property3.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: fill;
+}
+
+/* .section3{
+    background-image: url('../public/property3.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+} */
+
+/* .seperator {
+    width: 0 !important;
+    height: 0 !important;
+    border-right: 100vw solid transparent !important;
+    border-bottom: 13.9vw solid #fff !important;
+    margin-top: -13.9vw !important;
+
+} */
+
