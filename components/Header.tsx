@@ -12,7 +12,7 @@ export default function Header() {
             </div>
 
             {/* Middle Section */}
-            <div className='flex justify-center items-center gap-8 font-medium text-[15px] font-sans'>
+            <div className='flex justify-center items-center gap-10 font-medium text-[15px] font-sans uppercase'>
                 <Link href="/">Home</Link>
                 <Link href="/">About Us</Link>
                 <Link href="/">Blog</Link>

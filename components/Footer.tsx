@@ -23,7 +23,7 @@ export default function Footer() {
                         Phasellus ut condimentum diam, eget tempus lorem. Morbi bibendum est quis arcu posuere condimentum. Nullam
                         justo eros, pellentesque a metus non
                     </p>
-                    <button className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-3 rounded-md text-lg transition-colors">
+                    <button className="bg-blue-500 hover:bg-blue-500 text-white px-8 py-3 rounded-md text-lg transition-colors">
                         Learn More
                     </button>
                 </div>

@@ -40,14 +40,66 @@ export default function Content() {
     return (
         <div className='font-sans'>
             {/* Hero Section */}
-            <section className="section1 h-[90vh] overflow-hidden flex flex-col gap-3 items-center justify-center ">
-                <h1 className='text-white text-6xl font-extrabold text-center'>WE ARE OURPROPS</h1>
-                <p className='text-gray-100 w-[40%] text-center mb-5'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore eveniet possimus at ipsam magni, 
-                    veniam dolor odio ipsum autem consequuntur.
-                </p>
-                <Button variant="default" className='bg-blue-500 px-10 border-blue-500 border-2 hover:border-white hover:bg-blue-500 py-3 rounded-full'>LEARM MORE ABOUT US</Button>
-            </section>
+            <div className="min-h-screen p-6 md:p-12 relative overflow-hidden bg-[#222838]">
+                {/* Background Image with Overlay */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                    backgroundImage:
+                        "url(/property3.jpeg)",
+                    }}
+                >
+                    <div className="absolute inset-0 bg-black/70" />
+                </div>
+
+                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-11 items-center relative z-10">
+                    {/* Left Column - Text Content */}
+                    <div className="space-y-6">
+                        <div className="inline-block py-1 bg-mint/10 rounded-full">
+                            <p className="text-mint text-sm font-medium text-white">REAL ESTATE AT ITS FINEST</p>
+                        </div>
+
+                        <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                            AFFORDABLE HOUSING
+                            <span className="block text-mint mt-2">FOR SALE</span>
+                        </h1>
+
+                        <p className="text-gray-400 max-w-md">
+                            Lorem ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+
+                        <div className="">
+                            <Button className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                READ MORE
+                            </Button>
+                            {/* <div className="space-y-1">
+                                <p className="text-sm text-gray-500">START FROM</p>
+                                <p className="text-2xl font-bold text-gray-400">$150,000</p>
+                            </div> */}
+                        </div>
+                    </div>
+
+                    {/* Right Column - Image with Blob */}
+                    <div className="relative">
+                        {/* House Image */}
+                        <div className="relative flex items-end justify-end">
+                            <div className="relative">
+                                <Image
+                                    src="/property4.jpeg"
+                                    alt="Luxurious house for sale"
+                                    width={500}
+                                    height={500}
+                                    className="vc-image-1 object-contain"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
             {/* About Us */}
             <section className="section2 bg-[#fff] h-auto flex gap-4 justify-between mb-10 py-10">
