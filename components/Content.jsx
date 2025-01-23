@@ -143,7 +143,7 @@ export default function Content() {
 
 
             {/* Portfolio Section */}
-            <section className="bg-[#fff] h-auto justify-center py-20 flex flex-col items-center mb-36">
+            <section className="bg-[#fff] h-auto justify-center py-20 flex flex-col items-center mb-40">
                 <div className='mb-0'>
                     <p className='text-[14px] font-serif text-gray-600 italic mb-2'>Latest Works</p>
                 </div>
