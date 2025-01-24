@@ -2,9 +2,11 @@ import React from 'react'
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import Link from 'next/link';
+import CountdownTimer from './content/CountdownTimer';
 
 
 export default function Footer() {
+    
     return (
         <div className='font-sans'>
             <section className="relative h-[60vh]">
@@ -18,14 +20,11 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a2836]/80 to-[#1a2836]" />
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-4xl md:text-4xl font-bold text-white mb-6">Get In Touch With Us</h1>
-                    <p className="text-gray-300 max-w-2xl mb-8 text-[15px]">
-                        Phasellus ut condimentum diam, eget tempus lorem. Morbi bibendum est quis arcu posuere condimentum. Nullam
-                        justo eros, pellentesque a metus non
+                    <h1 className="text-4xl md:text-4xl font-bold text-white mb-6">WE ARE COMING SOON</h1>
+                    <CountdownTimer />
+                    <p className="text-gray-300 max-w-2xl mb-8 text-[15px] mt-5">
+                        Subscribe to get notified when we launch
                     </p>
-                    <button className="bg-blue-500 hover:bg-blue-500 text-white px-8 py-3 rounded-md text-lg transition-colors">
-                        Learn More
-                    </button>
                 </div>
             </section>
 

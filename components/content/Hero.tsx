@@ -11,17 +11,12 @@ export default function Hero() {
     const slides = [
         {
             image: '/interior2.jpg',
-            title: 'Own Your Dream Home',
+            title: 'Find Your Dream Home',
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores quod',
         },
         {
             image: '/property.jpg',
             title: 'Live Where Dreams Flourish',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores quod',
-        },
-        {
-            image: '/interior.jpg',
-            title: 'Elevate Your Living Experience',
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores quod',
         },
     ];
@@ -102,9 +97,9 @@ export default function Hero() {
                         whileInView={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center text-white w-[100%] md:w-[60%] p-8 flex flex-col items-center"
+                        className="text-center text-white w-[100%] md:w-[60%] p-8 flex flex-col justify-start items-center"
                     >
-                        <h2 className="text-[70px] mb-6 font-extrabold leading-[70px]">{slide.title}</h2>
+                        <h2 className="text-[70px] w-[70%] mb-6 font-extrabold leading-[70px]">{slide.title}</h2>
                         <p className="text-lg text-gray-300 mb-8 w-[100%] md:w-[60%] text-center">{slide.desc}</p>
                         <div className="flex justify-center space-x-4">
                             <Button className="bg-blue-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-600 transition">Read More About Us</Button>
