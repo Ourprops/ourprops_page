@@ -1,48 +1,79 @@
 'use client'
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
+
+import React, {useState, useEffect} from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
+import {Menu} from 'lucide-react'
 import Link from 'next/link';
 import '../../app/styles.css';
+import {AnimatePresence, motion } from "motion/react";
+import Hamburger from 'hamburger-react';
+import { usePathname, useRouter } from "next/navigation";
+
+// Slide in animation for menu
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15, // Delay between child animations
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
+};
 
 export default function Hero() {
-    const slides = [
-        {
-            image: '/interior2.jpg',
-            title: 'Find Your Dream Home',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores quod',
-        },
-        {
-            image: '/property.jpg',
-            title: 'Live Where Dreams Flourish',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores quod',
-        },
-    ];
+    const [isOpen, setOpen] = useState(false);
+    const pathname = usePathname(); // Get the current route path
+    const router = useRouter();
+
+    const handleLinkClick = (route:string) => {
+        router.push(route); // Navigate to the route
+        setOpen(false); // Close the menu
+    };
+
+    // Hide the menubar based on the screen width
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 768 && isOpen) {
+                setOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isOpen]);
+    
     return (
     <div>
         {/* Hero Section */}
         <div className="relative h-screen w-full">
             <div className='flex justify-center'>
-                <nav className="bg-transparent absolute top-0 max-w-6xl px-6 py-4 w-full z-10 flex items-center justify-between">
+                <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
                     {/* Logo Section */}
                     <div className="flex items-center space-x-2">
-                        <span className="text-blue-500 text-2xl font-extrabold">OUR</span>
+                        <span className="text-orange-500 text-2xl font-extrabold">OUR</span>
                         <span className="text-white text-2xl font-extrabold">PROPS</span>
                     </div>
 
                     {/* Navigation Links */}
-                    <ul className="flex items-center space-x-8">
+                    <ul className="hidden md:flex items-center space-x-8 ">
                         {[
-                            { name: 'Home'},
-                            { name: 'About Us'},
-                            { name: 'Blog'}
+                            { name: 'Home', route: "/"},
+                            { name: 'Blog', route: "/blog"},
+                            { name: 'About Us', route: "/about-us"}
                         ].map((item, index) => (
                             <li key={index} className="relative group">
                                 <Link
-                                    href="#"
-                                    className="text-white font-medium hover:text-blue-500 transition duration-300"
+                                    href={item.route}
+                                    className="text-white text-md hover:text-blue-500 transition duration-300"
                                 >
                                     {item.name}
                                 </Link>
@@ -51,65 +82,85 @@ export default function Hero() {
                     </ul>
 
                     {/* Contact Section */}
-                    <div className="flex items-center space-x-2">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-blue-500">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="2"
-                                stroke="#3f81f2"
-                                className="w-5 h-5"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M15.05 11.828a4.992 4.992 0 01-1.414 1.414m1.414-1.414a4.992 4.992 0 001.414-1.414m-1.414 1.414L8.465 5.636m4.95 4.95a4.992 4.992 0 011.414 1.414M6.343 17.657l4.95-4.95m0 0a4.992 4.992 0 01-1.414-1.414m1.414 1.414a4.992 4.992 0 001.414-1.414m-1.414 1.414l6.343 6.343"
-                                />
-                            </svg>
+                    <div className="hidden md:flex items-center space-x-2">
+                        <div className="text-white text-md">
+                            <p>+91 123 456 789</p>
                         </div>
                         <div>
-                            <span className="block text-white text-sm font-medium">Need Help?</span>
-                            <span className="block text-blue-500 font-bold text-md">+1 (123) 456-7890</span>
+                            <Button className="bg-blue-500 text-white px-6 py-4 shadow-md hover:bg-blue-600 transition">Join our waitlist</Button>
                         </div>
+                    </div>
+
+                    <div className='md:hidden flex'>
+                    <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
                     </div>
                 </nav>
             </div>
 
-            <Carousel
-                autoPlay
-                infiniteLoop
-                showThumbs={false}
-                showStatus={false}
-                showArrows={true}
-                interval={5000}
-                transitionTime={1000}
-            >
-                {slides.map((slide, index) => (
-                <div key={index} className="relative h-screen w-full">
-                    <img
-                        src={slide.image}
-                        className="absolute inset-0 h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
+                        
+                        <div className='absolute top-5 right-10'>
+                            <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                        </div>
+                        <motion.div variants={itemVariants} className='mb-5'>
+                            <div
+                                onClick={() => handleLinkClick('/')}
+                                className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            >
+                                HOME
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                            </div>
+                        </motion.div>
+                        <motion.div variants={itemVariants} className='mb-5'>
+                            <div
+                                onClick={() => handleLinkClick('/blog')}
+                                className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            >
+                                BLOG
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                            </div>
+                        </motion.div>
+                        <motion.div variants={itemVariants} className='mb-5'>
+                            <div
+                                onClick={() => handleLinkClick('/about-us')}
+                                className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            >
+                                ABOUT US
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+
+
+            {/* Body Section */}
+            <div className="relative h-screen w-full">
+                <img
+                    src='/interior2.jpg'
+                    className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center text-white w-[100%] md:w-[60%] p-8 flex flex-col justify-start items-center"
+                        transition={{ duration: 0.5 }}
+                        className="text-center text-white w-[100%] md:w-[90%] lg:w-[70%] p-8 flex flex-col justify-start items-center"
                     >
-                        <h2 className="text-[70px] w-[70%] mb-6 font-extrabold leading-[70px]">{slide.title}</h2>
-                        <p className="text-lg text-gray-300 mb-8 w-[100%] md:w-[60%] text-center">{slide.desc}</p>
+                        <h2 className="lg:text-[70px] text-[60px] w-[100%] sm:w-[80%]  mb-6 font-extrabold leading-[65px] md:leading-[70px]">Find Your Dream Home</h2>
+                        <p className="text-lg text-gray-300 mb-8 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[60%] text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad voluptatum aliquid dolorum dolores</p>
                         <div className="flex justify-center space-x-4">
-                            <Button className="bg-blue-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-600 transition">Read More About Us</Button>
-                            {/* <button className="bg-transparent border border-white px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition">Subscribe</button> */}
+                            <Button className="bg-blue-500 text-white px-6 py-4 shadow-md hover:bg-blue-600 transition">Join Waitlist</Button>
+                            <Button className=" text-white bg-transparent hover:bg-transparent px-6 py-4 shadow-md border-2 transition">Learn More</Button>
                         </div>
                     </motion.div>
-                    </div>
                 </div>
-                ))}
-            </Carousel>
+            </div>
         </div>
     </div>
     )

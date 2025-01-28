@@ -15,7 +15,7 @@ export default function Newsletter() {
     return (
         <div>
             {/* Newsletter Section */}
-            <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image with Overlay */}
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -30,13 +30,12 @@ export default function Newsletter() {
                 {/* Content */}
                 <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
                     <h2 className="text-4xl md:text-5xl font-bold mb-2">
-                        <span className="text-blue-500">OUR </span>
+                        <span className="text-orange-500">OUR </span>
                         <span className="text-white">NEWSLETTER</span>
                     </h2>
                     <p className="text-white text-lg mb-4">KEEP IN TOUCH</p>
                     <p className="text-white/80 mb-8 max-w-xl mx-auto">
-                        Sign up to our newsletter subscription and be the first to know about Important news & Amazing offers &
-                        Discounts
+                        Sign up to our newsletter to get notified about Important news & Amazing offers 
                     </p>
 
                     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">

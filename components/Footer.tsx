@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import Link from 'next/link';
 import CountdownTimer from './content/CountdownTimer';
+import { Input } from "@/components/ui/input"
 
 
 export default function Footer() {
@@ -95,10 +96,10 @@ export default function Footer() {
                         <div>
                         <h3 className="text-xl font-semibold text-white mb-6">Stay in touch</h3>
                         <div className="relative">
-                            <input
+                            <Input
                                 type="email"
                                 placeholder="Enter Email Address"
-                                className="w-full bg-[#2a3947] border-none rounded-md py-3 px-4 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                className="w-full bg-[#2a3947] border-none rounded-md py-3 px-4 text-white placeholder:text-gray-400 outline-white"
                             />
                             <button className="absolute right-3 top-1/2 -translate-y-1/2">
                                 <Send className="w-5 h-5 text-blue-500" />
