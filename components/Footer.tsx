@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import Link from 'next/link';
-import CountdownTimer from './content/CountdownTimer';
+import CountdownTimer from './homepage/CountdownTimer';
 import { Input } from "@/components/ui/input"
 
 

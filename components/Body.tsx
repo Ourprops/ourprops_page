@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
 import '../app/styles.css';
-import Hero from './content/Hero'
-import AboutUs from './content/AboutUs'
-import Newsletter from './content/Newsletter'
-import Blog from './content/Blog'
-import Services from './content/Services';
+import Hero from './homepage/Hero'
+import AboutUs from './homepage/AboutUs'
+import Newsletter from './homepage/Newsletter'
+import Blog from './homepage/Blog'
+import Services from './homepage/Services';
 
 export default function Content() {
     return (

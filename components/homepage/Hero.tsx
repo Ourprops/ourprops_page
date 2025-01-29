@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
 import '../../app/styles.css';
 import { AnimatePresence, motion } from "motion/react";
@@ -56,6 +55,7 @@ export default function Hero() {
         <div>
             {/* Hero Section */}
             <div className="relative h-screen w-full">
+                {/* Navbar  */}
                 <div className='flex justify-center'>
                     <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
                         <h2 className="text-white font-bold text-2xl">OurProps</h2>
