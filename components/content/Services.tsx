@@ -1,7 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
-import { Button } from "@/components/ui/button";
-import { motion, stagger } from "motion/react";
 
 export default function Services() {
     const services = [

@@ -8,13 +8,6 @@ import { Textarea } from '../ui/textarea';
 export default function Newsletter() {
     const [email, setEmail] = useState("")
 
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault()
-        // Handle newsletter subscription
-        console.log("Subscribing email:", email)
-        setEmail("")
-    }
     return (
         <section className="relative h-[100vh] overflow-hidden bg-slate-100 flex flex-col md:flex-row">
             <div className="py-10 md:py-20 lg:px-28 sm:px-10 px-5 flex flex-col basis-1/2">
@@ -51,7 +44,6 @@ export default function Newsletter() {
                         className='mt-5 py-5 text-white w-full'
                     />   
                     <Button
-                        onClick={handleSubmit}
                         className='mt-5 py-5 w-full bg-appColor-orange-default hover:bg-appColor-orange-dark'
                     >
                         Subscribe
