@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.section1{
+    background-image: url('../public/property3.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: fill;
+}
+
+.vc-image-1 {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% !important;
+}
+
+/* Common styles for both arrows */
+.control-arrow {
+    color: #3f81f2; /* Change the arrow color */
+    background: transparent; /* Remove background */
+    border: none; /* Optional: remove any borders */
+    font-size: 24px; /* Adjust the size of the arrow */
+}
+
+  /* Previous arrow */
+.control-prev {
+    left: 15px; /* Adjust position */
+}
+
+  /* Next arrow */
+.control-next {
+    right: 15px; /* Adjust position */
+}
+
+  /* Add hover effect (optional) */
+.control-arrow:hover {
+    color: darkorange;
+}
