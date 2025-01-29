@@ -1,8 +1,8 @@
 'use client'
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import {AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { usePathname, useRouter } from "next/navigation";
 import Hamburger from 'hamburger-react';
 
@@ -28,7 +28,7 @@ export default function Header() {
     const pathname = usePathname(); // Get the current route path
     const router = useRouter();
 
-    const handleLinkClick = (route:string) => {
+    const handleLinkClick = (route: string) => {
         router.push(route); // Navigate to the route
         setOpen(false); // Close the menu
     };
@@ -61,7 +61,7 @@ export default function Header() {
 
     return (
         <>
-            <div className='flex justify-center sticky w-[100%] top-0 z-50'>
+            <div className='flex justify-center sticky w-full top-0 z-50'>
                 <motion.nav
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: scrolling ? 0 : -100, opacity: scrolling ? 1 : 0 }}
@@ -69,22 +69,19 @@ export default function Header() {
                     className="bg-white shadow-md fixed top-0 w-full px-10 lg:px-36 py-4 z-20 flex items-center justify-between"
                 >
                     {/* Left Section */}
-                    <div className="flex items-center space-x-2">
-                        <span className="text-orange-500 text-2xl font-extrabold">OUR</span>
-                        <span className="text-black text-2xl font-extrabold">PROPS</span>
-                    </div>
+                    <h2 className="text-black font-bold text-2xl">OurProps</h2>
 
                     {/* Navigation Links */}
                     <ul className="hidden md:flex items-center space-x-8">
                         {[
-                            { name: 'Home', route: "/"},
-                            { name: 'Blog', route: "/blog"},
-                            { name: 'About Us', route: "/about-us"}
+                            { name: 'Home', route: "/" },
+                            { name: 'Blog', route: "/blog" },
+                            { name: 'About Us', route: "/about-us" }
                         ].map((item, index) => (
                             <li key={index} className="relative group">
                                 <Link
                                     href={item.route}
-                                    className="text-black text-md font-medium hover:text-blue-500 transition duration-300"
+                                    className="text-black text-md font-medium transition duration-300"
                                 >
                                     {item.name}
                                     <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -94,13 +91,8 @@ export default function Header() {
                     </ul>
 
                     {/* Contact Section */}
-                    <div className="hidden md:flex items-center space-x-2">
-                        <div className="text-black text-md">
-                            <p>+91 123 456 789</p>
-                        </div>
-                        <div>
-                            <Button className="bg-blue-500 text-white px-6 py-4 shadow-md hover:bg-blue-600 transition">Join our waitlist</Button>
-                        </div>
+                    <div className="hidden md:block">
+                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white'>Join our waitlist</Button>
                     </div>
 
                     <div className='md:hidden flex'>
@@ -114,7 +106,7 @@ export default function Header() {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
-                        
+
                         <div className='absolute top-5 right-10'>
                             <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
                         </div>

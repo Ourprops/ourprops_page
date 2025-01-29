@@ -5,23 +5,22 @@ export default function AboutUs() {
     return (
         <div>
             {/* About Us */}
-            <section className="section2 bg-[#fff] w-[100%] xl:h-[100vh] h-auto flex flex-col lg:flex-row xl:items-start justify-evenly md:py-10 py-0">
-                <div className='xl:w-[50%] w-[100%] flex justify-start items-start p-10 md:p-20 flex-col'>
-                    <p className='text-[14px] font-serif mb-3 text-gray-600 italic'>About Us</p>
-                    <h2 className='font-bold text-[20px] mb-1'>We Are <span className='text-orange-500'>Our Props</span></h2>
-                    <div className='border-b-4 border-orange-500 w-[8%] mb-4'></div>
-                    <p className='mb-5 w-[100%] text-gray-500 text-[15px] leading-7'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus, a voluptatibus. 
-                        Similique distinctio aspernatur et pariatur aperiam, optio accusantium ratione! 
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, dicta?
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, quas.
-                        Similique distinctio aspernatur et pariatur aperiam, optio accusantium ratione! 
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, dicta?
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, quas.
-                    </p>
-                    <Button className="bg-blue-500 text-white px-6 py-4 shadow-md hover:bg-blue-600 transition">Learn More</Button>
+            <section className="section2  w-[100%] xl:h-[100vh] h-auto flex flex-col lg:flex-row xl:items-start justify-evenly md:py-10 py-0 lg:px-28 sm:px-10 px-5 md:gap-32 gap-x-10 gap-y-0">
+                <div className='xl:w-[50%] w-[100%] flex justify-start items-start py-10 md:py-20 flex-col'>
+                    <div className="relative">
+                        <p className='text-muted-foreground text-xs uppercase mt-2'>About</p>
+                        <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+                    </div>
+                   <h1 className='md:text-5xl text-4xl font-bold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
+                        Empowering Real Estate Through Technology
+                   </h1>
+                   <p className='text-muted-foreground md:mt-16 mt-8 text-sm'>
+                        At the heart of our mission is the belief that property ownership should be simple, secure, and transparent. Through innovative tools like blockchain for fraud prevention, map-based visualization, and secure document uploads, we are empowering property owners, buyers
+                   </p>
                 </div>
-                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start xl:p-16 p-10'>
-                    <img src="/property.jpg" alt="Property" className='object-cover rounded-lg h-[400px] w-[100%]' />
+                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start xl:py-16 py-10'>
+                    {/* <img src="/property.jpg" alt="Property" className='object-cover rounded-lg h-[400px] w-[100%]' /> */}
+                    <div className="rounded-lg md:h-[550px] h-[300px] w-[100%] bg-slate-700"></div>
                 </div>
             </section>
         </div>

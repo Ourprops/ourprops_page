@@ -49,7 +49,17 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			appColor: {
+				blue: {
+					default: "#00BFFF",
+					muted: "#3bceff",
+				},
+				orange: {
+					default: "#ff4500",
+					dark: "#d83a00"
+				}
+			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

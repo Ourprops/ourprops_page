@@ -25,26 +25,28 @@ export default function Services() {
         }
     ]
     return (
-    <div className='w-[100%] xl:h-[100vh] h-auto p-10 bg-[#f9f9f9]'>
-        <div className='flex flex-col justify-center items-center py-5'>
-            <p className='text-[14px] font-serif mb-3 text-gray-600 italic'>Services</p>
-            <h2 className='font-bold text-[20px] mb-1'>What We <span className='text-orange-500'>Do</span></h2>
-            <div className='border-b-4 border-orange-500 w-[50px] mb-4'></div>
-        </div>
-        
-        
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-3 gap-10'>
+        <div className='w-[100%] xl:h-[100vh] h-auto py-10 lg:px-28 sm:px-10 px-5'>
+            <div className='flex flex-col py-5'>
+                <div className="relative">
+                    <p className='text-muted-foreground text-xs uppercase mt-2'>What we offer</p>
+                    <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+                </div>
+                <h1 className='md:text-5xl text-4xl font-bold text-black mt-8 md:w-[70%] w-[100%]'>
+                    Smart Solutions for Property Management
+                </h1>
+                <p className='text-muted-foreground mt-8 text-sm lg:w-[40%] md:w-[50%] sm:w-[70%] w-[100%]'>
+                    Manage property boundaries, secure ownership, and protect your investments with smart, transparent tools designed for the modern world.
+                </p>
+            </div>
+            <div className='grid md:grid-cols-3 grid-cols-1 mt-8 gap-10'>
                 {services.map((service) => (
-                    <div  key={service.id} className='flex flex-col justify-center items-center lg:px-20 px-10 py-8 shadow-md rounded-lg bg-white'>
-                        <Image src={service.img} alt='House Logo' height={500} width={500} />
-                        <h2 className='font-semibold text-xl mb-3 mt-3 text-center'>{service.title}</h2>
-                        <p className='text-center mb-8'>{service.description}</p>
-                        <Button className="bg-blue-500 text-white px-6 py-4 shadow-md hover:bg-blue-600 transition">Learn More</Button>
+                    <div key={service.description} className="rounded-md bg-slate-400 col-span-1 h-[400px]">
+
                     </div>
                 ))}
             </div>
-        
-        
-    </div>
+
+
+        </div>
     )
 }

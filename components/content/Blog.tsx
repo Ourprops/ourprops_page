@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '../ui/button';
 
 export default function Blog() {
     const blogs = [
@@ -20,42 +22,45 @@ export default function Blog() {
         }
     ]
     return (
-        <div>
-            {/* Blog Section */}
-            <section className="bg-[#fff] h-auto justify-start py-10 flex flex-col items-center relative">
-                <div className='mb-0'>
-                    <p className='text-[14px] font-serif text-gray-600 italic mb-2'>Articles</p>
-                </div>
-                
-                <h2 className='font-bold text-[20px] mb-1'>Latest <span className='text-orange-500'>Blogs</span></h2>
-                <div className='border-2 border-orange-500 w-[6%]'></div>
-
-                <div className="container w-[100%] h-[100%] gap-20 flex lg:flex-row flex-col justify-center xl:p-20 p-5">
-                    <div className='xl:w-[30%] w-[0%] h-[100%] px-10 xl:block hidden'>
-                        <h1 className='font-serif font-extrabold text-4xl mb-8'>What's New?</h1>
-                        <p>where to expert and undiscovered <span className='font-bold'>voices</span> can share their <span className='font-bold'>writing</span> on any topic</p>
+        <section className="h-auto py-10 flex flex-col relative lg:px-28 sm:px-10 px-5">
+            <div className="relative">
+                <p className='text-muted-foreground text-xs uppercase mt-2'>Blog</p>
+                <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+            </div>
+            <div className="w-full gap-20 flex lg:flex-row flex-col justify-center mt-20">
+                <div className='flex flex-col justify-between'>
+                    <div>
+                        <h1 className='md:text-5xl text-4xl font-bold text-black mt-8 md:w-[90%] w-[100%]'>
+                            Insights and Updates
+                        </h1>
+                        <p className='text-muted-foreground mt-8 text-sm sm:w-[70%] w-[100%]'>
+                            Stay informed with our latest stories, tips, and news about innovation, property management, and what{`’`}s happening at OurProps.
+                        </p>
                     </div>
-                    
-                    <div className='xl:w-[70%] w-[100%] h-[100%] flex flex-col md:mt-0 mt-20 '>
+                    <div>
+                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark -translate-y-10'>
+                            Explore
+                        </Button>
+                    </div>
+                </div>
+                <div className='xl:w-[70%] w-[100%] h-[100%] flex flex-col md:mt-0 mt-20 '>
                     {blogs.map((blog) => (
-                        <div key={blog.id} className='w-[100%] flex flex-row justify-center sm:gap-10 gap-5 items-start mb-5 border-b cursor-pointer hover:scale-105 scale-100 transition-all ease-in duration-100'>
+                        <div key={blog.id} className='w-[100%] flex flex-row justify-center sm:gap-10 gap-5 items-start mb-5 border-b scale-100 transition-all ease-in duration-100'>
                             <div className='sm:w-[10%] w-[30%] mt-2'>
                                 <p className='font-bold lg:text-md text-sm mb-2'>8 min read</p>
-                                <p className='text-gray-500 text-xs'>02 Dec 20</p>
+                                <p className='text-muted-foreground text-xs'>02 Dec 20</p>
                             </div>
                             <div className='sm:w-[70%] mb-10'>
-                                <p className='font-medium lg:text-[23px] text:[20px] lg:leading-[40px] leading-[30px] mb-4 font-serif'>{blog.title}</p>
+                                <Link href="#" className='font-medium lg:text-[23px] text:[20px] lg:leading-[40px] leading-[30px] mb-4 font-serif hover:underline'>{blog.title}</Link>
                                 <p className='text-gray-600'>{blog.description}</p>
                             </div>
-                            <div className='sm:w-[5%] w-[0%] md:flex hidden justify-center mt-4'>
-                                <ArrowUpRight className='text-gray-500' />
-                            </div>
+                            <Link href="#" className='sm:w-[5%] w-[0%] md:flex hidden justify-center mt-4'>
+                                <ArrowUpRight />
+                            </Link>
                         </div>
                     ))}
-                    </div>
-                    
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     )
 }
