@@ -1,10 +1,8 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
 
 export default function AboutUs() {
     return (
         <div>
-            {/* About Us */}
             <section className="section2  w-[100%] xl:h-[100vh] h-auto flex flex-col lg:flex-row xl:items-start justify-evenly md:py-10 py-0 lg:px-28 sm:px-10 px-5 md:gap-32 gap-x-10 gap-y-0">
                 <div className='xl:w-[50%] w-[100%] flex justify-start items-start py-10 md:py-20 flex-col'>
                     <div className="relative">
@@ -19,7 +17,6 @@ export default function AboutUs() {
                    </p>
                 </div>
                 <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start xl:py-16 py-10'>
-                    {/* <img src="/property.jpg" alt="Property" className='object-cover rounded-lg h-[400px] w-[100%]' /> */}
                     <div className="rounded-lg md:h-[550px] h-[300px] w-[100%] bg-slate-700"></div>
                 </div>
             </section>

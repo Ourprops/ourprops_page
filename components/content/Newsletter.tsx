@@ -9,11 +9,8 @@ export default function Newsletter() {
     const [email, setEmail] = useState("")
 
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault()
-        // Handle newsletter subscription
-        console.log("Subscribing email:", email)
-        setEmail("")
+    const handleSubmit = () => {
+        
     }
     return (
         <section className="relative h-[100vh] overflow-hidden bg-slate-100 flex flex-col md:flex-row">
