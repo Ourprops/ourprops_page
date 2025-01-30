@@ -66,17 +66,17 @@ export default function Header() {
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: scrolling ? 0 : -100, opacity: scrolling ? 1 : 0 }}
                     transition={{ duration: 0.5 }}
-                    className="bg-white shadow-md fixed top-0 w-full px-10 lg:px-36 py-4 z-20 flex items-center justify-between"
+                    className="backdrop-filter backdrop-blur-sm bg-opacity-10  bg-gray-100 shadow-md fixed top-0 w-full px-10 lg:px-36 py-0 md:py-2 z-20 flex items-center justify-between"
                 >
                     {/* Left Section */}
-                    <h2 className="text-black font-bold text-2xl">OurProps</h2>
+                    <h2 className="text-black font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
 
                     {/* Navigation Links */}
                     <ul className="hidden md:flex items-center space-x-8">
                         {[
                             { name: 'Home', route: "/" },
                             { name: 'Blog', route: "/blog" },
-                            { name: 'About Us', route: "/about-us" }
+                            { name: 'About', route: "/about" }
                         ].map((item, index) => (
                             <li key={index} className="relative group">
                                 <Link
@@ -96,7 +96,7 @@ export default function Header() {
                     </div>
 
                     <div className='md:hidden flex'>
-                        <Hamburger toggled={isOpen} toggle={setOpen} color='black' />
+                        <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='black' />
                     </div>
                 </motion.nav>
             </div>

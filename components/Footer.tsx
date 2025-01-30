@@ -10,7 +10,7 @@ export default function Footer() {
     return (
         <div className='font-sans'>
             {/* Footer */}
-            <footer className="bg-[#1a2836] text-gray-400 py-16">
+            <footer className="bg-neutral-900 text-gray-400 py-16">
                 <div className="flex justify-center items-center max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                         {/* Brand */}
