@@ -38,12 +38,12 @@ export default function Blog() {
                         </p>
                     </div>
                     <div>
-                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark -translate-y-10'>
+                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark mt-5 xl:mt-0'>
                             Explore
                         </Button>
                     </div>
                 </div>
-                <div className='xl:w-[70%] w-[100%] h-[100%] flex flex-col md:mt-0 mt-20 '>
+                <div className='xl:w-[70%] w-[100%] h-[100%] flex flex-col mt-0 xl:mt-10 '>
                     {blogs.map((blog) => (
                         <div key={blog.id} className='w-[100%] flex flex-row justify-center sm:gap-10 gap-5 items-start mb-5 border-b scale-100 transition-all ease-in duration-100'>
                             <div className='sm:w-[10%] w-[30%] mt-2'>

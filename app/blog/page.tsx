@@ -3,6 +3,7 @@ import { BlogPost } from '@/components/blogs/blog-post'
 import { Sidebar } from '@/components/blogs/sidebar'
 import Header from '@/components/Header'
 import SecondHeader from '@/components/homepage/second-header'
+import Footer from '@/components/Footer'
 
 export default function page() {
     return (
@@ -36,6 +37,7 @@ export default function page() {
                     <Sidebar />
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

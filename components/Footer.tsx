@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import Link from 'next/link';
-import CountdownTimer from './homepage/CountdownTimer';
 import { Input } from "@/components/ui/input"
 
 
@@ -10,31 +9,12 @@ export default function Footer() {
     
     return (
         <div className='font-sans'>
-            <section className="relative h-[60vh]">
-                <Image
-                    src="/property_dark.jpg"
-                    alt="Real Estate Meeting"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a2836]/80 to-[#1a2836]" />
-
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-4xl md:text-4xl font-bold text-white mb-6">WE ARE COMING SOON</h1>
-                    <CountdownTimer />
-                    <p className="text-gray-300 max-w-2xl mb-8 text-[15px] mt-5">
-                        Subscribe to get notified when we launch
-                    </p>
-                </div>
-            </section>
-
             {/* Footer */}
             <footer className="bg-[#1a2836] text-gray-400 py-16">
-                <div className="container px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 w-[80%] mx-auto">
+                <div className="flex justify-center items-center max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                         {/* Brand */}
-                        <div>
+                        <div className='p-10'>
                             <h2 className="text-2xl font-bold text-white mb-5">Our Props</h2>
                             <p>
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus laboriosam corrupti 
@@ -42,7 +22,7 @@ export default function Footer() {
                         </div>
 
                         {/* Contact Info */}
-                        <div>
+                        <div className='p-10'>
                         <h3 className="text-xl font-semibold text-white mb-6">Contact Us</h3>
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
@@ -56,8 +36,8 @@ export default function Footer() {
                             <div className="flex items-start gap-4">
                             <Mail className="w-6 h-6 mt-1 text-gray-400" />
                             <div className="space-y-1">
-                                <p>Username@gmail.com</p>
-                                <p>Damo@gmail.com</p>
+                                <p>ourprops@gmail.com</p>
+                                <p>info@ourprops.com</p>
                             </div>
                             </div>
                             <div className="flex items-start gap-4">
@@ -71,7 +51,7 @@ export default function Footer() {
                         </div>
 
                         {/* Quick Links */}
-                        <div>
+                        <div className='p-10'>
                         <h3 className="text-xl font-semibold text-white mb-6">Quick Links</h3>
                         <ul className="space-y-4">
                             <li>
@@ -80,12 +60,12 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-white transition-colors">
+                                <Link href="/about" className="hover:text-white transition-colors">
                                     About
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-white transition-colors">
+                                <Link href="/blog" className="hover:text-white transition-colors">
                                     Blog
                                 </Link>
                             </li>
@@ -93,12 +73,12 @@ export default function Footer() {
                         </div>
 
                         {/* Stay in touch */}
-                        <div>
+                        <div className='p-10'>
                         <h3 className="text-xl font-semibold text-white mb-6">Stay in touch</h3>
                         <div className="relative">
                             <Input
                                 type="email"
-                                placeholder="Enter Email Address"
+                                placeholder="Email Address"
                                 className="w-full bg-[#2a3947] border-none rounded-md py-3 px-4 text-white placeholder:text-gray-400 outline-white"
                             />
                             <button className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -128,11 +108,10 @@ export default function Footer() {
                         </div>
                         </div>
                     </div>
-
-                    {/* Copyright */}
-                    <div className="mt-12 pt-8 border-t w-[100%] text-center border-gray-800">
-                        <p>© OurProps 2025. ALL Rights Reserved.</p>
-                    </div>
+                </div>
+                {/* Copyright */}
+                <div className="mt-12 pt-8 border-t w-[100%] text-center border-gray-800">
+                    <p>© OurProps 2025. ALL Rights Reserved.</p>
                 </div>
             </footer>
         </div>

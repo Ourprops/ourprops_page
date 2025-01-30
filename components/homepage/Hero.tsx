@@ -52,9 +52,9 @@ export default function Hero() {
     }, [isOpen]);
 
     return (
-        <div>
+        <div className='h-auto xl:h-[90vh]'>
             {/* Hero Section */}
-            <div className="relative h-screen w-full">
+            <div className="relative w-full">
                 {/* Navbar  */}
                 <div className='flex justify-center'>
                     <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
@@ -129,12 +129,12 @@ export default function Hero() {
 
 
                 {/* Body Section */}
-                <div className="relative h-screen w-full">
+                <div className="relative h-auto xl:h-[90vh] w-full">
                     {/* <img
                         src='/interior2.jpg'
                         className="absolute inset-0 h-full w-full object-cover"
                     /> */}
-                    <div className="absolute inset-0 bg-slate-700 flex justify-center items-center">
+                    <div className="xl:absolute relative py-24 xl:py-0 inset-0 bg-slate-700 flex justify-center items-center">
                         <div
                             className="text-center text-white w-[100%] md:w-[90%] lg:w-[70%] p-8 flex flex-col justify-start items-center"
                         >
