@@ -91,7 +91,7 @@ export default function page() {
                         Empowering Real Estate Through Technology
                     </h1>
                 </div>
-                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start mt-10 xl:mt-0 border'>
+                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start mt-10 xl:mt-0'>
                     <p className='text-muted-foreground md:mt-0 mt-8 text-md leading-6'>
                         At the heart of our mission is the belief that property ownership should be 
                         simple, secure, and transparent. Through innovative tools like blockchain for fraud prevention, 
