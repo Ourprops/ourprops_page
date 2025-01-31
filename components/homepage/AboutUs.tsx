@@ -5,7 +5,7 @@ export default function AboutUs() {
     return (
         <div>
             <section className="section2  w-[100%] xl:h-[60vh] h-auto flex flex-col lg:flex-row xl:items-start justify-evenly md:py-0 py-0 lg:px-28 sm:px-10 px-5 md:gap-32 gap-x-10 gap-y-0">
-                <div className='xl:w-[50%] w-[100%] flex justify-start items-start flex-col'>
+                <div className='xl:w-[50%] w-[100%] flex justify-start items-start my-10 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>About</p>
                         <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
@@ -22,7 +22,7 @@ export default function AboutUs() {
                         </Button>
                     </div>
                 </div>
-                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start '>
+                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start mt-10 xl:mt-0 '>
                     <div className="rounded-lg md:h-[550px] h-[300px] w-[100%] bg-neutral-900"></div>
                 </div>
             </section>
