@@ -27,8 +27,8 @@ export default function Blog() {
                 <p className='text-muted-foreground text-xs uppercase mt-2'>Blog</p>
                 <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
             </div>
-            <div className="w-full gap-20 flex lg:flex-row flex-col justify-center mt-20">
-                <div className='flex flex-col justify-between'>
+            <div className="w-full gap-20 flex lg:flex-row flex-col justify-center mt-10">
+                <div className='flex flex-col'>
                     <div>
                         <h1 className='md:text-5xl text-4xl font-bold text-black mt-8 md:w-[90%] w-[100%]'>
                             Insights and Updates
@@ -37,7 +37,7 @@ export default function Blog() {
                             Stay informed with our latest stories, tips, and news about innovation, property management, and what{`’`}s happening at OurProps.
                         </p>
                     </div>
-                    <div>
+                    <div className='mt-10'>
                         <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark mt-5 xl:mt-0'>
                             Explore
                         </Button>

@@ -9,7 +9,7 @@ export default function Newsletter() {
     const [email, setEmail] = useState("")
 
     return (
-        <section className="relative h-[100vh] overflow-hidden bg-slate-100 flex flex-col md:flex-row">
+        <section className="relative h-auto overflow-hidden bg-slate-100 flex flex-col md:flex-row">
             <div className="py-10 md:py-20 lg:px-28 sm:px-10 px-5 flex flex-col basis-1/2">
                 <div className="relative">
                     <p className='text-muted-foreground text-xs uppercase'>Subscribe</p>
@@ -22,7 +22,7 @@ export default function Newsletter() {
                     Sign up for our newsletter and get exclusive access to product updates, tips, and real estate news delivered straight to you.
                 </p>
             </div>
-            <div className="flex-1 bg-slate-700 w-full py-10 md:py-20 lg:px-28 sm:px-10 px-5">
+            <div className="flex-1 bg-neutral-900 w-full py-10 md:py-20 lg:px-28 sm:px-10 px-5">
                 <div className='flex flex-col justify-center items-center'>
                     <span className='p-3 bg-white rounded-full'>
                         <Mail size={32} color='black' />

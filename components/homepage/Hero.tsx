@@ -58,7 +58,7 @@ export default function Hero() {
                 {/* Navbar  */}
                 <div className='flex justify-center'>
                     <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
-                        <h2 className="text-white font-bold text-2xl">OurProps</h2>
+                        <h2 className="text-white font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
                         {/* Navigation Links */}
                         <ul className="hidden md:flex items-center space-x-8 ">
                             {[
@@ -69,9 +69,10 @@ export default function Hero() {
                                 <li key={index} className="relative group">
                                     <Link
                                         href={item.route}
-                                        className="text-white hover:underline transition duration-200 font-medium"
+                                        className="text-white text-md font-medium transition duration-300"
                                     >
                                         {item.name}
+                                        <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                                     </Link>
                                 </li>
                             ))}
@@ -79,10 +80,10 @@ export default function Hero() {
 
                         {/* Contact Section */}
                         <div className="hidden md:block">
-                            <Button className='bg-white text-black hover:bg-neutral-200'>Join our waitlist</Button>
+                            <Button variant='outline' className='bg-transparent text-white'>Join our waitlist</Button>
                         </div>
                         <div className='md:hidden flex'>
-                            <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                            <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                         </div>
                     </nav>
                 </div>
@@ -129,26 +130,26 @@ export default function Hero() {
 
 
                 {/* Body Section */}
-                <div className="relative h-auto xl:h-[90vh] w-full">
+                <div className="relative h-auto xl:h-[80vh] w-full">
                     {/* <img
                         src='/interior2.jpg'
                         className="absolute inset-0 h-full w-full object-cover"
                     /> */}
-                    <div className="xl:absolute relative py-24 xl:py-0 inset-0 bg-slate-700 flex justify-center items-center">
+                    <div className="xl:absolute relative py-24 xl:py-0 inset-0 bg-neutral-900 flex justify-center items-center">
                         <div
                             className="text-center text-white w-[100%] md:w-[90%] lg:w-[70%] p-8 flex flex-col justify-start items-center"
                         >
-                            <h2 className="md:text-[60px] sm:text-[50px] text-[40px] w-[100%] mb-6 font-extrabold leading-[45px] md:leading-[70px] tracking-wide">
+                            <h2 className="md:text-[50px] sm:text-[40px] text-[30px] w-[100%] mb-6 font-bold leading-[35px] md:leading-[60px] tracking-wide">
                                 Visualize Boundaries, Verify Ownership, Prevent Fraud
                             </h2>
-                            <p className="text-lg text-muted mb-8 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[60%] text-center">
+                            <p className="sm:text-base text-sm text-muted-foreground mb-8 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[60%] text-center">
                                 Powerful mapping tools and blockchain security to simplify property transactions and protect your assets.
                             </p>
                             <div className="flex justify-center space-x-4">
-                                <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white py-6 px-5'>
+                                <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white md:py-6 px-5'>
                                     Subscribe for Updates
                                 </Button>
-                                <Button variant='link' className='bg-transparent text-white py-6 px-5'>
+                                <Button variant='link' className='bg-transparent text-white md:py-6 px-5'>
                                     Learn More
                                 </Button>
                             </div>

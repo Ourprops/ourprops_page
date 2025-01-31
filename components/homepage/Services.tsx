@@ -22,7 +22,7 @@ export default function Services() {
         }
     ]
     return (
-        <div className='w-[100%] xl:h-[100vh] h-auto py-10 lg:px-28 sm:px-10 px-5'>
+        <div className='w-[100%] xl:h-[70vh] h-auto py-10 lg:px-28 sm:px-10 px-5 my-28'>
             <div className='flex flex-col py-5'>
                 <div className="relative">
                     <p className='text-muted-foreground text-xs uppercase mt-2'>What we offer</p>
@@ -42,8 +42,6 @@ export default function Services() {
                     </div>
                 ))}
             </div>
-
-
         </div>
     )
 }
