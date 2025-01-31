@@ -7,10 +7,55 @@ import Footer from "@/components/Footer"
 import { Button } from '../../components/ui/button';
 import Hamburger from 'hamburger-react';
 import Link from "next/link";
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { AnimatePresence, motion } from "motion/react";
+import { usePathname, useRouter } from "next/navigation";
+
+// Slide in animation for menu
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15, // Delay between child animations
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
+};
 
 export default function page() {
     const [isOpen, setOpen] = useState(false);
+    const pathname = usePathname(); // Get the current route path
+    const router = useRouter();
+
+    const path = pathname.split("/")[1];
+
+    const handleLinkClick = (route: string) => {
+        router.push(route); // Navigate to the route
+        setOpen(false); // Close the menu
+    };
+
+
+        // Hide the menubar based on the screen width
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 768 && isOpen) {
+                setOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isOpen]);
+
+
     return (
     <>
         <Header />
@@ -46,6 +91,44 @@ export default function page() {
                 </div>
             </nav>
         </div>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
+
+                    <div className='absolute top-5 right-10'>
+                        <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                    </div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/')}
+                            className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            HOME
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/blog')}
+                            className={`${path === 'blog' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            BLOG
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/about')}
+                            className={`${path === 'about' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            ABOUT US
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
         <main className="h-auto">
             {/* Hero Section */}
             <section className="relative h-[80vh] bg-neutral-900">
