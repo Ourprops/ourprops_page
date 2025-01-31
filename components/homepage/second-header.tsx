@@ -28,7 +28,7 @@ export default function SecondHeader() {
     const pathname = usePathname(); // Get the current route path
     const router = useRouter();
 
-    console.log(pathname.split("/")[1]);
+    const path = pathname.split("/")[1];
 
     const handleLinkClick = (route: string) => {
         router.push(route); // Navigate to the route
@@ -96,7 +96,7 @@ export default function SecondHeader() {
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
                             onClick={() => handleLinkClick('/')}
-                            className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             HOME
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -105,7 +105,7 @@ export default function SecondHeader() {
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
                             onClick={() => handleLinkClick('/blog')}
-                            className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            className={`${path === 'blog' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             BLOG
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -113,8 +113,8 @@ export default function SecondHeader() {
                     </motion.div>
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
-                            onClick={() => handleLinkClick('/about-us')}
-                            className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            onClick={() => handleLinkClick('/about')}
+                            className={`${path === 'about' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             ABOUT US
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
