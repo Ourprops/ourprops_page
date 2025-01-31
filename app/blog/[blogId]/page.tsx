@@ -1,125 +1,83 @@
-'use client'
 import Image from "next/image"
-import { Search } from "lucide-react"
-import { NextPage } from 'next';
-import SecondHeader from "@/components/homepage/second-header";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import Footer from "@/components/Footer";
+import { Card } from "@/components/blogs/card"
+import Header from "@/components/Header"
+import SecondHeader from "@/components/homepage/second-header"
+import Footer from "@/components/Footer"
+import Link from "next/link"
 
-const SingleBlog: NextPage = (id) => {
-  
+export default function Page() {
   return (
     <>
+      <Header />
       <SecondHeader />
-      <div className="container mx-auto xl:max-w-7xl max-w-0xl px-5 xl:px-4 py-8 mt-20">
-        <div className="grid grid-cols-1 xl:gap-12 gap-0 lg:grid-cols-3">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            <article className="space-y-6">
-              <header className="space-y-4">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
-                  Building gains into housing stocks and how to trade the sector
-                </h1>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <span className="text-blue-600">Kathryn Murphy</span>
-                  </div>
-                  <time>April 6, 2023</time>
-                  <span>0 comment</span>
-                </div>
-              </header>
 
-              <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                <Image
-                  src="/property.jpg"
-                  alt="Blue beach house with palm trees"
-                  width={800}
-                  height={450}
-                  priority
-                  className="h-full w-full object-cover"
-                />
-              </div>
+      {/* Content */}
+      <div className="max-w-6xl mx-auto px-5 xl:px-4 sm:px-10 py-8 mt-20">
+        {/* Meta info */}
+        <p className="text-sm text-center text-muted-foreground mb-4"> <span className="bg-[#fe44001f] px-2 py-1 rounded-full me-3">Featured Article</span>  October 15, 2023</p>
 
-              <div className="prose prose-lg max-w-none">
-                <h2 className="text-xl font-semibold text-gray-900 mb-5">Understanding Housing Stocks</h2>
-                <p className="text-gray-600 leading-[25px]">
-                  The housing sector has long been a focal point for investors seeking stability and growth. Understanding
-                  the dynamics of housing stocks and effectively trading within this sector can lead to substantial gains.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, illum ratione ab debitis nam qui placeat, 
-                  reprehenderit, excepturi quod quo distinctio? Nobis nulla sunt porro ex doloribus repudiandae repellat, tempora 
-                  commodi ab atque saepe laborum dolor maiores sint animi accusamus architecto nesciunt non aliquam, nisi libero. 
-                  Qui quo soluta non.
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos nostrum, ullam minima ex ipsam dolore error assumenda 
-                  a hic voluptates provident id libero maxime excepturi eaque, voluptatibus quidem quasi suscipit. Voluptas nisi delectus 
-                  earum neque aliquam reiciendis autem? Amet nobis sint non iusto quos asperiores tempore quasi, quae distinctio adipisci!
-                </p>
-              </div>
-            </article>
+        {/* Main article */}
+        <article className="prose prose-slate lg:prose-lg dark:prose-invert max-w-none">
+          <h1 className=" text-2xl md:text-4xl font-sans font-medium text-center mb-3">Best Strategy to Achieve Profitable Harvest</h1>
+          <div className="flex justify-center">
+            <p className="text-center font-extralight mb-5 w-[100%] sm:w-[70%] xl:w-[50%] text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quasi dolore beatae iusto sit dolorem ratione similique nisi quibusdam sunt!</p>
+          </div>
+          
+
+          <div className="relative mb-8">
+            <Image
+              src="/property.jpg"
+              alt="Image"
+              width={500}
+              height={500}
+              className="object-cover h-[500px] w-[100%]"
+              priority
+            />
           </div>
 
-          {/* Sidebar */}
-          <aside className="space-y-8 mt-14 xl:mt-0">
-            {/* Search */}
-            <div className="space-y-4">
-              <div className="border-b-2 border-blue-500 w-[40px]"></div>
-              <h2 className="mb-2 text-lg font-bold">Search</h2>
-              <div className="relative">
-                <Input
-                  type="search"
-                  placeholder="Search..."
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 pl-10"
-                />
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-              </div>
-            </div>
+          <p className="text-muted-foreground leading-7 text-gray-500">
+            Selecting the right varieties and seeds is a crucial first step. This includes in-depth analysis into
+            varieties selection, environmental climate and soil conditions, as well as selecting high-quality seeds that
+            can withstand local conditions. To achieve profitable harvest, farmers must take careful consideration of seed
+            and planting materials. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam voluptas esse autem omnis? 
+            Quisquam vero temporibus placeat quia recusandae, consequatur pariatur fuga rem maxime porro voluptates tempora possimus 
+            similique culpa aspernatur nemo fugit sunt beatae reprehenderit, vitae nulla distinctio totam nostrum! Sit maiores atque 
+            inventore impedit est numquam praesentium dolorem?
+          </p>
+        </article>
 
-            {/* Featured Listings */}
-            <div className="space-y-4">
-              <div className="border-b-2 border-blue-500 w-[40px]"></div>
-              <h2 className="text-xl font-semibold">Recent Posts</h2>
-              <div className="space-y-4">
-                {[
-                  {
-                    image: "/property.jpg",
-                    title: "Key Real Estate Trends To Watch in 2024",
-                    date: "February 16, 2024",
-                  },
-                  {
-                    image: "/property.jpg",
-                    title: "Expert Tips For Profitable Real Estate Investments",
-                    date: "February 16, 2024",
-                  },
-                  {
-                    image: "/property.jpg",
-                    title: "10 Steps To Prepare For A Successful Real Estate Transaction",
-                    date: "February 16, 2024",
-                  },
-                ].map((post) => (
-                  <div key={post.title} className="flex gap-4">
-                    <Image
-                        src={post.image || "/placeholder.svg"}
-                        alt={post.title}
-                        width={80}
-                        height={60}
-                        priority
-                        className="rounded"
-                    />
-                    <div>
-                        <Link href={`/blog/${post.title}`} className="font-medium text-sm mb-1 cursor-pointer hover:underline">{post.title}</Link>
-                        <p className="text-gray-500 text-xs">{post.date}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {/* Related Articles */}
+        <section className="my-16">
+          <div className="flex flex-row justify-between items-center mb-8">
+            <div>
+              <h2 className="text-2xl font-sans font-semibold">Related Articles</h2>
             </div>
-          </aside>
-        </div>
+            <Link href="/blog" className="border rounded-full py-2 px-3">
+              <p className="text-sm">View All Articles</p>
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card
+              title="Achieving High Productivity from Your Own Farm Garden"
+              date="October 15, 2023"
+              imageUrl="/property.jpg"
+            />
+            <Card
+              title="The Best Guide to Planting Seeds with Natural Methods"
+              date="October 13, 2023"
+              imageUrl="/property.jpg"
+            />
+            <Card
+              title="Strategies for Caring for Your Garden with Efficiency and Productivity"
+              date="October 12, 2023"
+              imageUrl="/property.jpg"
+            />
+          </div>
+        </section>
       </div>
       <Footer />
     </>
   )
 }
-
-export default SingleBlog
 
