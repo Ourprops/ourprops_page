@@ -10,7 +10,7 @@ export default function Newsletter() {
 
     return (
         <section className="relative h-auto overflow-hidden bg-slate-100 flex flex-col md:flex-row">
-            <div className="py-10 md:py-20 lg:px-28 sm:px-10 px-5 flex flex-col basis-1/2">
+            <div className="py-20 sm:py-10 md:py-20 lg:px-28 sm:px-10 px-5 flex flex-col basis-1/2">
                 <div className="relative">
                     <p className='text-muted-foreground text-xs uppercase'>Subscribe</p>
                     <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default -mt-2'></span>
