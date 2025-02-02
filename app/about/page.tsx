@@ -1,4 +1,6 @@
 'use client'
+
+import '../../app/styles.css';
 import Image from "next/image"
 import Header from "@/components/Header"
 import Services from "@/components/homepage/Services"
@@ -57,7 +59,7 @@ export default function page() {
 
 
     return (
-    <>
+    <div className='font-sans'>
         <Header />
         {/* Navbar  */}
         <div className='flex justify-center'>
@@ -96,8 +98,8 @@ export default function page() {
             {isOpen && (
                 <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
 
-                    <div className='absolute top-5 right-10'>
-                        <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                    <div className='absolute top-10 right-10'>
+                        <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                     </div>
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
@@ -132,8 +134,8 @@ export default function page() {
         <main className="h-auto">
             {/* Hero Section */}
             <section className="relative h-[80vh] bg-neutral-900">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full max-w-2xl px-4">
-                    <h2 className="md:text-[50px] text-white sm:text-[40px] text-[30px] w-[100%] mb-6 font-extrabold leading-[35px] md:leading-[60px] tracking-wide">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full max-w-6xl px-4">
+                    <h2 className="md:text-[50px] text-white sm:text-[40px] text-[30px] w-[100%] mb-6 font-bold leading-[35px] md:leading-[60px] tracking-wide">
                         Visualize Boundaries, Verify Ownership, Prevent Fraud
                     </h2>
                     <div className="flex justify-center items-center">
@@ -151,7 +153,7 @@ export default function page() {
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our Missoin</p>
                         <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
                     </div>
-                    <h1 className='md:text-5xl text-4xl font-extrabold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
+                    <h1 className='md:text-5xl text-4xl font-bold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
                         Empowering Real Estate Through Technology
                     </h1>
                     <p className='text-muted-foreground md:mt-16 mt-8 text-sm'>
@@ -164,17 +166,17 @@ export default function page() {
             </section>
 
             {/* Our Story Section */}
-            <section className="section2  w-[100%]  h-auto flex flex-col lg:flex-row xl:items-start justify-evenly md:py-0 py-0 lg:px-28 sm:px-10 px-5 my-0 xl:my-20">
+            <section className="section2 w-[100%] h-auto xl:h-[60vh] flex flex-col lg:flex-row xl:items-start justify-evenly md:py-0 py-0 lg:px-28 sm:px-10 px-5 mt-0 xl:mt-20">
                 <div className='xl:w-[50%] w-[100%] flex justify-start items-start my-10 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our STORY</p>
                         <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
                     </div>
-                    <h1 className='md:text-5xl text-4xl font-extrabold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
+                    <h1 className='md:text-5xl text-4xl font-bold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
                         Empowering Real Estate Through Technology
                     </h1>
                 </div>
-                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start mt-10 xl:mt-0'>
+                <div className='xl:w-[50%] w-[100%] h-[100%] flex justify-start mt-0 xl:mt-20'>
                     <p className='text-muted-foreground md:mt-0 mt-8 text-md leading-6'>
                         At the heart of our mission is the belief that property ownership should be 
                         simple, secure, and transparent. Through innovative tools like blockchain for fraud prevention, 
@@ -196,7 +198,7 @@ export default function page() {
 
 
         </main>
-    </>
+    </div>
     )
 }
 

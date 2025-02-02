@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import '../../app/styles.css';
 import { AnimatePresence, motion } from "motion/react";
 import Hamburger from 'hamburger-react';
 import { usePathname, useRouter } from "next/navigation";
@@ -95,8 +94,8 @@ export default function Hero() {
                     {isOpen && (
                         <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
 
-                            <div className='absolute top-5 right-10'>
-                                <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                            <div className='absolute top-10 right-10'>
+                                <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                             </div>
                             <motion.div variants={itemVariants} className='mb-5'>
                                 <div

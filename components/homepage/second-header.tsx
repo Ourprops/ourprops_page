@@ -80,7 +80,7 @@ export default function SecondHeader() {
                     <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white'>Join our waitlist</Button>
                 </div>
                 <div className='md:hidden flex'>
-                    <Hamburger toggled={isOpen} toggle={setOpen} color='black' />
+                    <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='black' />
                 </div>
             </nav>
         </div>
@@ -90,8 +90,8 @@ export default function SecondHeader() {
             {isOpen && (
                 <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
 
-                    <div className='absolute top-5 right-10'>
-                        <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                    <div className='absolute top-10 right-10'>
+                        <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                     </div>
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
