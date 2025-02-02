@@ -147,8 +147,8 @@ export default function page() {
             </section>
 
             {/* Our Mission Section */}
-            <section className="w-[100%] h-auto flex flex-col lg:flex-row lg:px-28 sm:px-10 px-5 md:gap-32 gap-x-10 gap-y-0 xl:my-20 my-0">
-                <div className='xl:w-[50%] w-[100%] flex justify-start items-start my-10 xl:my-0 flex-col'>
+            <section className="w-[100%] h-auto flex flex-col lg:flex-row lg:px-28 sm:px-10 px-5 md:gap-8 gap-x-10 gap-y-0 xl:my-0 my-20">
+                <div className='xl:w-[50%] w-[100%] flex justify-start items-start mt-10 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our Missoin</p>
                         <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
@@ -166,7 +166,7 @@ export default function page() {
             </section>
 
             {/* Our Story Section */}
-            <section className="section2 w-[100%] h-auto xl:h-[60vh] flex flex-col lg:flex-row xl:items-start justify-evenly md:py-0 py-0 lg:px-28 sm:px-10 px-5 mt-0 xl:mt-20">
+            <section className="section2 w-[100%] h-auto xl:h-[60vh] flex flex-col lg:flex-row xl:items-start justify-evenly xl:py-0 py-10 lg:px-28 sm:px-10 px-5">
                 <div className='xl:w-[50%] w-[100%] flex justify-start items-start my-10 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our STORY</p>

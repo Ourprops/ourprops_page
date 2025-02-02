@@ -22,7 +22,7 @@ export default function Services() {
         }
     ]
     return (
-        <div className='w-[100%] h-auto py-10 lg:px-28 sm:px-10 px-5'>
+        <div className='w-[100%] h-auto pt-10 pb-20 lg:px-28 sm:px-10 px-5'>
             <div className='flex flex-col py-5'>
                 <div className="relative">
                     <p className='text-muted-foreground text-xs uppercase mt-2'>What we offer</p>
@@ -31,7 +31,7 @@ export default function Services() {
                 <h1 className='md:text-5xl text-4xl font-bold text-black mt-8 md:w-[70%] w-[100%]'>
                     Smart Solutions for Property Management
                 </h1>
-                <p className='text-muted-foreground mt-8 text-sm lg:w-[40%] md:w-[50%] sm:w-[70%] w-[100%]'>
+                <p className='text-muted-foreground mt-8 text-sm lg:w-[40%] md:w-[70%] sm:w-[90%] w-[100%]'>
                     Manage property boundaries, secure ownership, and protect your investments with smart, transparent tools designed for the modern world.
                 </p>
             </div>
