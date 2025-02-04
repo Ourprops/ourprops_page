@@ -64,10 +64,9 @@ export default function page() {
         <Header />
 
         {/* Navbar  */}
-<<<<<<< HEAD
+
         <SecondHeader color="text-white" />
 
-=======
         <div className='flex justify-center'>
             <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
                 <h2 className="text-white font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
@@ -137,7 +136,7 @@ export default function page() {
                 </motion.div>
             )}
         </AnimatePresence>
->>>>>>> 2367a88 (Update package-lock.json)
+
         <main className="h-auto">
             {/* Hero Section */}
             <section className="relative h-[80vh] bg-neutral-900">

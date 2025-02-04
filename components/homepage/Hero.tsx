@@ -1,18 +1,14 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from '../ui/button';
-<<<<<<< HEAD
 import SecondHeader from './second-header';
-
-
-export default function Hero() {
-    const [isOpen, setOpen] = useState(false);
-    const currentPath = usePathname();
-    console.log(currentPath.split("/")[0])
-=======
 import Image from "next/image";
 import { urlFor } from '@/sanity/url-for';
+import Hamburger from 'hamburger-react';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'motion/react';
+
 
 
 // Slide in animation for menu
@@ -59,7 +55,6 @@ export default function Hero({
         router.push(route); // Navigate to the route
         setOpen(false); // Close the menu
     };
->>>>>>> 2367a88 (Update package-lock.json)
 
     // Hide the menubar based on the screen width
     useEffect(() => {
@@ -82,9 +77,9 @@ export default function Hero({
             {/* Hero Section */}
             <div className="relative w-full">
                 {/* Navbar  */}
-<<<<<<< HEAD
+
                 <SecondHeader color='text-white' />
-=======
+
                 <div className='flex justify-center'>
                     <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
                         <h2 className="text-white font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
@@ -131,7 +126,7 @@ export default function Hero({
                                     className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                                 >
                                     HOME
-                                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                                 </div>
                             </motion.div>
                             <motion.div variants={itemVariants} className='mb-5'>
@@ -157,7 +152,7 @@ export default function Hero({
                 </AnimatePresence>
 
 
->>>>>>> 2367a88 (Update package-lock.json)
+
 
                 {/* Body Section */}
                 <div className="relative h-auto xl:h-[80vh] w-full">
