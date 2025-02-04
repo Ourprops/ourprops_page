@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import '../../app/styles.css';
-import Image from "next/image"
 import Header from "@/components/Header"
 import Services from "@/components/homepage/Services"
 import Newsletter from "@/components/homepage/Newsletter"
@@ -195,7 +195,7 @@ export default function page() {
             </section>
 
             {/* What we offer Section*/}
-            <Services />
+            <Services headline={''} subheadline={''} services={[]}  />
 
             {/* Newsletter Section*/}
             <Newsletter />
