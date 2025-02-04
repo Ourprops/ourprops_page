@@ -62,7 +62,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [isOpen, window]);
+    }, [isOpen, window, path]);
 
     return (
     <div>
