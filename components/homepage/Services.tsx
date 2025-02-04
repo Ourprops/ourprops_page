@@ -34,7 +34,7 @@ export default function Services({
                 </p>
             </div>
             <div className='grid md:grid-cols-3 grid-cols-1 mt-8 gap-10'>
-                {services.map((service) => (
+                {services?.length > 0 && services?.map((service) => (
                     <div key={service.headline} className="rounded-md bg-neutral-100 col-span-1 h-[400px] p-4">
                         <div>
                             

@@ -34,9 +34,9 @@ const itemVariants = {
 
 
 type HeroProps = {
-    headline: string;
-    subheadline: string;
-    image: string;
+    headline?: string;
+    subheadline?: string;
+    image?: string;
 };
 
 export default function Hero({
