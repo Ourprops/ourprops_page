@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Nunito_Sans } from "next/font/google";
-
+import { SanityLive } from "@/sanity/live";
 
 const nunito_sans = Nunito_Sans({
   subsets: ["latin"],
@@ -26,6 +26,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
+          <SanityLive />
         </ThemeProvider>
       </body>
     </html>

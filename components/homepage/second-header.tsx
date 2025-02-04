@@ -83,7 +83,11 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
                                 className={ path === item.pathName ? `text-orange-500 border-b-2 border-orange-500 py-1 transition duration-200 font-medium` : `${color} transition hover:text-orange-300  duration-200 font-medium`}
                             >
                                 {item.name}
+<<<<<<< HEAD
                                 {/* <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span> */}
+=======
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+>>>>>>> 2367a88 (Update package-lock.json)
                             </Link>
                         </li>
                     ))}
@@ -91,7 +95,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
 
                 {/* Contact Section */}
                 <div className="hidden md:block">
-                    <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white'>Join our waitlist</Button>
+                    <Button className='text-white'>Join our waitlist</Button>
                 </div>
                 <div className='md:hidden flex'>
                     <Hamburger size={15} toggled={isOpen} toggle={setOpen} color={changeColor && path != 'blog' ? 'white' : 'black'} />
@@ -110,7 +114,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
                             onClick={() => handleLinkClick('/')}
-                            className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            className={`${path === '' ? 'text-xl font-bold cursor-pointer py-2 uppercase' : 'text-xl py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             HOME
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -119,7 +123,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
                             onClick={() => handleLinkClick('/blog')}
-                            className={`${path === 'blog' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            className={`${path === 'blog' ? 'text-xl font-bold cursor-pointer py-2 uppercase' : 'text-xl py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             BLOG
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -128,7 +132,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
                     <motion.div variants={itemVariants} className='mb-5'>
                         <div
                             onClick={() => handleLinkClick('/about')}
-                            className={`${path === 'about' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                            className={`${path === 'about' ? 'text-xl font-bold cursor-pointer py-2 uppercase' : 'text-xl py-2 font-bold cursor-pointer uppercase'} relative group`}
                         >
                             ABOUT US
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
