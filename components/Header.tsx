@@ -60,7 +60,7 @@ export default function Header() {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
-    }, [isOpen]);
+    }, [isOpen, window]);
 
     return (
         <>
