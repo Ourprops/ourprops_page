@@ -28,9 +28,12 @@ export default function page() {
     ]
     return (
         <>
+            {/* Scroll In Navbar */}
             <Header />
+
+            {/* Navbar */}
             <div className="mt-20">
-                <SecondHeader />
+                <SecondHeader color="text-black" />
             </div>
             
             <main className="max-w-7xl mx-auto px-4 py-8">

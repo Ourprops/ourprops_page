@@ -8,8 +8,11 @@ import Link from "next/link"
 export default function Page() {
   return (
     <>
+      {/* Scroll In Navbar */}
       <Header />
-      <SecondHeader />
+
+      {/* Navbar */}
+      <SecondHeader color="text-black" />
 
       {/* Content */}
       <div className="max-w-6xl mx-auto px-5 xl:px-4 sm:px-10 py-8 mt-20">
