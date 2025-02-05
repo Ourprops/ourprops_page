@@ -62,7 +62,7 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [isOpen, window, path]);
+    }, [isOpen, path]);
 
     return (
     <div>
@@ -83,11 +83,10 @@ const SecondHeader: React.FC<SecondHeaderProps> = ({ color }) => {
                                 className={ path === item.pathName ? `text-orange-500 border-b-2 border-orange-500 py-1 transition duration-200 font-medium` : `${color} transition hover:text-orange-300  duration-200 font-medium`}
                             >
                                 {item.name}
-<<<<<<< HEAD
+
                                 {/* <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span> */}
-=======
+
                                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
->>>>>>> 2367a88 (Update package-lock.json)
                             </Link>
                         </li>
                     ))}
