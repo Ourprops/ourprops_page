@@ -1,13 +1,13 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Link from 'next/link';
-import '../../app/styles.css';
-import { AnimatePresence, motion } from "motion/react";
-import Hamburger from 'hamburger-react';
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from '../ui/button';
+import SecondHeader from './second-header';
+import Image from "next/image";
+import { urlFor } from '@/sanity/url-for';
+import Hamburger from 'hamburger-react';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'motion/react';
 
 
 
@@ -27,10 +27,29 @@ const itemVariants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
 };
 
-export default function Hero() {
+
+
+type HeroProps = {
+    headline?: string;
+    subheadline?: string;
+    image?: string;
+};
+
+export default function Hero({
+    headline,
+    subheadline,
+    image,
+}: HeroProps) {
     const [isOpen, setOpen] = useState(false);
     const pathname = usePathname(); // Get the current route path
     const router = useRouter();
+
+    const path = pathname.split("/")[1];
+
+    const heroImageUrl = image
+    ? urlFor(image)?.url()
+    : null;
+
 
     const handleLinkClick = (route: string) => {
         router.push(route); // Navigate to the route
@@ -39,6 +58,7 @@ export default function Hero() {
 
     // Hide the menubar based on the screen width
     useEffect(() => {
+
         const handleResize = () => {
             if (window.innerWidth > 768 && isOpen) {
                 setOpen(false);
@@ -53,12 +73,16 @@ export default function Hero() {
     }, [isOpen]);
 
     return (
-        <div>
+        <div className='h-auto xl:h-[90vh]'>
             {/* Hero Section */}
-            <div className="relative h-screen w-full">
+            <div className="relative w-full">
+                {/* Navbar  */}
+
+                <SecondHeader color='text-white' />
+
                 <div className='flex justify-center'>
                     <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
-                        <h2 className="text-white font-bold text-2xl">OurProps</h2>
+                        <h2 className="text-white font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
                         {/* Navigation Links */}
                         <ul className="hidden md:flex items-center space-x-8 ">
                             {[
@@ -69,9 +93,10 @@ export default function Hero() {
                                 <li key={index} className="relative group">
                                     <Link
                                         href={item.route}
-                                        className="text-white hover:underline transition duration-200 font-medium"
+                                        className="text-white text-md font-medium transition duration-300"
                                     >
                                         {item.name}
+                                        <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                                     </Link>
                                 </li>
                             ))}
@@ -79,10 +104,10 @@ export default function Hero() {
 
                         {/* Contact Section */}
                         <div className="hidden md:block">
-                            <Button className='bg-white text-black hover:bg-neutral-200'>Join our waitlist</Button>
+                            <Button variant='outline' className='bg-transparent text-white'>Join our waitlist</Button>
                         </div>
                         <div className='md:hidden flex'>
-                            <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                            <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                         </div>
                     </nav>
                 </div>
@@ -92,22 +117,22 @@ export default function Hero() {
                     {isOpen && (
                         <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
 
-                            <div className='absolute top-5 right-10'>
-                                <Hamburger toggled={isOpen} toggle={setOpen} color='white' />
+                            <div className='absolute top-10 right-10'>
+                                <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
                             </div>
                             <motion.div variants={itemVariants} className='mb-5'>
                                 <div
                                     onClick={() => handleLinkClick('/')}
-                                    className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                                    className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                                 >
                                     HOME
-                                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                                 </div>
                             </motion.div>
                             <motion.div variants={itemVariants} className='mb-5'>
                                 <div
                                     onClick={() => handleLinkClick('/blog')}
-                                    className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                                    className={`${path === 'blog' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                                 >
                                     BLOG
                                     <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -115,8 +140,8 @@ export default function Hero() {
                             </motion.div>
                             <motion.div variants={itemVariants} className='mb-5'>
                                 <div
-                                    onClick={() => handleLinkClick('/about-us')}
-                                    className={`${pathname === 'about-us' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                                    onClick={() => handleLinkClick('/about')}
+                                    className={`${path === 'about' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
                                 >
                                     ABOUT US
                                     <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -128,27 +153,30 @@ export default function Hero() {
 
 
 
+
                 {/* Body Section */}
-                <div className="relative h-screen w-full">
-                    {/* <img
-                        src='/interior2.jpg'
+                <div className="relative h-auto xl:h-[80vh] w-full">
+                    <Image
+                        src={heroImageUrl || "https://placehold.co/550x310/png"}
+                        alt='hero image'
                         className="absolute inset-0 h-full w-full object-cover"
-                    /> */}
-                    <div className="absolute inset-0 bg-slate-700 flex justify-center items-center">
+                        fill
+                    />
+                    <div className="xl:absolute relative py-24 xl:py-0 inset-0 flex justify-center items-center">
                         <div
                             className="text-center text-white w-[100%] md:w-[90%] lg:w-[70%] p-8 flex flex-col justify-start items-center"
                         >
-                            <h2 className="md:text-[60px] sm:text-[50px] text-[40px] w-[100%] mb-6 font-extrabold leading-[45px] md:leading-[70px] tracking-wide">
-                                Visualize Boundaries, Verify Ownership, Prevent Fraud
+                            <h2 className="md:text-[50px] sm:text-[40px] text-[30px] w-[100%] mb-6 font-bold leading-[35px] md:leading-[60px] tracking-wide">
+                                {headline}
                             </h2>
-                            <p className="text-lg text-muted mb-8 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[60%] text-center">
-                                Powerful mapping tools and blockchain security to simplify property transactions and protect your assets.
+                            <p className="sm:text-base text-sm text-muted-foreground mb-8 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[60%] text-center">
+                                {subheadline}
                             </p>
                             <div className="flex justify-center space-x-4">
-                                <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white py-6 px-5'>
+                                <Button className='text-white md:py-6 px-5'>
                                     Subscribe for Updates
                                 </Button>
-                                <Button variant='link' className='bg-transparent text-white py-6 px-5'>
+                                <Button variant='secondary' className=' text-white md:py-6 px-5'>
                                     Learn More
                                 </Button>
                             </div>
