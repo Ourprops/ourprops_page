@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
   	extend: {
+		screens: {
+			'2md': '840px',
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -52,12 +55,12 @@ export default {
   			},
 			appColor: {
 				blue: {
-					default: "#00BFFF",
-					muted: "#3bceff",
+					default: "#00008B",
+					muted: "#ededff",
 				},
 				orange: {
 					default: "#ff4500",
-					dark: "#d83a00"
+					muted: "#fff1eb"
 				}
 			}
   		},
@@ -68,5 +71,6 @@ export default {
   		}
   	}
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
