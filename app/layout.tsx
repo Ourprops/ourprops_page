@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Nunito_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { SanityLive } from "@/sanity/live";
+import Header from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster"
+import Footer from "@/components/layout/footer";
+import Comment from "@/components/layout/comment";
 
-const nunito_sans = Nunito_Sans({
+const outift =  Outfit({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "600", "700", "800", "900",],
 })
+
 
 export const metadata: Metadata = {
   title: "Our Props",
@@ -21,11 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nunito_sans.className} antialiased`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
+      <body className={`${outift.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative">
+            <Header />
+            {children}
+            <Comment />
+            <Footer />
+            <Toaster />
+          </div>
           <SanityLive />
         </ThemeProvider>
       </body>
