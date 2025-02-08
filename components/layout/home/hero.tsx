@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { appColor } from "@/constants/color";
-import { MapPin, Map } from "lucide-react";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
