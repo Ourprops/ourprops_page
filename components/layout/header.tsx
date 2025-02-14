@@ -26,16 +26,14 @@ const navs = [
 export default function Header() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-      <div className="xl:px-20 lg:px-10 md:px-5 px-4 py-4 flex justify-between items-center bg-white">
+      <div className="xl:px-20 lg:px-10 md:px-5 px-4 py-3 flex justify-between items-center bg-gray-300 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100">
         <div className="md:hidden block">
           <button>
             <AlignJustify />
           </button>
         </div>
         <div>
-          <h1 className={`text-lg font-bold ${poppins.className}`}>
-            OURPROPS
-          </h1>
+          <h1 className={`text-lg font-bold ${poppins.className}`}>OURPROPS</h1>
         </div>
         <nav className="md:flex items-center space-x-8 hidden">
           {navs.map((nav, index) => (
@@ -49,7 +47,7 @@ export default function Header() {
           ))}
         </nav>
         <div>
-          <Button className="text-white">Waitlist</Button>
+          <Button className="text-white">Join us</Button>
         </div>
       </div>
     </div>

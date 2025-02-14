@@ -16,7 +16,7 @@ const poppins = Poppins({
 export default function Newsletter({
   sectionRef
 }: {
-  sectionRef: React.RefObject<HTMLDivElement | null>;
+  sectionRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);

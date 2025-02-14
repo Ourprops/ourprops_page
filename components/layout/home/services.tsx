@@ -1,63 +1,87 @@
+import { sanityFetch } from "@/sanity/live";
+import { urlFor } from "@/sanity/url-for";
+import { defineQuery } from "next-sanity";
 import { Poppins } from "next/font/google";
+import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["600", "700"],
 });
 
+export const placeholder = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg=="
+
 function ServiceCard({
-  title,
-  description,
+  service,
 }: {
-  title: string;
-  description: string;
-}) {
+  service: { title: string; description: string; image: unknown };
+  }) {
+  const serviceImage = service?.image ? urlFor(service.image)?.url() ?? "" : "";  
+  
   return (
     <div
-      // style={{ backgroundColor: color }} 
-      className={`w-full rounded-lg h-[400px] flex flex-col gap-4 justify-between p-4 bg-white`}
+      className={`w-full rounded-lg md:h-[500px] h-[485px] flex flex-col justify-between p-4 bg-white`}
     >
-      <div className="bg-slate-100 rounded-lg w-full h-full">
-        
+      <div className="rounded-lg w-full h-4/5 relative overflow-hidden">
+        <Image
+          src={serviceImage}
+          layout="fill"
+          objectFit="cover"
+          alt={service.title}
+          priority
+          placeholder="blur"
+          blurDataURL={placeholder}
+        />
       </div>
-      <div>
+      <div className="h-1/5 mt-4">
         <h3 className={`text-xl font-semibold ${poppins.className}`}>
-          {title}
+          {service.title}
         </h3>
-        <p className="md:text-sm text-xs md:leading-5 mt-2">{description}</p>
+        <p className="md:text-sm text-xs md:leading-5 mt-2">
+          {service?.description}
+        </p>
       </div>
     </div>
   );
 }
 
-export default function Services() {
+const SERVICES_QUERY = defineQuery(`*[
+    _type == "servicesType"
+][0]{
+    headline,
+    subheadline,
+    services[]->{
+        _id,
+        title,
+        description,
+        image
+    }
+}`);
+
+export default async function Services() {
+  const { data: services } = await sanityFetch({
+    query: SERVICES_QUERY,
+  });
+  
   return (
-    <div className="h-auto py-24 justify-center items-center w-full gap-5 flex flex-col xl:px-20 lg:px-10 md:px-5 px-4 bg-appColor-blue-muted">
+    <div className="h-auto py-24 justify-center items-center w-full gap-5 flex flex-col xl:px-20 lg:px-10 md:px-5 px-4 ">
       <h2
-        className={`text-4xl font-bold text-center ${poppins.className} g:w-[70%] md:w-[70%] lg:leading-[3rem]`}
+        className={`sm:text-4xl text-3xl font-bold text-center ${poppins.className} g:w-[70%] md:w-[70%] lg:leading-[3rem]`}
       >
-        Empwering Your Property Ownership Through Technology and Innovation
+        {services?.headline}
       </h2>
-      <p className="text-center text-base sm:text-sm w-[70%]">
-        Explore our services and discover how we can help you achieve your goals
+      <p className="text-center text-sm sm:text-base w-[70%]">
+        {services?.subheadline}
       </p>
-      <div className="mt-10 grid md:grid-cols-2 grid-cols-1 gap-4 w-full">
-        <ServiceCard
-          title="Property Management"
-          description="We provide property management services for residential and commercial properties"
-        />
-        <ServiceCard
-          title="Property Management"
-          description="We provide property management services for residential and commercial properties"
-        />
-        <ServiceCard
-          title="Property Management"
-          description="We provide property management services for residential and commercial properties"
-        />
-        <ServiceCard
-          title="Property Management"
-          description="We provide property management services for residential and commercial properties"
-        />
+      <div className="mt-10 grid sm:grid-cols-2 grid-cols-1 gap-4 w-full">
+        {
+          services?.services &&
+          services?.services.map(
+            (
+              service: { title: string; description: string, image: unknown },
+              index: number
+            ) => <ServiceCard key={index} service={service} />
+          )}
       </div>
     </div>
   );

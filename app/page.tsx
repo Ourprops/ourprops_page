@@ -1,27 +1,44 @@
-"use client"
 import Hero from "@/components/layout/home/hero";
-import Newsletter from "@/components/layout/home/news-letter";
+import Newsletter from "@/components/layout/news-letter";
 import Problem from "@/components/layout/home/problem";
 import Services from "@/components/layout/home/services";
 import Target from "@/components/layout/home/target";
-import { useCallback, useRef } from "react";
+import { sanityFetch } from "@/sanity/live";
+import { defineQuery } from "next-sanity";
 
-export default function Home() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const scrollToSection = useCallback(() => {
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+const HERO_QUERY = defineQuery(`*[
+    _type == "homeHero"
+][0]{
+    headline,
+    subheadline,
+}`);
+const PROBLEM_QUERY = defineQuery(`*[
+    _type == "problemsType"
+][0]{
+    headline,
+    subheadline,
+    problems[]->{
+        _id,
+        title,
+        description,
     }
-  }, []);
+}`);
 
+export default async function Home() {
+  const { data: hero } = await sanityFetch({
+    query: HERO_QUERY,
+  });
+  const { data: problems } = await sanityFetch({
+    query: PROBLEM_QUERY,
+  });
+  
   return (
     <div>
-      <Hero scrollToSection={scrollToSection} />
-      <Problem />
+      <Hero hero={hero} />
+      <Problem problems={problems} />
       <Services />
       <Target />
-      <Newsletter sectionRef={sectionRef} />
+      <Newsletter />
     </div>
   );
 }

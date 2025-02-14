@@ -55,7 +55,7 @@ export default {
   			},
 			appColor: {
 				blue: {
-					default: "#00008B",
+					default: "#6464ff",
 					muted: "#ededff",
 				},
 				orange: {
