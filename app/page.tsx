@@ -31,6 +31,7 @@ export default async function Home() {
   const { data: problems } = await sanityFetch({
     query: PROBLEM_QUERY,
   });
+
   
   return (
     <div>
@@ -38,7 +39,7 @@ export default async function Home() {
       <Problem problems={problems} />
       <Services />
       <Target />
-      <Newsletter />
+      <Newsletter  />
     </div>
   );
 }

@@ -1,32 +1,26 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Poppins } from "next/font/google";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { useState } from "react";
-import { Loader } from "lucide-react";
+import { LoaderCircle, Send } from "lucide-react";
+import { Element } from "react-scroll";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["600", "700"],
 });
 
-export default function Newsletter({
-  sectionRef
-}: {
-  sectionRef?: React.RefObject<HTMLDivElement | null>;
-}) {
+export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubscribe = async () => {
     setLoading(true);
     try {
-      await api.post("/email/subscribe", { email: e.currentTarget.email.value });
+      await api.post("/email/subscribe", { email });
       toast({
         title: "Thank you for subscribing!",
         description: "You will now receive our newsletter",
@@ -39,39 +33,49 @@ export default function Newsletter({
   };
 
   return (
-    <div ref={sectionRef} className="h-auto py-24 w-full xl:px-20 lg:px-10 md:px-5 px-4 grid lg:gap-20 gap-24 md:gap-4 md:grid-cols-2 grid-cols-1 bg-appColor-blue-muted">
-      <div>
+    <Element
+      name="newsletter"
+      className="h-auto w-full grid lg:gap-20 gap-24 md:gap-4 md:grid-cols-2 grid-cols-1 bg-gray-50"
+    >
+      <div
+        style={{
+          backgroundImage:
+            "url('https://images.pexels.com/photos/7937310/pexels-photo-7937310.jpeg?auto=compress&cs=tinysrgb&w=600)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        className="relative overflow-hidden"
+      ></div>
+      <div className="py-24 xl:px-20 lg:px-10 md:px-5 px-4">
+        <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary ">
+          Blog
+        </span>
         <h2
-          className={`text-4xl font-bold ${poppins.className} lg:leading-[3rem]`}
+          className={`text-4xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4`}
         >
           Don{`'`}t Miss Out
         </h2>
-        <p className="text-base sm:text-sm mt-5">
+        <p className="text-sm sm:text-sm mt-1 text-muted-foreground mb-10">
           Subscribe for valuable resources and information on the Ghanaian
           property market and OURPROPS updates
         </p>
+        <div className="relative w-full flex flex-row items-center rounded-full bg-white h-12">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="example@gmail.com"
+            className="w-full h-12 px-4 border-none outline-none rounded-l-full"
+          />
+          <Button
+            onClick={handleSubscribe}
+            className="text-white h-12 rounded-r-full rounded-b-full"
+          >
+            {loading ? <LoaderCircle className="animate-spin" /> : <Send />}
+          </Button>
+        </div>
       </div>
-      <div>
-        <form onSubmit={handleSubscribe}>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                required
-                id="email"
-                placeholder="Enter your email address"
-                className="py-5"
-                value={email}
-                onChange={(e) => setEmail(e.currentTarget.value)}
-              />
-            </div>
-            <Button type="submit" className="py-6">
-              {loading ? <Loader className="animate-spin" /> : "Subscribe Now"}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+    </Element>
   );
 }

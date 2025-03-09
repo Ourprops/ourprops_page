@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export default function OurStoryView({ ourStory }: { ourStory: OurStory }) {
@@ -31,17 +31,17 @@ export default function OurStoryView({ ourStory }: { ourStory: OurStory }) {
         </div>
         <div>
           <div className="grid grid-flow-row gap-5">
-            <h4
-              className={`uppercase ${poppins.className} text-appColor-orange-default`}
-            >
-              Our story
-            </h4>
-            <h2
-              className={`sm:text-4xl text-3xl font-bold ${poppins.className} lg:leading-[3rem]`}
-            >
-              {ourStory?.headline}
-            </h2>
-            <p className="text-base sm:text-lg sm:leading-7 leading-6">
+            <div>
+              <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+                Problems
+              </span>
+              <h2
+                className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] mt-4`}
+              >
+                {ourStory?.headline}
+              </h2>
+            </div>
+            <p className="sm:text-base text-sm text-muted-foreground sm:leading-7 leading-6">
               {ourStory?.subheadline}
             </p>
           </div>

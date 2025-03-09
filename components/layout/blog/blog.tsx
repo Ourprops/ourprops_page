@@ -16,18 +16,21 @@ export default function Blog({
   blog: BlogType;
 }) {
   const blogImage = blog.image ? urlFor(blog.image)?.url() : "";
+  const date = new Date(blog?.date ?? "");
   
   return (
     <div className="py-20 flex flex-col justify-center items-center gap-5 xl:px-20 lg:px-10 md:px-5 px-4">
-      <p className="text-xs text-muted-foreground">
-        {new Date(blog?.date ?? "").toLocaleDateString()}
-      </p>
+      <div>
+        <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+          {date.toDateString()}
+        </span>
+      </div>
       <h1
-        className={`lg:text-6xl sm:text-5xl text-4xl font-bold ${poppins.className}`}
+        className={`lg:text-6xl sm:text-5xl text-4xl font-medium ${poppins.className}`}
       >
         {blog.title}
       </h1>
-      <p className="sm:text-lg text-base text-muted-foreground">
+      <p className="text-base sm:text-sm text-muted-foreground">
         {blog.subtitle}
       </p>
       <div className="relative w-full lg:h-[600px] md:h-[500px] h-[400px]  overflow-hidden my-5">

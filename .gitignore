@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# google service account
+vast-zodiac-448118-s0-ad4caf3568f1.json
+service-account.json

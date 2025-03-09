@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 function SubSection({
@@ -16,26 +16,24 @@ function SubSection({
 }: {
   name: string;
   title: string | undefined;
-    description: string | undefined;
-    image: unknown;
-  }) {
-    const sectionImage = image ? urlFor(image)?.url() ?? "" : "";
-  
+  description: string | undefined;
+  image: unknown;
+}) {
+  const sectionImage = image ? (urlFor(image)?.url() ?? "") : "";
+
   return (
     <div className="md:grid md:grid-cols-2 grid-cols-1 gap-20">
       <div>
         <div className="grid grid-flow-row gap-5">
           <h4
-            className={`uppercase ${poppins.className} text-appColor-orange-default`}
+            className={`uppercase ${poppins.className} text-primary text-sm`}
           >
             {name}
           </h4>
-          <h2
-            className={`sm:text-2xl text-xl font-bold ${poppins.className}`}
-          >
+          <h2 className={`sm:text-2xl text-xl font-medium ${poppins.className}`}>
             {title}
           </h2>
-          <p className="text-base sm:text-lg sm:leading-7 leading-6">
+          <p className="sm:text-base text-sm sm:leading-7 leading-6 text-muted-foreground">
             {description}
           </p>
         </div>
@@ -57,22 +55,22 @@ function SubSection({
   );
 }
 
-export default function OurMission({ ourPurpose }: { ourPurpose: OurPurpose}) {
+export default function OurMission({ ourPurpose }: { ourPurpose: OurPurpose }) {
   return (
     <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 relative">
       <div className="flex justify-center items-center flex-col py-24">
         <div className="text-center flex flex-col gap-5">
-          <h4
-            className={`uppercase ${poppins.className} text-appColor-orange-default`}
-          >
-            Our Purpose
-          </h4>
-          <h2
-            className={`sm:text-4xl text-3xl font-bold ${poppins.className} lg:leading-[3rem]`}
-          >
-            {ourPurpose?.headline}
-          </h2>
-          <p className="text-base sm:text-lg sm:leading-7 leading-6">
+          <div>
+            <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+              Our Purpose
+            </span>
+            <h2
+              className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4`}
+            >
+              {ourPurpose?.headline}
+            </h2>
+          </div>
+          <p className="sm:text-base text-sm text-muted-foreground sm:leading-7 leading-6">
             {ourPurpose?.subheadline}
           </p>
         </div>

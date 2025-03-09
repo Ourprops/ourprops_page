@@ -1,13 +1,20 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { BLOG_QUERYResult, BlogType } from "@/sanity/types";
+import { BLOG_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function Blog({ blog }: { blog: BlogType }) {
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Blog({ blog }: { blog: any }) {
   const blogImage = blog.image ? urlFor(blog.image)?.url() : "";
   const router = useRouter();
 
@@ -57,7 +64,15 @@ function Blog({ blog }: { blog: BlogType }) {
 
 export default function Content({ blogs }: { blogs: BLOG_QUERYResult }) {
   return (
-    <div className="w-full h-auto xl:px-20 lg:px-10 md:px-5 px-4 relative py-24">
+    <div className="w-full h-auto xl:px-20 lg:px-10 md:px-5 px-4 relative py-10">
+      <div className="w-full mb-10">
+        <h1 className={`text-xl font-medium ${poppins.className}`}>
+          Blog
+        </h1>
+        <p className="text-muted-foreground text-sm mt-2">
+          Over here, you{`'`}ll find all the latest updates and news that will help you stay informed.
+        </p>
+      </div>
       {blogs && blogs?.length > 0 ? (
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-7 gap-y-16">
           {blogs.map((blog, index) => <Blog blog={blog} key={index} />)}
@@ -68,7 +83,7 @@ export default function Content({ blogs }: { blogs: BLOG_QUERYResult }) {
         </div>
       )}
       <div className="w-full mt-32 flex justify-center items-center">
-        <Button>
+        <Button className="text-white">
           <ArrowDown color="white" />
           Load more
         </Button>

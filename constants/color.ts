@@ -2,8 +2,8 @@
 
 export const appColor = {
     blue: {
-        default: "#00008B",
-        muted: "#0202ff",
+        default: "#007fff",
+        muted: "#2793ff",
     },
     orange: {
         default: "#ff4500",

@@ -20,7 +20,7 @@ export default async function Page() {
     query: BLOG_QUERY,
     params: { count: 10 },
   });
-    console.log(blogs);
+  
   return (
     <div>
       <Hero />
@@ -28,3 +28,4 @@ export default async function Page() {
     </div>
   );
 }
+
