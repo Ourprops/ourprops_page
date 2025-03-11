@@ -1,4 +1,4 @@
-import { OurStory } from "@/sanity/types";
+import { OUR_STORY_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -8,9 +8,9 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-export default function OurStoryView({ ourStory }: { ourStory: OurStory }) {
-  const ourStoryImage = ourStory?.image
-    ? (urlFor(ourStory.image)?.url() ?? "")
+export default function OurStoryView({ ourStory }: { ourStory: OUR_STORY_QUERYResult }) {
+  const ourStoryImage = ourStory?.imageUrl
+    ? (urlFor(ourStory.imageUrl)?.url() ?? "")
     : "";
 
   return (
@@ -20,8 +20,9 @@ export default function OurStoryView({ ourStory }: { ourStory: OurStory }) {
           <div className="w-full rounded-lg h-[400px] relative overflow-hidden">
             <Image
               src={ourStoryImage}
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover w-full h-full"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt={ourStory?.headline || ""}
               priority
               placeholder="blur"
@@ -33,7 +34,7 @@ export default function OurStoryView({ ourStory }: { ourStory: OurStory }) {
           <div className="grid grid-flow-row gap-5">
             <div>
               <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
-                Problems
+                Our Story
               </span>
               <h2
                 className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] mt-4`}

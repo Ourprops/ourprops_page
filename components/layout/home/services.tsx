@@ -9,14 +9,17 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-export const placeholder = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg=="
+export const placeholder =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==";
 
 function ServiceCard({
   service,
 }: {
-  service: { title: string; description: string; image: unknown };
-  }) {
-  const serviceImage = service?.image ? urlFor(service.image)?.url() ?? "" : "";  
+  service: { title: string; description: string; imageUrl: string };
+}) {
+  const serviceImage = service?.imageUrl
+    ? (urlFor(service.imageUrl)?.url() ?? "")
+    : "";
   
   return (
     <div
@@ -25,11 +28,12 @@ function ServiceCard({
       <div className="rounded-lg w-full h-4/5 relative overflow-hidden">
         <Image
           src={serviceImage}
-          layout="fill"
-          objectFit="cover"
+          fill
           alt={service.title}
           priority
+          className="object-cover w-full h-full"
           placeholder="blur"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           blurDataURL={placeholder}
         />
       </div>
@@ -54,7 +58,7 @@ const SERVICES_QUERY = defineQuery(`*[
         _id,
         title,
         description,
-        image
+        "imageUrl": image.asset->url,
     }
 }`);
 
@@ -62,7 +66,7 @@ export default async function Services() {
   const { data: services } = await sanityFetch({
     query: SERVICES_QUERY,
   });
-  
+
   return (
     <div className="h-auto py-24 justify-center items-center w-full gap-5 flex flex-col xl:px-20 lg:px-10 md:px-5 px-4 bg-gray-50">
       <div className="flex justify-center items-center flex-col gap-4">
@@ -82,7 +86,7 @@ export default async function Services() {
         {services?.services &&
           services?.services.map(
             (
-              service: { title: string; description: string; image: unknown },
+              service: { title: string; description: string; imageUrl: string },
               index: number
             ) => <ServiceCard key={index} service={service} />
           )}

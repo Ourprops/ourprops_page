@@ -3,24 +3,24 @@ import Hero from "@/components/layout/blog/hero";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 
-const BLOG_QUERY = defineQuery(`*[
+const BLOGS_QUERY = defineQuery(`*[
     _type == "blogType"
-]| order(publishedAt) [0...$count]{
+]| order(date) [0...$count]{
     _id,
     title,
     subtitle,
-    image,
-    publishedAt,
+    "imageUrl": image.asset->url,
+    date,
     author,
     slug
 }`);
 
 export default async function Page() {
   const { data: blogs } = await sanityFetch({
-    query: BLOG_QUERY,
+    query: BLOGS_QUERY,
     params: { count: 10 },
   });
-  
+
   return (
     <div>
       <Hero />
@@ -28,4 +28,3 @@ export default async function Page() {
     </div>
   );
 }
-

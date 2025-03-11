@@ -29,21 +29,22 @@ export default function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlHeader = () => {
-    if (typeof window !== "undefined") {
-      if (window.scrollY > lastScrollY) {
-        // if scroll down hide the header
-        setShowHeader(false);
-      } else {
-        // if scroll up show the header
-        setShowHeader(true);
-      }
-      setLastScrollY(window.scrollY);
-    }
-  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      const controlHeader = () => {
+        if (typeof window !== "undefined") {
+          if (window.scrollY > lastScrollY) {
+            // if scroll down hide the header
+            setShowHeader(false);
+          } else {
+            // if scroll up show the header
+            setShowHeader(true);
+          }
+          setLastScrollY(window.scrollY);
+        }
+      };
+
       window.addEventListener("scroll", controlHeader);
 
       // cleanup function
@@ -51,7 +52,7 @@ export default function Header() {
         window.removeEventListener("scroll", controlHeader);
       };
     }
-  }, [lastScrollY, controlHeader]);
+  }, [lastScrollY,]);
 
   return (
     <div

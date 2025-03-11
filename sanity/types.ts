@@ -216,6 +216,7 @@ export type TargetType = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  description?: string;
 };
 
 export type TargetsType = {
@@ -369,6 +370,102 @@ export type HomeHero = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlogType | Slug | OurPurpose | OurStory | AboutHero | TargetType | TargetsType | ServiceType | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | ServicesType | ProblemType | ProblemsType | HomeHero;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ../ourprops_page/app/about/page.tsx
+// Variable: ABOUT_HERO_QUERY
+// Query: *[    _type == "aboutHero"][0]{    headline,    subheadline,    "imageUrl": image.asset->url}
+export type ABOUT_HERO_QUERYResult = {
+  headline: string | null;
+  subheadline: string | null;
+  imageUrl: string | null;
+} | null;
+// Variable: OUR_STORY_QUERY
+// Query: *[    _type == "ourStory"][0]{    headline,    subheadline,    "imageUrl": image.asset->url}
+export type OUR_STORY_QUERYResult = {
+  headline: string | null;
+  subheadline: string | null;
+  imageUrl: string | null;
+} | null;
+// Variable: OUR_PURPOSE_QUERY
+// Query: *[    _type == "ourPurpose"][0]{    headline,    subheadline,    ourMission,    ourVision}
+export type OUR_PURPOSE_QUERYResult = {
+  headline: string | null;
+  subheadline: string | null;
+  ourMission: {
+    headline?: string;
+    subheadline?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  } | null;
+  ourVision: {
+    headline?: string;
+    subheadline?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  } | null;
+} | null;
+
+// Source: ../ourprops_page/app/blog/[slug]/page.tsx
+// Variable: BLOG_QUERY
+// Query: *[    _type == "blogType" &&    slug.current == $slug][0]{    _id,     title,     subtitle,     "imageUrl": image.asset->url,     date,     author,     slug,     content}
+export type BLOG_QUERYResult = {
+  _id: string;
+  title: string | null;
+  subtitle: string | null;
+  imageUrl: string | null;
+  date: string | null;
+  author: string | null;
+  slug: Slug | null;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+
+// Source: ../ourprops_page/app/blog/page.tsx
+// Variable: BLOGS_QUERY
+// Query: *[    _type == "blogType"]| order(date) [0...$count]{    _id,    title,    subtitle,    "imageUrl": image.asset->url,    date,    author,    slug}
+export type BLOGS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  subtitle: string | null;
+  imageUrl: string | null;
+  date: string | null;
+  author: string | null;
+  slug: Slug | null;
+}>;
+
 // Source: ../ourprops_page/app/page.tsx
 // Variable: HERO_QUERY
 // Query: *[    _type == "homeHero"][0]{    headline,    subheadline,}
@@ -388,34 +485,16 @@ export type PROBLEM_QUERYResult = {
   }> | null;
 } | null;
 
-// Source: ../ourprops_page/app/blog/page.tsx
-// Variable: BLOG_QUERY
-// Query: *[    _type == "blogType"]| order(publishedAt) [0...$count]{    _id,    title,    subtitle,    image,    publishedAt,    author}
-export type BLOG_QUERYResult = Array<{
-  _id: string;
-  title: string | null;
-  subtitle: string | null;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
-  publishedAt: null;
-  author: string | null;
-}>;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[\n    _type == \"aboutHero\"\n][0]{\n    headline,\n    subheadline,\n    \"imageUrl\": image.asset->url\n}": ABOUT_HERO_QUERYResult;
+    "*[\n    _type == \"ourStory\"\n][0]{\n    headline,\n    subheadline,\n    \"imageUrl\": image.asset->url\n}": OUR_STORY_QUERYResult;
+    "*[\n    _type == \"ourPurpose\"\n][0]{\n    headline,\n    subheadline,\n    ourMission,\n    ourVision\n}": OUR_PURPOSE_QUERYResult;
+    "*[\n    _type == \"blogType\" &&\n    slug.current == $slug\n][0]{\n    _id, \n    title, \n    subtitle, \n    \"imageUrl\": image.asset->url, \n    date, \n    author, \n    slug, \n    content\n}": BLOG_QUERYResult;
+    "*[\n    _type == \"blogType\"\n]| order(date) [0...$count]{\n    _id,\n    title,\n    subtitle,\n    \"imageUrl\": image.asset->url,\n    date,\n    author,\n    slug\n}": BLOGS_QUERYResult;
     "*[\n    _type == \"homeHero\"\n][0]{\n    headline,\n    subheadline,\n}": HERO_QUERYResult;
     "*[\n    _type == \"problemsType\"\n][0]{\n    headline,\n    subheadline,\n    problems[]->{\n        _id,\n        title,\n        description,\n    }\n}": PROBLEM_QUERYResult;
-    "*[\n    _type == \"blogType\"\n]| order(publishedAt) [0...$count]{\n    _id,\n    title,\n    subtitle,\n    image,\n    publishedAt,\n    author\n}": BLOG_QUERYResult;
   }
 }

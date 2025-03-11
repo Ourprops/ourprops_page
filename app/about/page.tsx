@@ -1,5 +1,5 @@
 import Hero from "@/components/layout/about/hero";
-import OurMission from "@/components/layout/about/our-mission";
+import OurPurpose from "@/components/layout/about/our-purpose";
 import OurStory from "@/components/layout/about/our-story";
 import Newsletter from "@/components/layout/news-letter";
 import { sanityFetch } from "@/sanity/live";
@@ -10,7 +10,7 @@ const ABOUT_HERO_QUERY = defineQuery(`*[
 ][0]{
     headline,
     subheadline,
-    image
+    "imageUrl": image.asset->url
 }`);
 
 const OUR_STORY_QUERY = defineQuery(`*[
@@ -18,7 +18,7 @@ const OUR_STORY_QUERY = defineQuery(`*[
 ][0]{
     headline,
     subheadline,
-    image
+    "imageUrl": image.asset->url
 }`);
 
 const OUR_PURPOSE_QUERY = defineQuery(`*[
@@ -45,7 +45,7 @@ export default async function Page() {
     <div>
       <Hero hero={aboutHero} />
       <OurStory ourStory={ourStory} />
-      <OurMission ourPurpose={ourPurpose} />
+      <OurPurpose ourPurpose={ourPurpose} />
       <Newsletter />
     </div>
   );

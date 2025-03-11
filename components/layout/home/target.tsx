@@ -12,22 +12,21 @@ const poppins = Poppins({
 
 type Audience = {
   target: string;
-  image: unknown;
+  imageUrl: string;
+  description: string;
 };
 
-function AudienceCard({
-  target,
-  image
-}: Audience) {
-    const targetImage = image ? urlFor(image)?.url() ?? "" : "";  
-  
+function AudienceCard({ target, imageUrl, description }: Audience) {
+  const targetImage = imageUrl ? (urlFor(imageUrl)?.url() ?? "") : "";
+
   return (
     <div className="flex flex-col border p-3 rounded-lg bg-white shadow-sm">
       <div className="relative rounded-lg w-full lg:h-[350px] md:h-[270px] sm:h-[230px] h-[340px] overflow-hidden">
         <Image
           src={targetImage}
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover w-full h-full"
           alt={target}
           priority
           placeholder="blur"
@@ -38,8 +37,7 @@ function AudienceCard({
         {target}
       </h3>
       <p className="md:text-sm text-xs md:leading-5 mt-2 text-muted-foreground">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {description}
       </p>
     </div>
   );
@@ -53,7 +51,8 @@ const TARGETS_QUERY = defineQuery(`*[
     targets[]->{
         _id,
         target,
-        image,
+        "imageUrl": image.asset->url,
+        description
     }
 }`);
 
@@ -81,7 +80,8 @@ export default async function Target() {
             <AudienceCard
               key={index}
               target={audience.target}
-              image={audience.image}
+              imageUrl={audience.imageUrl}
+              description={audience.description}
             />
           ))}
       </div>

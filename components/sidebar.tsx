@@ -1,6 +1,9 @@
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ArrowRightToLine } from "lucide-react";
@@ -16,6 +19,12 @@ export default function Sidebar() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[200px]">
+        <SheetHeader>
+          <SheetTitle></SheetTitle>
+          <SheetDescription>
+            
+          </SheetDescription>
+        </SheetHeader>
         <div className="mt-10 w-full flex-1 flex flex-col gap-4">
           <Link href="/" className="hover:underline">
             Home

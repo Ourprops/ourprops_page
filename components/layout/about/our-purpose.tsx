@@ -1,4 +1,4 @@
-import { OurPurpose } from "@/sanity/types";
+import { internalGroqTypeReferenceTo, OUR_PURPOSE_QUERYResult, SanityImageCrop, SanityImageHotspot } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -17,20 +17,32 @@ function SubSection({
   name: string;
   title: string | undefined;
   description: string | undefined;
-  image: unknown;
+  image:
+    {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      }
+    | undefined;
 }) {
-  const sectionImage = image ? (urlFor(image)?.url() ?? "") : "";
+  const sectionImage = image ? (urlFor(image?.asset || "")?.url() ?? "") : "";
 
   return (
     <div className="md:grid md:grid-cols-2 grid-cols-1 gap-20">
       <div>
         <div className="grid grid-flow-row gap-5">
-          <h4
-            className={`uppercase ${poppins.className} text-primary text-sm`}
-          >
+          <h4 className={`uppercase ${poppins.className} text-primary text-sm`}>
             {name}
           </h4>
-          <h2 className={`sm:text-2xl text-xl font-medium ${poppins.className}`}>
+          <h2
+            className={`sm:text-2xl text-xl font-medium ${poppins.className}`}
+          >
             {title}
           </h2>
           <p className="sm:text-base text-sm sm:leading-7 leading-6 text-muted-foreground">
@@ -42,8 +54,9 @@ function SubSection({
         <div className="relative overflow-hidden w-full rounded-lg h-[400px]">
           <Image
             src={sectionImage}
-            layout="fill"
-            objectFit="cover"
+            fill
+            className="object-cover w-full h-full"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={title || ""}
             priority
             placeholder="blur"
@@ -55,7 +68,8 @@ function SubSection({
   );
 }
 
-export default function OurMission({ ourPurpose }: { ourPurpose: OurPurpose }) {
+
+export default function OurPurpose({ ourPurpose }: { ourPurpose: OUR_PURPOSE_QUERYResult }) {
   return (
     <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 relative">
       <div className="flex justify-center items-center flex-col py-24">
@@ -77,15 +91,15 @@ export default function OurMission({ ourPurpose }: { ourPurpose: OurPurpose }) {
         <div className="mt-20 grid grid-flow-row gap-20">
           <SubSection
             name="Our Mission"
-            title={ourPurpose.ourMission?.headline}
-            description={ourPurpose.ourMission?.subheadline}
-            image={ourPurpose.ourMission?.image}
+            title={ourPurpose?.ourMission?.headline}
+            description={ourPurpose?.ourMission?.subheadline}
+            image={ourPurpose?.ourMission?.image}
           />
           <SubSection
             name="Our Vision"
-            title={ourPurpose.ourVision?.headline}
-            description={ourPurpose.ourVision?.subheadline}
-            image={ourPurpose.ourVision?.image}
+            title={ourPurpose?.ourVision?.headline}
+            description={ourPurpose?.ourVision?.subheadline}
+            image={ourPurpose?.ourVision?.image}
           />
         </div>
       </div>

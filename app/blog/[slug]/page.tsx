@@ -7,7 +7,14 @@ const BLOG_QUERY = defineQuery(`*[
     _type == "blogType" &&
     slug.current == $slug
 ][0]{
-    _id, title, subtitle, image, date, author, slug, content
+    _id, 
+    title, 
+    subtitle, 
+    "imageUrl": image.asset->url, 
+    date, 
+    author, 
+    slug, 
+    content
 }`);
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

@@ -42,6 +42,10 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 
 # Copy the rest of the source files into the image.
 COPY . .
+
+# Ensure next.config.js is copied to the correct location.
+COPY next.config.ts .
+
 # Run the build script.
 RUN npm run build
 
@@ -63,7 +67,8 @@ COPY package.json .
 # the built application from the build stage into the image.
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/.next ./.next
-
+COPY --from=build /usr/src/app/next.config.ts ./
+COPY --chown=node:node --from=build /usr/src/app/ ./
 
 # Expose the port that the application listens on.
 EXPOSE 3000
