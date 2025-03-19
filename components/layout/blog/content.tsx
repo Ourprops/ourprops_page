@@ -28,7 +28,7 @@ function Blog({ blog }: { blog: BlogProps }) {
   const router = useRouter();
 
   return (
-    <div className="w-full h-[350px]">
+    <div className="w-full h-auto rounded-lg border shadow-sm bg-white">
       <div className="relative w-full h-[250px] rounded-t-lg overflow-hidden">
         <Image
           src={blogImage || ""}
@@ -47,7 +47,7 @@ function Blog({ blog }: { blog: BlogProps }) {
           </div>
         </div>
       </div>
-      <div className="py-3">
+      <div className="py-3 px-3">
         <Link
           href={`blog/${blog.slug?.current}`}
           className="text-lg font-semibold hover:underline"
@@ -61,7 +61,7 @@ function Blog({ blog }: { blog: BlogProps }) {
             : blog.subtitle}
         </p>
       </div>
-      <div>
+      <div className="px-3">
         <Button
           variant="link"
           className="pl-0"
@@ -85,7 +85,7 @@ export default function Content({ blogs }: { blogs: BLOGS_QUERYResult }) {
         </p>
       </div>
       {blogs && blogs?.length > 0 ? (
-        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-7 gap-y-16">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
           {blogs.map((blog, index) => (
             <Blog blog={blog} key={index} />
           ))}

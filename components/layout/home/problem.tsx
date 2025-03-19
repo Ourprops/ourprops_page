@@ -35,7 +35,7 @@ export default function Problem({ problems }: { problems: PROBLEM_QUERYResult })
         {problems?.problems?.map((problem, index) => (
           <div
             key={index}
-            className="w-full p-4 border rounded-lg shadow-sm relative"
+            className="w-full p-4 rounded-lg shadow-sm relative bg-gray-100"
           >
             
             <h3 className={`${poppins.className} text-lg`}>{problem?.title}</h3>

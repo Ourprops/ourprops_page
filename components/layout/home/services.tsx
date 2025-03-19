@@ -23,7 +23,7 @@ function ServiceCard({
   
   return (
     <div
-      className={`w-full rounded-lg md:h-[500px] h-[485px] flex flex-col justify-between p-4 bg-white border shadow-sm`}
+      className={`w-full rounded-lg md:h-[500px] h-[485px] flex flex-col justify-between p-4 bg-white`}
     >
       <div className="rounded-lg w-full h-4/5 relative overflow-hidden">
         <Image
@@ -68,7 +68,7 @@ export default async function Services() {
   });
 
   return (
-    <div className="h-auto py-24 justify-center items-center w-full gap-5 flex flex-col xl:px-20 lg:px-10 md:px-5 px-4 bg-gray-50">
+    <div className="h-auto py-24 justify-center items-center w-full gap-5 flex flex-col xl:px-20 lg:px-10 md:px-5 px-4 bg-gray-100">
       <div className="flex justify-center items-center flex-col gap-4">
         <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
           Services

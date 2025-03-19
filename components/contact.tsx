@@ -42,7 +42,7 @@ export default function Contact() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="link" className="px-7 py-6 text-black">
+        <Button variant="secondary" className="px-7 py-6 text-black">
           Contact us
         </Button>
       </DialogTrigger>

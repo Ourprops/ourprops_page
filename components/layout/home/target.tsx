@@ -20,7 +20,7 @@ function AudienceCard({ target, imageUrl, description }: Audience) {
   const targetImage = imageUrl ? (urlFor(imageUrl)?.url() ?? "") : "";
 
   return (
-    <div className="flex flex-col border p-3 rounded-lg bg-white shadow-sm">
+    <div className="flex flex-col p-3 rounded-lg bg-gray-100 shadow-sm">
       <div className="relative rounded-lg w-full lg:h-[350px] md:h-[270px] sm:h-[230px] h-[340px] overflow-hidden">
         <Image
           src={targetImage}

@@ -35,7 +35,7 @@ export default function Newsletter() {
   return (
     <Element
       name="newsletter"
-      className="h-auto w-full grid lg:gap-20 gap-24 md:gap-4 md:grid-cols-2 grid-cols-1 bg-gray-50"
+      className="h-auto w-full grid lg:gap-20 gap-24 md:gap-4 md:grid-cols-2 grid-cols-1 bg-appColor-orange-default"
     >
       <div
         style={{
@@ -47,8 +47,8 @@ export default function Newsletter() {
         }}
         className="relative overflow-hidden"
       ></div>
-      <div className="py-24 xl:px-20 lg:px-10 md:px-5 px-4">
-        <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary ">
+      <div className="py-24 xl:px-20 lg:px-10 md:px-5 px-4 ">
+        <span className="p-1 rounded-md border border-white uppercase text-[10px] text-white ">
           Blog
         </span>
         <h2
@@ -56,7 +56,7 @@ export default function Newsletter() {
         >
           Don{`'`}t Miss Out
         </h2>
-        <p className="text-sm sm:text-sm mt-1 text-muted-foreground mb-10">
+        <p className="text-sm sm:text-sm mt-1 text-muted mb-10">
           Subscribe for valuable resources and information on the Ghanaian
           property market and OURPROPS updates
         </p>
