@@ -1,11 +1,14 @@
-import { AlignJustify } from "lucide-react";
+"use client"
 import { Button } from "../ui/button";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import Sidebar from "../sidebar";
+import { ArrowRight } from "lucide-react";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["300", "400", "600", "700"],
 });
 
 const navs = [
@@ -24,16 +27,46 @@ const navs = [
 ];
 
 export default function Header() {
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const controlHeader = () => {
+        if (typeof window !== "undefined") {
+          if (window.scrollY > lastScrollY) {
+            // if scroll down hide the header
+            setShowHeader(false);
+          } else {
+            // if scroll up show the header
+            setShowHeader(true);
+          }
+          setLastScrollY(window.scrollY);
+        }
+      };
+
+      window.addEventListener("scroll", controlHeader);
+
+      // cleanup function
+      return () => {
+        window.removeEventListener("scroll", controlHeader);
+      };
+    }
+  }, [lastScrollY,]);
+
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-      <div className="xl:px-20 lg:px-10 md:px-5 px-4 py-4 flex justify-between items-center bg-white">
+    <div
+      className={`fixed top-7 left-0 right-0 z-50 bg-transparent xl:px-20 lg:px-10 md:px-5 px-4 transition-transform duration-300 ${
+        showHeader ? "translate-y-0" : "-translate-y-24"
+      }`}
+    >
+      <div className="xl:px-20 lg:px-10 md:px-5 px-4 py-2 flex justify-between items-center rounded-full bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 bg-neutral-100">
         <div className="md:hidden block">
-          <button>
-            <AlignJustify />
-          </button>
+          <Sidebar />
         </div>
         <div>
-          <h1 className={`text-lg font-bold ${poppins.className}`}>
+          <h1 className={`text-black font-semibold ${poppins.className}`}>
             OURPROPS
           </h1>
         </div>
@@ -42,14 +75,16 @@ export default function Header() {
             <Link
               key={index}
               href={nav.href}
-              className="font-medium text-sm relative pb-1 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-appColor-blue-default after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+              className="text-sm text-black relative pb-1 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
             >
               {nav.name}
             </Link>
           ))}
         </nav>
-        <div>
-          <Button className="text-white">Waitlist</Button>
+        <div className="grid grid-flow-col">
+          <Button className="text-white">
+            Join us <ArrowRight color="white" />
+          </Button>
         </div>
       </div>
     </div>

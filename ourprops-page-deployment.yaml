@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ourprops-page
+  namespace: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ourprops-page
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: ourprops-page
+    spec:
+      containers:
+        - name: ourprops-page
+          image: europe-west8-docker.pkg.dev/vast-zodiac-448118-s0/ours/ourprops-page:latest
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          ports:
+            - name: http
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000

@@ -1,12 +1,13 @@
-
-
-export const appColor = {
+export const color = {
     blue: {
-        default: "#00008B",
-        muted: "#0202ff",
+        default: "#0077B6",
+        muted: "#b8e6ff",
     },
     orange: {
-        default: "#ff4500",
-        muted: "#ff5314"
+        default: "#FF6B35",
+        muted: "#ffdacc"
+    },
+    mist: {
+        default: "#DFE8E6"
     }
 }
