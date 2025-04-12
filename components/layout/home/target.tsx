@@ -20,25 +20,34 @@ function AudienceCard({ target, imageUrl, description }: Audience) {
   const targetImage = imageUrl ? (urlFor(imageUrl)?.url() ?? "") : "";
 
   return (
-    <div className="flex flex-col p-3 rounded-lg bg-gray-100 shadow-sm">
-      <div className="relative rounded-lg w-full lg:h-[350px] md:h-[270px] sm:h-[230px] h-[340px] overflow-hidden">
-        <Image
-          src={targetImage}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover w-full h-full"
-          alt={target}
-          priority
-          placeholder="blur"
-          blurDataURL={placeholder}
-        />
+    <div className="flex flex-row items-start">
+      <span className="bg-gray-300 h-2/3 w-[0.08rem] md:block hidden" />
+      <div className="flex flex-col justify-between md:ml-1">
+        <div className="h-[12rem]">
+          <h2
+            className={`sm:text-3xl text-2xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4 `}
+          >
+            {target}
+          </h2>
+          <p className="md:text-xs text-sm text-muted-foreground mt-2 md:w-[80%]">
+            {description}
+          </p>
+        </div>
+        <div className="mt-0 md:mt-10">
+          <div className="w-full rounded-xl relative overflow-hidden">
+            <Image
+              src={targetImage}
+              width={300}
+              height={800}
+              alt={target}
+              priority
+              className="object-cover rounded-xl"
+              placeholder="blur"
+              blurDataURL={placeholder}
+            />
+          </div>
+        </div>
       </div>
-      <h3 className={`${poppins.className} text-lg font-medium mt-5`}>
-        {target}
-      </h3>
-      <p className="md:text-sm text-xs md:leading-5 mt-2 text-muted-foreground">
-        {description}
-      </p>
     </div>
   );
 }
@@ -62,8 +71,34 @@ export default async function Target() {
   });
 
   return (
-    <div className="h-auto py-24 w-full xl:px-20 lg:px-10 md:px-5 px-4">
-      <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+    <div className="h-auto py-24 w-full xl:px-20 lg:px-10 md:px-5 px-4 grid lg:grid-cols-4 grid-cols-1 gap-4 bg-white">
+      <div>
+        <span className="p-1 px-3 rounded-full border text-sm text-black">
+          Services
+        </span>
+        <h2
+          className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] md:mt-6 mt-4 tracking-tight text-black lg:mt-10`}
+        >
+          {targets?.headline}
+        </h2>
+      </div>
+      <div className="grid md:grid-cols-3 mt:gap-4 gap-10 grid-cols-1 lg:col-span-3 mt-10">
+        {targets?.targets &&
+          targets?.targets.map((audience: Audience, index: number) => (
+            <AudienceCard
+              key={index}
+              target={audience.target}
+              imageUrl={audience.imageUrl}
+              description={audience.description}
+            />
+          ))}
+      </div>
+    </div>
+  );
+}
+
+{
+  /* <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
         Targets
       </span>
       <h2
@@ -84,7 +119,5 @@ export default async function Target() {
               description={audience.description}
             />
           ))}
-      </div>
-    </div>
-  );
+      </div> */
 }

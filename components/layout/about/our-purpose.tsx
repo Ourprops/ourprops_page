@@ -1,4 +1,9 @@
-import { internalGroqTypeReferenceTo, OUR_PURPOSE_QUERYResult, SanityImageCrop, SanityImageHotspot } from "@/sanity/types";
+import {
+  internalGroqTypeReferenceTo,
+  OUR_PURPOSE_QUERYResult,
+  SanityImageCrop,
+  SanityImageHotspot,
+} from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -18,7 +23,7 @@ function SubSection({
   title: string | undefined;
   description: string | undefined;
   image:
-    {
+    | {
         asset?: {
           _ref: string;
           _type: "reference";
@@ -34,24 +39,17 @@ function SubSection({
   const sectionImage = image ? (urlFor(image?.asset || "")?.url() ?? "") : "";
 
   return (
-    <div className="md:grid md:grid-cols-2 grid-cols-1 gap-20">
-      <div>
-        <div className="grid grid-flow-row gap-5">
-          <h4 className={`uppercase ${poppins.className} text-primary text-sm`}>
-            {name}
-          </h4>
-          <h2
-            className={`sm:text-2xl text-xl font-medium ${poppins.className}`}
-          >
-            {title}
-          </h2>
-          <p className="sm:text-base text-sm sm:leading-7 leading-6 text-muted-foreground">
-            {description}
-          </p>
-        </div>
+    <div className="md:grid md:grid-cols-2 grid-cols-1 gap-20 border rounded-lg md:p-10 p-5">
+      <div className="md:w-[80%]">
+        <h2 className={`sm:text-3xl text-2xl font-medium ${poppins.className}`}>
+          {title}
+        </h2>
+        <p className="text-sm leading-6 text-muted-foreground mt-5">
+          {description}
+        </p>
       </div>
       <div className="mt-5 md:mt-0">
-        <div className="relative overflow-hidden w-full rounded-lg h-[400px]">
+        <div className="relative overflow-hidden w-full rounded-lg h-[350px] aspect-square">
           <Image
             src={sectionImage}
             fill
@@ -68,23 +66,26 @@ function SubSection({
   );
 }
 
-
-export default function OurPurpose({ ourPurpose }: { ourPurpose: OUR_PURPOSE_QUERYResult }) {
+export default function OurPurpose({
+  ourPurpose,
+}: {
+  ourPurpose: OUR_PURPOSE_QUERYResult;
+}) {
   return (
     <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 relative">
       <div className="flex justify-center items-center flex-col py-24">
         <div className="text-center flex flex-col gap-5">
           <div>
-            <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+            <span className="p-1 px-3 rounded-full border text-sm text-black">
               Our Purpose
             </span>
             <h2
-              className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4`}
+              className={`sm:text-5xl text-4xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
             >
               {ourPurpose?.headline}
             </h2>
           </div>
-          <p className="sm:text-base text-sm text-muted-foreground sm:leading-7 leading-6">
+          <p className="text-sm text-muted-foreground sm:leading-7 leading-6">
             {ourPurpose?.subheadline}
           </p>
         </div>

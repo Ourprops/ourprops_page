@@ -14,8 +14,8 @@ export default function Sidebar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <ArrowRightToLine color="white" />
+        <Button variant="ghost" size="icon" >
+          <ArrowRightToLine color="black" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[200px]">
