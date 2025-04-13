@@ -21,25 +21,28 @@ const PROBLEM_QUERY = defineQuery(`*[
         _id,
         title,
         description,
-    }
+        },
+    imageUrl1,
+    imageUrl2,
 }`);
 
 export default async function Home() {
-  const { data: hero } = await sanityFetch({
-    query: HERO_QUERY,
-  });
-  const { data: problems } = await sanityFetch({
-    query: PROBLEM_QUERY,
-  });
+  const [{ data: hero }, { data: problems }] = await Promise.all([
+    sanityFetch({
+      query: HERO_QUERY,
+    }),
+    sanityFetch({
+      query: PROBLEM_QUERY,
+    }),
+  ]);
 
-  
   return (
     <div>
       <Hero hero={hero} />
       <Problem problems={problems} />
       <Services />
       <Target />
-      <Newsletter  />
+      <Newsletter />
     </div>
   );
 }
