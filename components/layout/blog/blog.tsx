@@ -15,9 +15,9 @@ export default function Blog({ blog }: { blog: BLOG_QUERYResult }) {
   const date = new Date(blog?.date ?? "");
 
   return (
-    <div className="py-20 flex flex-col justify-center items-center gap-5 xl:px-20 lg:px-10 md:px-5 px-4">
+    <div className="py-24 flex flex-col justify-center items-center gap-5 xl:px-20 lg:px-10 md:px-5 px-4">
       <div>
-        <span className="p-1 rounded-md border border-primary uppercase text-[10px] text-primary">
+        <span className="p-1 px-3 rounded-full border text-sm text-black">
           {date.toDateString()}
         </span>
       </div>

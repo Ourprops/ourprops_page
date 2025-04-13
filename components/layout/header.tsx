@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Sidebar from "../sidebar";
 import { ArrowRight } from "lucide-react";
+import { Link as L } from "react-scroll";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -82,9 +83,11 @@ export default function Header() {
           ))}
         </nav>
         <div className="grid grid-flow-col">
+          <L smooth={true} to="newsletter">
           <Button className="text-white">
             Join us <ArrowRight color="white" />
-          </Button>
+            </Button>
+            </L>
         </div>
       </div>
     </div>

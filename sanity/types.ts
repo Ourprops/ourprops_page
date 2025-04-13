@@ -257,6 +257,72 @@ export type ServiceType = {
   description?: string;
 };
 
+export type ServicesType = {
+  _id: string;
+  _type: "servicesType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  headline?: string;
+  subheadline?: string;
+  services?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "serviceType";
+  }>;
+};
+
+export type ProblemType = {
+  _id: string;
+  _type: "problemType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+};
+
+export type ProblemsType = {
+  _id: string;
+  _type: "problemsType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  headline?: string;
+  subheadline?: string;
+  problems?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "problemType";
+  }>;
+  imageUrl1?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  imageUrl2?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
   top?: number;
@@ -314,50 +380,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type ServicesType = {
-  _id: string;
-  _type: "servicesType";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  headline?: string;
-  subheadline?: string;
-  services?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "serviceType";
-  }>;
-};
-
-export type ProblemType = {
-  _id: string;
-  _type: "problemType";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-};
-
-export type ProblemsType = {
-  _id: string;
-  _type: "problemsType";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  headline?: string;
-  subheadline?: string;
-  problems?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "problemType";
-  }>;
-};
-
 export type HomeHero = {
   _id: string;
   _type: "homeHero";
@@ -368,7 +390,7 @@ export type HomeHero = {
   subheadline?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlogType | Slug | OurPurpose | OurStory | AboutHero | TargetType | TargetsType | ServiceType | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | ServicesType | ProblemType | ProblemsType | HomeHero;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlogType | Slug | OurPurpose | OurStory | AboutHero | TargetType | TargetsType | ServiceType | ServicesType | ProblemType | ProblemsType | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | HomeHero;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../ourprops_page/app/about/page.tsx
 // Variable: ABOUT_HERO_QUERY
@@ -474,7 +496,7 @@ export type HERO_QUERYResult = {
   subheadline: string | null;
 } | null;
 // Variable: PROBLEM_QUERY
-// Query: *[    _type == "problemsType"][0]{    headline,    subheadline,    problems[]->{        _id,        title,        description,    }}
+// Query: *[    _type == "problemsType"][0]{    headline,    subheadline,    problems[]->{        _id,        title,        description,        },    imageUrl1,    imageUrl2,}
 export type PROBLEM_QUERYResult = {
   headline: string | null;
   subheadline: string | null;
@@ -483,6 +505,28 @@ export type PROBLEM_QUERYResult = {
     title: string | null;
     description: string | null;
   }> | null;
+  imageUrl1: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  imageUrl2: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
 } | null;
 
 // Query TypeMap
@@ -495,6 +539,6 @@ declare module "@sanity/client" {
     "*[\n    _type == \"blogType\" &&\n    slug.current == $slug\n][0]{\n    _id, \n    title, \n    subtitle, \n    \"imageUrl\": image.asset->url, \n    date, \n    author, \n    slug, \n    content\n}": BLOG_QUERYResult;
     "*[\n    _type == \"blogType\"\n]| order(date) [0...$count]{\n    _id,\n    title,\n    subtitle,\n    \"imageUrl\": image.asset->url,\n    date,\n    author,\n    slug\n}": BLOGS_QUERYResult;
     "*[\n    _type == \"homeHero\"\n][0]{\n    headline,\n    subheadline,\n}": HERO_QUERYResult;
-    "*[\n    _type == \"problemsType\"\n][0]{\n    headline,\n    subheadline,\n    problems[]->{\n        _id,\n        title,\n        description,\n    }\n}": PROBLEM_QUERYResult;
+    "*[\n    _type == \"problemsType\"\n][0]{\n    headline,\n    subheadline,\n    problems[]->{\n        _id,\n        title,\n        description,\n        },\n    imageUrl1,\n    imageUrl2,\n}": PROBLEM_QUERYResult;
   }
 }

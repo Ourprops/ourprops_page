@@ -33,7 +33,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
           {hero?.headline}
         </h1>
         <p
-          style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)" }}
+          style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)" }}
           className="texmd:text-lg text-base lg:w-[40%] md:w-[70%] text-muted mt-10 z-10"
         >
           {hero?.subheadline}
