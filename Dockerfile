@@ -4,8 +4,6 @@
 # If you need more help, visit the Dockerfile reference guide at
 # https://docs.docker.com/go/dockerfile-reference/
 
-# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
-
 ARG NODE_VERSION=22.14.0
 
 ################################################################################
@@ -15,9 +13,8 @@ FROM node:${NODE_VERSION}-alpine as base
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
 
-
 ################################################################################
-# Create a stage for installing production dependecies.
+# Create a stage for installing production dependencies.
 FROM base as deps
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
@@ -57,6 +54,9 @@ FROM base as final
 # Use production node environment by default.
 ENV NODE_ENV production
 
+# Install PM2 globally.
+RUN npm install -g pm2
+
 # Run the application as a non-root user.
 USER node
 
@@ -73,5 +73,5 @@ COPY --chown=node:node --from=build /usr/src/app/ ./
 # Expose the port that the application listens on.
 EXPOSE 3000
 
-# Run the application.
-CMD npm start
+# Use PM2 to run the application.
+CMD ["pm2-runtime", "start", "npm", "--", "start"]
