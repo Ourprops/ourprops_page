@@ -12,9 +12,6 @@ export default function OurStoryView({
 }: {
   ourStory: OUR_STORY_QUERYResult;
 }) {
-  // const ourStoryImage = ourStory?.imageUrl
-  //   ? (urlFor(ourStory.imageUrl)?.url() ?? "")
-  //   : "";
 
   return (
     <div className="h-auto pb-24 w-full xl:px-20 lg:px-10 md:px-5 px-4 md:grid md:grid-cols-2 grid-cols-1 gap-20 flex flex-col md:flex-row">
@@ -23,7 +20,7 @@ export default function OurStoryView({
           Our Story
         </span>
         <h2
-          className={`sm:text-5xl text-4xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
+          className={`sm:text-5xl text-4xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
         >
           {ourStory?.headline}
         </h2>

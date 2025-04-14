@@ -29,7 +29,7 @@ function ServiceCard({
     >
       <div className="w-full flex flex-row items-start justify-between">
         <h2
-          className={`${poppins.className} lg:text-xl text-lg font-semibold text-white lg:w-[70%] h-[4rem]`}
+          className={`${poppins.className} lg:text-xl text-lg font-medium text-white lg:w-[70%] h-[4rem]`}
         >
           {service.title}
         </h2>
@@ -91,7 +91,7 @@ export default async function Services() {
         </div>
         <div className="col-span-3">
           <h2
-            className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tight text-white`}
+            className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tight text-white`}
           >
             {services?.headline}
           </h2>

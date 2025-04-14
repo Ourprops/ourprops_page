@@ -23,9 +23,9 @@ function AudienceCard({ target, imageUrl, description }: Audience) {
     <div className="flex flex-row items-start">
       <span className="bg-gray-300 h-2/3 w-[0.08rem] md:block hidden" />
       <div className="flex flex-col justify-between md:ml-1">
-        <div className="h-[12rem]">
+        <div className="h-[12rem] md:ml-4">
           <h2
-            className={`sm:text-3xl text-2xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4 `}
+            className={`sm:text-3xl text-2xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 `}
           >
             {target}
           </h2>
@@ -77,7 +77,7 @@ export default async function Target() {
           Services
         </span>
         <h2
-          className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] md:mt-6 mt-4 tracking-tight text-black lg:mt-10`}
+          className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] md:mt-6 mt-4 tracking-tight text-black lg:mt-10`}
         >
           {targets?.headline}
         </h2>

@@ -37,7 +37,7 @@ export default function Problem({
         </div>
         <div className="col-span-3">
           <h2
-            className={`sm:text-4xl text-3xl font-semibold ${poppins.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tight`}
+            className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tight`}
           >
             {`${first4Words}`}{" "}
             <span className="text-appColor-orange-default">{yours}</span>?
@@ -54,7 +54,7 @@ export default function Problem({
           />
         </div>
         <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
-          <h3 className={`${poppins.className} text-xl font-semibold`}>
+          <h3 className={`${poppins.className} text-xl font-medium`}>
             {problems?.problems?.[0]?.title ?? "No title available"}
           </h3>
           <div>
@@ -69,7 +69,7 @@ export default function Problem({
         </div>
         <div className="h-[20rem] bg-white lg:block hidden"></div>
         <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
-          <h3 className={`${poppins.className} text-xl font-semibold`}>
+          <h3 className={`${poppins.className} text-xl font-medium`}>
             {problems?.problems?.[1]?.title ?? "No title available"}
           </h3>
           <div>
@@ -90,7 +90,7 @@ export default function Problem({
         </div>
         <div className="h-[20rem] bg-white lg:block hidden"></div>
         <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
-          <h3 className={`${poppins.className} text-xl font-semibold`}>
+          <h3 className={`${poppins.className} text-xl font-medium`}>
             {problems?.problems?.[2]?.title ?? "No title available"}
           </h3>
           <div>
@@ -104,7 +104,7 @@ export default function Problem({
           </div>
         </div>
         <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
-          <h3 className={`${poppins.className} text-xl font-semibold`}>
+          <h3 className={`${poppins.className} text-xl font-medium`}>
             {problems?.problems?.[3]?.title ?? "No title available"}
           </h3>
           <div>

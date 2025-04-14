@@ -67,7 +67,7 @@ export default function Header() {
           <Sidebar />
         </div>
         <div>
-          <h1 className={`text-black font-semibold ${poppins.className}`}>
+          <h1 className={`text-black font-medium ${poppins.className}`}>
             OURPROPS
           </h1>
         </div>
