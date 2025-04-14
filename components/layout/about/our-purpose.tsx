@@ -14,7 +14,6 @@ const poppins = Poppins({
 });
 
 function SubSection({
-  name,
   title,
   description,
   image,
@@ -80,7 +79,7 @@ export default function OurPurpose({
               Our Purpose
             </span>
             <h2
-              className={`sm:text-5xl text-4xl font-semibold ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
+              className={`sm:text-5xl text-4xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
             >
               {ourPurpose?.headline}
             </h2>

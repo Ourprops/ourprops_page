@@ -27,12 +27,12 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
                 Who we are
               </span>
               <h1
-                className={`lg:text-6xl sm:text-5xl text-4xl font-semibold ${poppins.className} mt-5`}
+                className={`lg:text-6xl sm:text-5xl text-4xl font-medium ${poppins.className} mt-5`}
               >
                 {hero?.headline}
               </h1>
             </div>
-            <p className="text-lg text-muted-foreground">{hero?.subheadline}</p>
+            <p className="text-sm md:text-base text-muted-foreground">{hero?.subheadline}</p>
             <div className="flex flex-row items-center gap-2">
               <Link to="newsletter" smooth={true} duration={500}>
                 <Button>

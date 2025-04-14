@@ -33,7 +33,8 @@ export default function Newsletter() {
   };
 
   return (
-    <Element name="newsletter" className="w-full h-[60vh] xl:px-20 lg:px-10 md:px-5 px-4">
+    <Element 
+    name="newsletter" className="w-full h-[60vh]">
       <div
         style={{
           backgroundImage:
