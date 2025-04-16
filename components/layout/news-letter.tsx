@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { useState } from "react";
-import { LoaderCircle,  Send } from "lucide-react";
+import { LoaderCircle, Send } from "lucide-react";
 import { Element } from "react-scroll";
 
 const poppins = Poppins({
@@ -27,6 +27,7 @@ export default function Newsletter() {
         description: "You will now receive our newsletter",
       });
       setShowSuccess(true);
+      setEmail("");
     } catch (error) {
       console.error(error);
       toast({
@@ -40,8 +41,7 @@ export default function Newsletter() {
   };
 
   return (
-    <Element 
-    name="newsletter" className="w-full h-[60vh]">
+    <Element name="newsletter" className="w-full h-[60vh]">
       <div
         style={{
           backgroundImage:
@@ -59,11 +59,9 @@ export default function Newsletter() {
           <h2
             className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 transition-all duration-300 tracking-tight text-black`}
           >
-            {
-              shoowSuccess
-                ? "Thank you for subscribing!"
-                : "Is Your Land Safe? Stay Informed - Subscribe to Our Newsletter!"
-            }
+            {shoowSuccess
+              ? "Thank you for subscribing!"
+              : "Is Your Land Safe? Stay Informed - Subscribe to Our Newsletter!"}
           </h2>
           <div className="relative w-full flex flex-row items-center rounded-full bg-white h-12 sm:w-[80%]">
             <input

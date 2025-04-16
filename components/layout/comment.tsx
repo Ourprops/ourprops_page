@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Popover,
   PopoverContent,
@@ -10,46 +10,71 @@ import { Button } from "../ui/button";
 import { api } from "@/lib/api";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Input } from "../ui/input";
 
 export default function Comment() {
-    const [feedback, setFeedback] = useState("");
-    const { toast } = useToast();
-    const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-           await api.post("/email/feedback", { feedback }); 
-           toast({
-                title: "Thank you for your feedback!",
-                description: "We appreciate your feedback and will work on it",
-           })
-           setFeedback("");
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post("/email/feedback", { feedback, email });
+      toast({
+        title: "Thank you for your feedback!",
+        description: "We appreciate your feedback and will work on it",
+      });
+      setFeedback("");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
+  };
 
   return (
     <div className="fixed right-10 bottom-10 z-10">
       <Popover>
         <PopoverTrigger asChild>
-            <button aria-label="Feedback" className="p-2.5 rounded-full bg-appColor-orange-default hover:bg-[#ff5314] duration-150">
-                <MessageCircle color="white" size={20} />
-            </button>
+          <button
+            aria-label="Feedback"
+            className="p-2.5 rounded-full bg-appColor-orange-default hover:bg-[#ff5314] duration-150"
+          >
+            <MessageCircle color="white" size={20} />
+          </button>
         </PopoverTrigger>
         <PopoverContent side="top" className="mr-10">
-            <form onSubmit={handleSubmit} className="grid gap-4">
-                <Textarea required placeholder="Tell us what you think..." value={feedback} onChange={(e) => setFeedback(e.target.value)} />
-                <Button type="submit">
-                    {
-                        loading ? <Loader size={20} className="animate-spin" /> : "Submit"
-                    }
-                </Button>
-            </form>
+          <form onSubmit={handleSubmit} className="grid gap-4">
+            <Input
+              type="email"
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full"
+              required
+            />
+            <Textarea
+              required
+              placeholder="Tell us what you think..."
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+            />
+            <Button type="submit">
+              {loading ? (
+                <Loader size={20} className="animate-spin" />
+              ) : (
+                "Submit"
+              )}
+            </Button>
+          </form>
         </PopoverContent>
       </Popover>
     </div>
