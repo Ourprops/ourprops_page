@@ -16,6 +16,7 @@ export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const [shoowSuccess, setShowSuccess] = useState(false);
 
   const handleSubscribe = async () => {
     setLoading(true);
@@ -25,8 +26,14 @@ export default function Newsletter() {
         title: "Thank you for subscribing!",
         description: "You will now receive our newsletter",
       });
+      setShowSuccess(true);
     } catch (error) {
       console.error(error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -50,9 +57,13 @@ export default function Newsletter() {
             <Send size={40} color="black" />
           </span>
           <h2
-            className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] mt-4`}
+            className={`sm:text-4xl text-3xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 transition-all duration-300 tracking-tight text-black`}
           >
-            Is Your Land Safe? Stay Informed - Subscribe to Our Newsletter!
+            {
+              shoowSuccess
+                ? "Thank you for subscribing!"
+                : "Is Your Land Safe? Stay Informed - Subscribe to Our Newsletter!"
+            }
           </h2>
           <div className="relative w-full flex flex-row items-center rounded-full bg-white h-12 sm:w-[80%]">
             <input

@@ -7,6 +7,7 @@ import Header from "@/components/layout/header";
 import { Toaster } from "@/components/ui/toaster"
 import Footer from "@/components/layout/footer";
 import Comment from "@/components/layout/comment";
+import Newsletter from "@/components/layout/news-letter";
 
 const outift =  Outfit({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Comment />
+            <Newsletter />
             <Footer />
             <Toaster />
           </div>

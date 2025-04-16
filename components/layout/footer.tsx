@@ -42,10 +42,10 @@ const socials = [
 
 export default function Footer() {
   return (
-    <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 py-20 grid md:grid-cols-2">
+    <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 py-20 grid md:grid-cols-2 bg-black">
       <div>
         <h2
-          className={`${poppins.className} lg:text-xl text-lg font-semibold text-black lg:w-[70%]`}
+          className={`${poppins.className} lg:text-xl text-lg font-semibold text-white lg:w-[70%]`}
         >
           Ourprops
         </h2>
@@ -73,20 +73,24 @@ export default function Footer() {
             <Link
               key={index}
               href={nav.href}
-              className="text-sm hover:underline"
+              className="text-sm hover:underline text-white"
             >
               {nav.name}
             </Link>
           ))}
         </div>
         <div className="flex flex-col gap-3">
-          <Link href="/contact" className="text-sm hover:underline">
+          <Link href="/contact" className="text-sm hover:underline text-white">
             Contact
           </Link>
-          <L smooth={true} to="newslatter" className="text-sm hover:underline">
+          <L
+            smooth={true}
+            to="newslatter"
+            className="text-sm hover:underline text-white"
+          >
             Newsletter
           </L>
-          <Link href="/terms" className="text-sm hover:underline">
+          <Link href="/terms" className="text-sm hover:underline text-white">
             Terms & Conditions
           </Link>
         </div>

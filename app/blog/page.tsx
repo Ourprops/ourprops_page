@@ -25,6 +25,7 @@ export default async function Page() {
     <div>
       <Hero />
       <Content blogs={blogs} />
+      
     </div>
   );
 }

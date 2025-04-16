@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "../ui/button";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
@@ -31,7 +31,6 @@ export default function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const controlHeader = () => {
@@ -54,7 +53,7 @@ export default function Header() {
         window.removeEventListener("scroll", controlHeader);
       };
     }
-  }, [lastScrollY,]);
+  }, [lastScrollY]);
 
   return (
     <div
@@ -84,10 +83,10 @@ export default function Header() {
         </nav>
         <div className="grid grid-flow-col">
           <L smooth={true} to="newsletter">
-          <Button className="text-white">
-            Join us <ArrowRight color="white" />
+            <Button className="">
+              Join us <ArrowRight color="white" />
             </Button>
-            </L>
+          </L>
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="lg:pt-36 md:pt-36 sm:pt-36 pt-28 pb-10 grid md:grid-cols-2 grid-cols-1 gap-20 ">
         <div className="flex flex-col gap-10 z-10">
           <h1
-            className={`lg:text-6xl sm:text-5xl text-4xl text-white font-semibold ${poppins.className}`}
+            className={`lg:text-6xl sm:text-5xl text-4xl text-white font-medium ${poppins.className}`}
           >
             Be The First To Know
           </h1>
@@ -70,7 +70,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="flex md:justify-end z-10">
-          <p className="text-lg text-muted lg:w-[60%]">
+          <p className="sm:text-base text-sm text-muted lg:w-[60%]">
             Get the latest updates on our products and services by subscribing
             to our newsletter.
           </p>

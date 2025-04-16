@@ -1,5 +1,4 @@
 import Hero from "@/components/layout/home/hero";
-import Newsletter from "@/components/layout/news-letter";
 import Problem from "@/components/layout/home/problem";
 import Services from "@/components/layout/home/services";
 import Target from "@/components/layout/home/target";
@@ -42,7 +41,6 @@ export default async function Home() {
       <Problem problems={problems} />
       <Services />
       <Target />
-      <Newsletter />
     </div>
   );
 }

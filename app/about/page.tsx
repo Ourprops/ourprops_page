@@ -1,7 +1,6 @@
 import Hero from "@/components/layout/about/hero";
 import OurPurpose from "@/components/layout/about/our-purpose";
 import OurStory from "@/components/layout/about/our-story";
-import Newsletter from "@/components/layout/news-letter";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 
@@ -46,7 +45,6 @@ export default async function Page() {
       <Hero hero={aboutHero} />
       <OurStory ourStory={ourStory} />
       <OurPurpose ourPurpose={ourPurpose} />
-      <Newsletter />
     </div>
   );
 }
