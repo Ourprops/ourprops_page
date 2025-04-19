@@ -1,7 +1,7 @@
-import Hero from "@/components/layout/home/hero";
-import Problem from "@/components/layout/home/problem";
-import Services from "@/components/layout/home/services";
-import Target from "@/components/layout/home/target";
+import Hero from "@/components/home/hero";
+import Problem from "@/components/home/problem";
+import Services from "@/components/home/services";
+import Target from "@/components/home/target";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 

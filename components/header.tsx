@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Sidebar from "../sidebar";
+import Sidebar from "./sidebar";
 import { ArrowRight } from "lucide-react";
 import { Link as L } from "react-scroll";
 

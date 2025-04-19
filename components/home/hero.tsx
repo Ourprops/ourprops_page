@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
 });
 
 export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
@@ -21,7 +21,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
         >
           {hero?.headline}
         </h1>
-        <p className="sm:text-sm text-xs text-muted-foreground mt-6 z-10">
+        <p className="sm:text-sm text-xs text-muted-foreground mt-6 z-10 text-center">
           {hero?.subheadline}
         </p>
         <div className="flex flex-row items-center gap-4 mt-10 ">
@@ -40,4 +40,3 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
     </div>
   );
 }
-

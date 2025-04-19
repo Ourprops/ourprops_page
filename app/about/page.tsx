@@ -1,6 +1,6 @@
-import Hero from "@/components/layout/about/hero";
-import OurPurpose from "@/components/layout/about/our-purpose";
-import OurStory from "@/components/layout/about/our-story";
+import Hero from "@/components/about/hero";
+import OurPurpose from "@/components/about/ourPurpose";
+import OurStory from "@/components/about/ourStory";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 

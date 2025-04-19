@@ -1,5 +1,5 @@
-import Content from "@/components/layout/blog/content";
-import Hero from "@/components/layout/blog/hero";
+import Content from "@/components/blog/content";
+import Hero from "@/components/blog/hero";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 
@@ -25,7 +25,6 @@ export default async function Page() {
     <div>
       <Hero />
       <Content blogs={blogs} />
-      
     </div>
   );
 }
