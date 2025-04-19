@@ -35,33 +35,29 @@ This is an example of how you may give instructions on setting up your project l
 ## Folder Structure
 
 ├── ourprops_page/
-│   ├── app/
-│   │   ├── about/
-|   |   |    └── page.tsx
-│   │   ├── blog/
+│   ├── app/                     # Contains the different pages on the site
+│   │   ├── about/               # About page
 │   │   │   └── page.tsx
-│   │   ├── page.tsx
-|   |   ├── layout.tsx
-│   ├── components/
-│   │   ├── about/
-|   |   |   ├── hero.tsx
-|   |   |   ├── ourPurpose.tsx
-|   |   |   ├── ourStory.tsx
-│   │   ├── blog/
-|   |   |   ├── blog.tsx
-|   |   |   ├── hero.tsx
-|   |   |   ├── content.tsx
-│   │   ├── home
-|   |   |   ├── hero.tsx
-|   |   |   ├── problem.tsx
-|   |   |   ├── services.tsx
-|   |   |   ├── target.tsx
-│   ├── ui/
-|   ├── ...
-
-- `app` - contains the different pages on the site
-- `components` - contains reusable components and folders for each page with their unique components
-- `ui` - contains reusable components from ShadcnUI
+│   │   ├── blog/                # Blog page
+│   │   │   └── page.tsx
+│   │   ├── page.tsx             # Main landing page
+│   │   ├── layout.tsx           # Layout for the app
+│   ├── components/              # Reusable components for the site
+│   │   ├── about/               # Components specific to the About page
+│   │   │   ├── hero.tsx
+│   │   │   ├── ourPurpose.tsx
+│   │   │   ├── ourStory.tsx
+│   │   ├── blog/                # Components specific to the Blog page
+│   │   │   ├── blog.tsx
+│   │   │   ├── hero.tsx
+│   │   │   ├── content.tsx
+│   │   ├── home/                # Components specific to the Home page
+│   │   │   ├── hero.tsx
+│   │   │   ├── problem.tsx
+│   │   │   ├── services.tsx
+│   │   │   ├── target.tsx
+│   ├── ui/                      # Reusable UI components from ShadcnUI
+│   ├── ...
 
 ## Next Step
 
