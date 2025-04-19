@@ -34,6 +34,7 @@ This is an example of how you may give instructions on setting up your project l
 
 ## Folder Structure
 
+```bash
 ├── ourprops_page/
 │   ├── app/                     # Contains the different pages on the site
 │   │   ├── about/               # About page
@@ -58,6 +59,7 @@ This is an example of how you may give instructions on setting up your project l
 │   │   │   ├── target.tsx
 │   ├── ui/                      # Reusable UI components from ShadcnUI
 │   ├── ...
+```
 
 ## Next Step
 
