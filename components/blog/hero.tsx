@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { LoaderCircle, Send } from "lucide-react";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { useState } from "react";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 export default function Hero() {
@@ -37,7 +37,7 @@ export default function Hero() {
     <div
       style={{
         backgroundImage:
-          "url('https://images.pexels.com/photos/7414927/pexels-photo-7414927.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+          "url('https://images.pexels.com/photos/31782030/pexels-photo-31782030/free-photo-of-modern-skyline-view-of-accra-ghana.jpeg?auto=compress&cs=tinysrgb&w=1600')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="lg:pt-36 md:pt-36 sm:pt-36 pt-28 pb-10 grid md:grid-cols-2 grid-cols-1 gap-20 ">
         <div className="flex flex-col gap-10 z-10">
           <h1
-            className={`lg:text-6xl sm:text-5xl text-4xl text-white font-medium ${poppins.className}`}
+            className={`lg:text-6xl sm:text-5xl text-4xl text-white font-medium tracking-tighter ${montserrat.className}`}
           >
             Be The First To Know
           </h1>
@@ -58,7 +58,7 @@ export default function Hero() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@gmail.com"
-                className="w-full h-12 px-4 border-none outline-none rounded-l-full"
+                className="w-full h-12 px-4 border-none outline-none rounded-l-lg"
               />
               <Button
                 onClick={handleSubscribe}
@@ -76,7 +76,7 @@ export default function Hero() {
           </p>
         </div>
       </div>
-      <div className="absolute w-full h-full top-0 left-0 bg-black opacity-50"></div>
+      <div className="absolute w-full h-full top-0 left-0 bg-black opacity-30"></div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ArrowRightToLine } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ export default function Sidebar() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" >
-          <ArrowRightToLine color="black" />
+          <Menu color="black" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[200px]">

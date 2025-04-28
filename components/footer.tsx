@@ -1,12 +1,12 @@
 "use client"
 import { Facebook, Instagram, Twitter } from "lucide-react";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import {Link as L} from "react-scroll"
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 
@@ -45,7 +45,7 @@ export default function Footer() {
     <div className="h-auto w-full xl:px-20 lg:px-10 md:px-5 px-4 py-20 grid md:grid-cols-2 bg-black">
       <div>
         <h2
-          className={`${poppins.className} lg:text-xl text-lg font-semibold text-white lg:w-[70%]`}
+          className={`${montserrat.className} lg:text-xl text-lg font-semibold text-white lg:w-[70%]`}
         >
           Ourprops
         </h2>

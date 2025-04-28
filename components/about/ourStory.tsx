@@ -1,10 +1,9 @@
 import { OUR_STORY_QUERYResult } from "@/sanity/types";
-// import { urlFor } from "@/sanity/url-for";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 export default function OurStoryView({
@@ -14,21 +13,22 @@ export default function OurStoryView({
 }) {
 
   return (
-    <div className="h-auto pb-24 w-full xl:px-20 lg:px-10 md:px-5 px-4 md:grid md:grid-cols-2 grid-cols-1 gap-20 flex flex-col md:flex-row min-h-[70vh]">
+    <div className="w-full xl:px-20 lg:px-10 md:px-5 px-4 py-20 grid md:grid-cols-3 grid-cols-1">
       <div>
-        <span className="p-1 px-3 rounded-full border text-sm text-black">
+        <span className="text-sm font-semibold text-black col-span-1">
           Our Story
         </span>
+      </div>
+      <div className="col-span-2 md:mt-10">
         <h2
-          className={`sm:text-5xl text-4xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
+          className={`sm:text-5xl text-4xl font-medium ${montserrat.className} lg:leading-[3rem] mt-4 tracking-tighter`}
         >
           {ourStory?.headline}
         </h2>
-        <p className="sm:text-sm text-xs text-muted-foreground sm:leading-7 leading-6 mt-10">
+        <p className="sm:text-base text-sm text-muted-foreground sm:leading-7 leading-6 mt-10">
           {ourStory?.subheadline}
         </p>
       </div>
-      <div></div>
     </div>
   );
 }

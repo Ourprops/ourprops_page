@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
-import { Outfit } from "next/font/google";
+import { Lato } from "next/font/google";
 import { SanityLive } from "@/sanity/live";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
-import Comment from "@/components/layout/comment";
 import Newsletter from "@/components/newsLetter";
+import Comment from "@/components/comment";
 
-const outift = Outfit({
+const lato = Lato({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outift.className} antialiased`}>
+      <body className={`${lato.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

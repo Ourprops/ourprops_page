@@ -5,12 +5,12 @@ import {
   SanityImageHotspot,
 } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 function SubSection({
@@ -40,10 +40,10 @@ function SubSection({
   return (
     <div className="md:grid md:grid-cols-2 grid-cols-1 gap-20 border rounded-lg md:p-10 p-5 bg-white">
       <div className="md:w-[80%]">
-        <h2 className={`sm:text-3xl text-2xl font-medium ${poppins.className}`}>
+        <h2 className={`sm:text-3xl text-2xl font-medium ${montserrat.className} tracking-tighter`}>
           {title}
         </h2>
-        <p className="text-sm leading-6 text-muted-foreground mt-5">
+        <p className="sm:text-base text-sm leading-6 text-muted-foreground mt-5">
           {description}
         </p>
       </div>
@@ -75,16 +75,16 @@ export default function OurPurpose({
       <div className="flex justify-center items-center flex-col py-24">
         <div className="text-center flex flex-col gap-5">
           <div>
-            <span className="p-1 px-3 rounded-full border text-sm text-black">
+            <span className="text-sm font-semibold text-black">
               Our Purpose
             </span>
             <h2
-              className={`sm:text-5xl text-4xl font-medium ${poppins.className} lg:leading-[3rem] mt-4 tracking-tight`}
+              className={`sm:text-5xl text-4xl font-medium ${montserrat.className} lg:leading-[3rem] mt-4 tracking-tighter`}
             >
               {ourPurpose?.headline}
             </h2>
           </div>
-          <p className="text-sm text-muted-foreground sm:leading-7 leading-6">
+          <p className="sm:text-base text-sm text-muted-foreground sm:leading-7 leading-6">
             {ourPurpose?.subheadline}
           </p>
         </div>

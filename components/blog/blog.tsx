@@ -1,13 +1,13 @@
 import { BLOG_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import { placeholder } from "../home/services";
 import { PortableText } from "@portabletext/react";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["600", "700", "900"],
 });
 
 export default function Blog({ blog }: { blog: BLOG_QUERYResult }) {
@@ -22,7 +22,7 @@ export default function Blog({ blog }: { blog: BLOG_QUERYResult }) {
         </span>
       </div>
       <h1
-        className={`lg:text-6xl sm:text-5xl text-4xl font-medium ${poppins.className}`}
+        className={`lg:text-6xl sm:text-5xl text-4xl font-medium ${montserrat.className}`}
       >
         {blog?.title}
       </h1>
@@ -41,7 +41,7 @@ export default function Blog({ blog }: { blog: BLOG_QUERYResult }) {
           blurDataURL={placeholder}
         />
       </div>
-      <div className="prose max-w-none w-full sm:leading-7 font-sans">
+      <div className="prose max-w-none w-full sm:leading-7">
         <PortableText value={blog?.content ?? []} />
       </div>
     </div>

@@ -1,6 +1,6 @@
 export const color = {
     blue: {
-        default: "#0077B6",
+        default: "#003366",
         muted: "#b8e6ff",
     },
     orange: {

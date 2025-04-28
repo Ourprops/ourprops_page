@@ -2,15 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { BLOGS_QUERYResult, Slug } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { Poppins } from "next/font/google";
+import { ArrowUpRight } from "lucide-react";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 interface BlogProps {
@@ -76,9 +76,9 @@ function Blog({ blog }: { blog: BlogProps }) {
 
 export default function Content({ blogs }: { blogs: BLOGS_QUERYResult }) {
   return (
-    <div className="w-full h-auto xl:px-20 lg:px-10 md:px-5 px-4 relative py-10">
+    <div className="w-full h-auto xl:px-20 lg:px-10 md:px-5 px-4 relative py-20">
       <div className="w-full mb-10">
-        <h1 className={`text-xl font-medium ${poppins.className}`}>Blog</h1>
+        <h1 className={`text-xl font-medium ${montserrat.className}`}>Blog</h1>
         <p className="text-muted-foreground text-sm mt-2">
           Over here, you{`'`}ll find all the latest updates and news that will
           help you stay informed.
@@ -95,12 +95,12 @@ export default function Content({ blogs }: { blogs: BLOGS_QUERYResult }) {
           <p className="text-muted-foreground">No blogs found</p>
         </div>
       )}
-      <div className="w-full mt-32 flex justify-center items-center">
+      {/* <div className="w-full mt-32 flex justify-center items-center">
         <Button className="text-white">
           <ArrowDown color="white" />
           Load more
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

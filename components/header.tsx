@@ -1,15 +1,15 @@
 "use client";
 import { Button } from "./ui/button";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import { ArrowRight } from "lucide-react";
 import { Link as L } from "react-scroll";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
+  weight: ["600", "700", "900"],
 });
 
 const navs = [
@@ -57,33 +57,33 @@ export default function Header() {
 
   return (
     <div
-      className={`fixed top-7 left-0 right-0 z-50 bg-transparent xl:px-20 lg:px-10 md:px-5 px-4 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent xl:px-20 lg:px-10 md:px-5 px-4 transition-transform duration-300 border-b bg-white ${
         showHeader ? "translate-y-0" : "-translate-y-24"
       }`}
     >
-      <div className="xl:px-20 lg:px-10 md:px-5 px-4 py-2 flex justify-between items-center rounded-full bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 bg-neutral-100">
-        <div className="md:hidden block">
-          <Sidebar />
-        </div>
+      <div className=" py-3 flex justify-between items-center ">
         <div>
-          <h1 className={`text-black font-medium ${poppins.className}`}>
+          <h1 className={`text-black font-medium ${montserrat.className}`}>
             OURPROPS
           </h1>
+        </div>
+        <div className="md:hidden block">
+          <Sidebar />
         </div>
         <nav className="md:flex items-center space-x-8 hidden">
           {navs.map((nav, index) => (
             <Link
               key={index}
               href={nav.href}
-              className="text-sm text-black relative pb-1 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+              className="text-sm font-medium text-black relative pb-1 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
             >
               {nav.name}
             </Link>
           ))}
         </nav>
-        <div className="grid grid-flow-col">
+        <div className="md:block hidden">
           <L smooth={true} to="newsletter">
-            <Button className="">
+            <Button className="font-semibold">
               Join us <ArrowRight color="white" />
             </Button>
           </L>
