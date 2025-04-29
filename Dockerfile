@@ -71,7 +71,7 @@ COPY --from=build /usr/src/app/next.config.ts ./
 COPY --chown=node:node --from=build /usr/src/app/ ./
 
 # Expose the port that the application listens on.
-EXPOSE 3000
+EXPOSE 3002
 
 # Use PM2 to run the application.
 CMD ["pm2-runtime", "start", "npm", "--", "start"]
