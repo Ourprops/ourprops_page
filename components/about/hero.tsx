@@ -118,7 +118,7 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
           <div className="mt-10">
             <L smooth={true} to="newsletter">
               <Button className="shadow-lg font-semibold" size="lg">
-                Join us <ArrowRight className="ml-2" />
+                Join our waitlist <ArrowRight className="ml-2" />
               </Button>
             </L>
           </div>

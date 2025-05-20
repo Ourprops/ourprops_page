@@ -41,7 +41,7 @@ export default function Blog({ blog }: { blog: BLOG_QUERYResult }) {
           blurDataURL={placeholder}
         />
       </div>
-      <div className="prose max-w-none w-full sm:leading-7">
+      <div className="max-w-4xl">
         <PortableText value={blog?.content ?? []} />
       </div>
     </div>

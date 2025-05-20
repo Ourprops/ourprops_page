@@ -57,15 +57,16 @@ export default function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 bg-transparent xl:px-20 lg:px-10 md:px-5 px-4 transition-transform duration-300 border-b bg-white ${
-        showHeader ? "translate-y-0" : "-translate-y-24"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent xl:px-20 lg:px-10 md:px-5 px-4 transition-transform duration-300 border-b bg-white ${showHeader ? "translate-y-0" : "-translate-y-24"
+        }`}
     >
-      <div className=" py-3 flex justify-between items-center ">
+      <div className="py-3 flex justify-between items-center ">
         <div>
-          <h1 className={`text-black font-medium ${montserrat.className}`}>
-            OURPROPS
-          </h1>
+          <Link href="/">
+            <h1 className={`text-black font-medium ${montserrat.className}`}>
+              OURPROPS
+            </h1>
+          </Link>
         </div>
         <div className="md:hidden block">
           <Sidebar />
@@ -84,7 +85,7 @@ export default function Header() {
         <div className="md:block hidden">
           <L smooth={true} to="newsletter">
             <Button className="font-semibold">
-              Join us <ArrowRight color="white" />
+              Join our waitlist <ArrowRight color="white" />
             </Button>
           </L>
         </div>

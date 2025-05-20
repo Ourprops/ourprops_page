@@ -1,12 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { HERO_QUERYResult } from "@/sanity/types";
-import { ArrowRight, Lightbulb } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import React from "react";
-import { Link as L } from "react-scroll";
 import Link from "next/link";
 import Image from "next/image";
+import Waitlist from "../waitlist";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -52,11 +52,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
             {hero?.subheadline}
           </p>
           <div className="flex flex-row items-center gap-4 mt-10">
-            <L smooth={true} to="newsletter">
-              <Button className="shadow-lg font-semibold" size="lg">
-                Join us <ArrowRight className="ml-2" />
-              </Button>
-            </L>
+            <Waitlist />
             <Link href="/about">
               <Button
                 size="lg"
@@ -72,10 +68,10 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
       <div className="flex justify-start w-full items-start z-10 xl:px-20 lg:px-10 md:px-5 px-4 pb-10">
         <span className="bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 bg-black rounded-lg p-4 flex flex-row items-center gap-2">
           <Lightbulb color='gold' />
-        <p
-          className="sm:text-base text-sm text-white">
-          Get up to date with our latest news and updates by subscribing to our newsletter.
-        </p>
+          <p
+            className="sm:text-base text-sm text-white">
+            Get up to date with our latest news and updates by subscribing to our newsletter.
+          </p>
         </span>
       </div>
     </div>
