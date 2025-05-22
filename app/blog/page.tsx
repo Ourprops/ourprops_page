@@ -39,7 +39,7 @@ export default function page() {
             <main className="max-w-7xl mx-auto px-4 py-8">
                 {/* Popular Articles */}
                 <section className="mb-16">
-                    <h2 className="text-2xl font-semibold mb-6 font-sans">Popular Articles</h2>
+                    <h2 className="text-2xl font-semibold mb-6">Popular Articles</h2>
                     <div className="grid md:grid-cols-2 gap-10">
                         {blogs.map((blog) => (
                             <article key={blog.id} className="h-auto">
@@ -54,9 +54,9 @@ export default function page() {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-sm text-muted-foreground font-sans">{blog.author} | {blog.date}</p>
-                                    <p className="text-lg font-medium font-serif">{blog.title}</p>
-                                    <p className="text-muted-foreground font-sans">
+                                    <p className="text-sm text-muted-foreground">{blog.author} | {blog.date}</p>
+                                    <p className="text-lg font-medium">{blog.title}</p>
+                                    <p className="text-muted-foreground">
                                         {blog.desc}
                                     </p>
                                     <Link href={`/blog/${blog.id}`} className="hover:underline inline-block text-blue-500">
@@ -95,9 +95,9 @@ export default function page() {
                             />
                             </div>
                             <div className="space-y-2">
-                            <p className="text-sm text-muted-foreground font-sans">Jim Davis | June April 15, 2024</p>
-                            <h3 className="font-medium font-serif">Transitioning from Conventional Methods</h3>
-                            <p className="text-sm text-muted-foreground line-clamp-3 font-sans">
+                            <p className="text-sm text-muted-foreground">Jim Davis | June April 15, 2024</p>
+                            <h3 className="font-medium">Transitioning from Conventional Methods</h3>
+                            <p className="text-sm text-muted-foreground line-clamp-3">
                                 Understanding how to make the transition from conventional farming methods to more sustainable
                                 practices...
                             </p>

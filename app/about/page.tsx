@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import '../../app/styles.css';
-import Image from "next/image"
 import Header from "@/components/Header"
 import Services from "@/components/homepage/Services"
 import Newsletter from "@/components/homepage/Newsletter"
@@ -64,7 +64,78 @@ export default function page() {
         <Header />
 
         {/* Navbar  */}
+
         <SecondHeader color="text-white" />
+
+        <div className='flex justify-center'>
+            <nav className="bg-transparent absolute top-0 w-full px-10 lg:px-36 py-4 z-10 flex items-center justify-between">
+                <h2 className="text-white font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
+                {/* Navigation Links */}
+                <ul className="hidden md:flex items-center space-x-8 ">
+                    {[
+                        { name: 'Home', route: "/" },
+                        { name: 'Blog', route: "/blog" },
+                        { name: 'About', route: "/about" }
+                    ].map((item, index) => (
+                        <li key={index} className="relative group">
+                            <Link
+                                href={item.route}
+                                className="text-white text-md font-medium transition duration-300"
+                            >
+                                {item.name}
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+
+                {/* Contact Section */}
+                <div className="hidden md:block">
+                    <Button variant='outline' className='bg-transparent text-white'>Join our waitlist</Button>
+                </div>
+                <div className='md:hidden flex'>
+                    <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
+                </div>
+            </nav>
+        </div>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="hidden" className='bg-black w-[100%] h-screen fixed top-0 left-0 z-20 flex flex-col justify-center items-center text-white'>
+
+                    <div className='absolute top-10 right-10'>
+                        <Hamburger size={7} toggled={isOpen} toggle={setOpen} color='white' />
+                    </div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/')}
+                            className={`${path === '' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            HOME
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/blog')}
+                            className={`${path === 'blog' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            BLOG
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants} className='mb-5'>
+                        <div
+                            onClick={() => handleLinkClick('/about')}
+                            className={`${path === 'about' ? 'text-xl font-sans font-bold cursor-pointer py-2 uppercase' : 'text-xl font-sans py-2 font-bold cursor-pointer uppercase'} relative group`}
+                        >
+                            ABOUT US
+                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-appColor-orange-default scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
 
         <main className="h-auto">
             {/* Hero Section */}
@@ -74,7 +145,7 @@ export default function page() {
                         Visualize Boundaries, Verify Ownership, Prevent Fraud
                     </h2>
                     <div className="flex justify-center items-center">
-                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark mt-3 text-white md:py-6 px-5'>
+                        <Button className=' mt-3 text-white md:py-6 px-5'>
                             Subscribe for Updates
                         </Button>
                     </div>
@@ -86,7 +157,7 @@ export default function page() {
                 <div className='xl:w-[50%] w-[100%] flex justify-start items-start mt-10 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our Missoin</p>
-                        <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+                        <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-orange-default'></span>
                     </div>
                     <h1 className='md:text-5xl text-4xl font-bold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
                         Empowering Real Estate Through Technology
@@ -105,7 +176,7 @@ export default function page() {
                 <div className='xl:w-[50%] w-[100%] flex justify-start items-start my-0 xl:my-0 flex-col'>
                     <div className="relative">
                         <p className='text-muted-foreground text-xs uppercase mt-2'>Our STORY</p>
-                        <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+                        <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-orange-default'></span>
                     </div>
                     <h1 className='md:text-5xl text-4xl font-bold text-black md:mt-16 mt-8 md:w-[90%] w-[100%]'>
                         Empowering Real Estate Through Technology
@@ -123,7 +194,7 @@ export default function page() {
             </section>
 
             {/* What we offer Section*/}
-            <Services />
+            <Services headline={''} subheadline={''} services={[]}  />
 
             {/* Newsletter Section*/}
             <Newsletter />

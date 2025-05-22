@@ -69,7 +69,7 @@ export default function Header() {
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: scrolling ? 0 : -100, opacity: scrolling ? 1 : 0 }}
                     transition={{ duration: 0.5 }}
-                    className="backdrop-filter backdrop-blur-sm bg-opacity-10  bg-gray-100 shadow-md fixed top-0 w-full px-10 lg:px-36 py-0 md:py-2 z-20 flex items-center justify-between"
+                    className="backdrop-filter backdrop-blur-sm bg-opacity-80  bg-gray-100 shadow-md fixed top-0 w-full px-10 lg:px-36 py-0 md:py-2 z-20 flex items-center justify-between"
                 >
                     {/* Left Section */}
                     <h2 className="text-black font-bold md:text-2xl sm:text-xl text-lg">OurProps</h2>
@@ -95,7 +95,7 @@ export default function Header() {
 
                     {/* Contact Section */}
                     <div className="hidden md:block">
-                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark text-white'>Join our waitlist</Button>
+                        <Button className='text-white'>Join our waitlist</Button>
                     </div>
 
                     <div className='md:hidden flex'>

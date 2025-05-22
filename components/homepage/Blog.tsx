@@ -25,7 +25,7 @@ export default function Blog() {
         <section className="h-auto py-10 flex flex-col relative lg:px-28 sm:px-10 px-5">
             <div className="relative">
                 <p className='text-muted-foreground text-xs uppercase mt-2'>Blog</p>
-                <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-blue-default'></span>
+                <span className='absolute left-0 top-0 w-10 h-0.5 bg-appColor-orange-default'></span>
             </div>
             <div className="w-full gap-20 flex lg:flex-row flex-col justify-center mt-10">
                 <div className='flex flex-col'>
@@ -38,7 +38,7 @@ export default function Blog() {
                         </p>
                     </div>
                     <div className='mt-10'>
-                        <Button className='bg-appColor-orange-default hover:bg-appColor-orange-dark mt-5 xl:mt-0'>
+                        <Button className='text-white mt-5 xl:mt-0'>
                             Explore
                         </Button>
                     </div>
@@ -51,8 +51,8 @@ export default function Blog() {
                                 <p className='text-muted-foreground text-xs'>02 Dec 20</p>
                             </div>
                             <div className='sm:w-[70%] mb-10'>
-                                <Link href="#" className='font-medium lg:text-[23px] text:[20px] lg:leading-[40px] leading-[30px] mb-4 font-serif hover:underline'>{blog.title}</Link>
-                                <p className='text-gray-600'>{blog.description}</p>
+                                <Link href="#" className='font-medium lg:text-[23px] text:[20px] lg:leading-[40px] leading-[30px] mb-4 hover:underline'>{blog.title}</Link>
+                                <p className='text-muted-foreground md:text-sm text-xs'>{blog.description}</p>
                             </div>
                             <Link href="#" className='sm:w-[5%] w-[0%] md:flex hidden justify-center mt-4'>
                                 <ArrowUpRight />
