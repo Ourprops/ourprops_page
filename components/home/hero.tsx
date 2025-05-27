@@ -7,6 +7,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Waitlist from "../waitlist";
+import HeroImage from '../../public/hero.jpg'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -19,18 +20,19 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
       {/* Background Image Container */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="https://images.pexels.com/photos/966397/pexels-photo-966397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src={HeroImage}
           alt="hero"
           fill
           className="object-cover"
           priority
           quality={100}
         />
-        {/* Gradient Overlay - White at top, fading to transparent */}
+        {/* Dark Overlay */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.2) 70%, transparent 100%)'
+            background: 'rgba(0, 0, 0, 0.6)',
+            mixBlendMode: 'normal'
           }}
         ></div>
       </div>
@@ -38,17 +40,17 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
       {/* Content Container */}
       <div className="w-full xl:px-20 lg:px-10 md:px-5 h-full py-20 p-4 relative flex-1">
         <div className="mt-10 flex flex-col justify-center items-center relative z-10">
-          <div className="text-center mt-10">
-            <span className="bg-neutral-100 rounded-full px-4 py-2 text-sm font-thin text-black">
+          <div className="text-center mt-10 flex flex-col justify-center items-center">
+            <span className="bg-neutral-100 rounded-full px-4 py-2 text-sm font-thin text-black mb-3">
               Coming Soon
             </span>
             <h1
-              className={`lg:text-6xl sm:text-5xl text-4xl text-black font-medium tracking-tighter mt-2 lg:leading-[4rem] ${montserrat.className} text-center`}
+              className={`lg:text-6xl sm:text-5xl text-4xl lg:w-[60%] md:w-[80%] w-[100%] text-white font-medium tracking-tighter mt-3 lg:leading-[4rem] ${montserrat.className} text-center`}
             >
               {hero?.headline}
             </h1>
           </div>
-          <p className="sm:text-base text-sm text-gray-700 mt-6 text-center max-w-3xl">
+          <p className="sm:text-base text-sm text-white mt-6 text-center max-w-3xl">
             {hero?.subheadline}
           </p>
           <div className="flex flex-row items-center gap-4 mt-10">
@@ -57,7 +59,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
               <Button
                 size="lg"
                 variant="ghost"
-                className="font-semibold"
+                className="font-semibold text-white"
               >
                 Learn more
               </Button>

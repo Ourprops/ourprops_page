@@ -48,7 +48,7 @@ function ServiceCard({
       <div className="flex-1 w-full relative mt-4 overflow-hidden flex justify-start items-end">
         <div className="lg:w-2/5 sm:w-3/4 md:w-2/4 w-2/5 rounded-sm relative overflow-hidden">
           <Image
-            src={serviceImage}
+            src={serviceImage || "/placeholder.jpg"}
             width={300}
             height={800}
             alt={service.title}

@@ -3,6 +3,12 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import {Link as L} from "react-scroll"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import { Send } from "lucide-react"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -80,9 +86,37 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex flex-col gap-3">
-          <Link href="/contact" className="text-sm hover:underline text-white">
-            Contact
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <span className="text-sm hover:underline text-white cursor-pointer">
+                Contact
+              </span>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Send us a message</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" />
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" />
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea id="message" />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit">
+                  Submit <Send className="ml-2" size={16} />
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
           <L
             smooth={true}
             to="newslatter"
@@ -90,9 +124,9 @@ export default function Footer() {
           >
             Newsletter
           </L>
-          <Link href="/terms" className="text-sm hover:underline text-white">
+          <span className="text-sm text-gray-500 opacity-60">
             Terms & Conditions
-          </Link>
+          </span>
         </div>
       </div>
     </div>
