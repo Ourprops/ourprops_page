@@ -65,10 +65,10 @@ export default function Header() {
         <div>
           <Link href="/">
             <Image 
-              src="/logo.png" 
+              src="/ourpropspage_logo.png" 
               alt="logo" 
-              width={70} 
-              height={70} 
+              width={180} 
+              height={180} 
               priority
             />
           </Link>

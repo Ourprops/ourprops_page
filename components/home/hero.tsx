@@ -7,7 +7,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Waitlist from "../waitlist";
-import HeroImage from '../../public/hero.jpg'
+import HeroImage from '../../public/property1.jpg'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,7 +31,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
         <div
           className="absolute inset-0"
           style={{
-            background: 'rgba(0, 0, 0, 0.6)',
+            background: 'rgba(0, 0, 0, 0.5)',
             mixBlendMode: 'normal'
           }}
         ></div>
