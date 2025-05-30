@@ -47,7 +47,7 @@ export default function Problem({
       <div className="mt-10 grid lg:grid-cols-4 grid-rows-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full h-auto">
         <div className="h-[22rem] rounded-lg md:block hidden relative overflow-hidden">
           <Image
-            src={imageUrl1}
+            src={imageUrl1 || "/placeholder.jpg"}
             alt="alt"
             className="object-cover"
             fill

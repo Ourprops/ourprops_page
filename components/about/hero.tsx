@@ -103,11 +103,11 @@ function ContactUsDialog() {
 export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-10 h-full flex-1 min-h-[100vh] relative py-24 xl:px-20 lg:px-10 md:px-5 px-4">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-10 h-full flex-1 min-h-[100vh] relative py-24 xl:px-20 lg:px-10 md:px-5 px-4 mt-10">
       <div className="h-full flex justify-between flex-col">
         <div>
-          <span className="bg-neutral-100 rounded-full px-4 py-2 text-sm font-thin text-black">
-            Ownership, Reimagined
+          <span className="bg-[#003366]/10 rounded-full px-4 py-2 text-sm font-thin text-black">
+            Map-Based Property Registration and Verification System
           </span>
           <h1 className={`lg:text-6xl sm:text-5xl text-4xl text-black font-medium tracking-tighter mt-5 lg:leading-[4rem] ${montserrat.className}`}>
             {hero?.headline}

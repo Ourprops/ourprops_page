@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import { ArrowRight } from "lucide-react";
 import { Link as L } from "react-scroll";
+import Image from "next/image";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -63,9 +64,13 @@ export default function Header() {
       <div className="py-3 flex justify-between items-center ">
         <div>
           <Link href="/">
-            <h1 className={`text-black font-medium ${montserrat.className}`}>
-              OURPROPS
-            </h1>
+            <Image 
+              src="/ourpropspage_logo.png" 
+              alt="logo" 
+              width={180} 
+              height={180} 
+              priority
+            />
           </Link>
         </div>
         <div className="md:hidden block">
