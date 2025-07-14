@@ -28,8 +28,8 @@ export default function Contact() {
     await api.post("/email/contact", {
       name,
       email,
-      phone,
       message,
+      website: "ourprops"
     });
 
     toast({

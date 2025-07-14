@@ -1,6 +1,7 @@
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -13,7 +14,6 @@ import { Input } from "./ui/input";
 import { useState } from "react";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
-import { DialogDescription } from "@radix-ui/react-dialog";
 
 
 export default function Waitlist() {
@@ -28,6 +28,7 @@ export default function Waitlist() {
             await api.post("/waitlist", {
                 fullname,
                 email,
+                website: "ourprops"
             });
             setFullname("");
             setEmail("");
