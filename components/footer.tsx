@@ -124,9 +124,12 @@ export default function Footer() {
           >
             Newsletter
           </L>
-          <span className="text-sm text-gray-500 opacity-60">
+          <Link href="/terms-and-conditions" className="text-sm hover:underline text-white">
             Terms & Conditions
-          </span>
+          </Link>
+          <Link href="/privacy-policy" className="text-sm hover:underline text-white">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </div>
