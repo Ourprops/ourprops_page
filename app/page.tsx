@@ -1,14 +1,46 @@
-import Header from "@/components/Header";
-import Content from '@/components/Body';
-import Footer from "@/components/Footer";
+import Hero from "@/components/home/hero";
+import Problem from "@/components/home/problem";
+import Services from "@/components/home/services";
+import Target from "@/components/home/target";
+import { sanityFetch } from "@/sanity/live";
+import { defineQuery } from "next-sanity";
 
+const HERO_QUERY = defineQuery(`*[
+    _type == "homeHero"
+][0]{
+    headline,
+    subheadline,
+}`);
+const PROBLEM_QUERY = defineQuery(`*[
+    _type == "problemsType"
+][0]{
+    headline,
+    subheadline,
+    problems[]->{
+        _id,
+        title,
+        description,
+        },
+    imageUrl1,
+    imageUrl2,
+}`);
 
-export default function Home() {
+export default async function Home() {
+  const [{ data: hero }, { data: problems }] = await Promise.all([
+    sanityFetch({
+      query: HERO_QUERY,
+    }),
+    sanityFetch({
+      query: PROBLEM_QUERY,
+    }),
+  ]);
+
   return (
     <div>
-      <Header />
-      <Content />
-      <Footer />
+      <Hero hero={hero} />
+      <Problem problems={problems} />
+      <Services />
+      <Target />
     </div>
   );
 }
