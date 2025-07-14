@@ -1,6 +1,7 @@
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -13,7 +14,6 @@ import { Input } from "./ui/input";
 import { useState } from "react";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
-import { DialogDescription } from "@radix-ui/react-dialog";
 
 
 export default function Waitlist() {
@@ -28,6 +28,7 @@ export default function Waitlist() {
             await api.post("/waitlist", {
                 fullname,
                 email,
+                website: "ourprops"
             });
             setFullname("");
             setEmail("");
@@ -52,13 +53,11 @@ export default function Waitlist() {
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle>
-                        <h1 className="text-center text-2xl">Join our waitlist</h1>
+                        Join our waitlist
                     </DialogTitle>
                     <DialogDescription>
-                        <p className="text-center text-muted-foreground text-sm">
                             Be the first to know when we launch! Join our waitlist and
                         stay updated with the latest news and updates.
-                        </p>
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">

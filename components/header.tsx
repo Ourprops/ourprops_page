@@ -1,13 +1,9 @@
 "use client";
-import { Button } from "./ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
-import { ArrowRight } from "lucide-react";
-import { Link as L } from "react-scroll";
 import Image from "next/image";
-
-
+import Waitlist from "./waitlist";
 
 const navs = [
   {
@@ -84,11 +80,7 @@ export default function Header() {
             ))}
         </nav>
         <div className="md:block hidden">
-            <L smooth={true} to="newsletter">
-            <Button className="font-semibold">
-                Join our waitlist <ArrowRight color="white" />
-            </Button>
-            </L>
+            <Waitlist />
         </div>
         </div>
     </div>
