@@ -202,7 +202,7 @@ const InteractiveMap = () => {
                                         className="inline-block w-3 h-3 rounded-full mr-2"
                                         style={{ backgroundColor: shape.properties.color }}
                                     ></span>
-                                    <span className="text-xs text-gray-400">Click to view</span>
+                                    <span className="text-xs text-gray-400">Double click to view</span>
                                 </div>
                             </div>
                         ))}
