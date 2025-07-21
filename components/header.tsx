@@ -10,18 +10,18 @@ import Image from "next/image";
 
 
 const navs = [
-  {
-    name: "Home",
-    href: "/",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Blog",
-    href: "/blog",
-  },
+    {
+        name: "Home",
+        href: "/",
+    },
+    {
+        name: "About",
+        href: "/about",
+    },
+    {
+        name: "Blog",
+        href: "/blog",
+    },
 ];
 
 export default function Header() {

@@ -2,6 +2,7 @@ import Hero from "@/components/home/hero";
 import Problem from "@/components/home/problem";
 import Services from "@/components/home/services";
 import Target from "@/components/home/target";
+import Map from "@/components/home/map";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 
@@ -40,6 +41,7 @@ export default async function Home() {
       <Hero hero={hero} />
       <Problem problems={problems} />
       <Services />
+      <Map />
       <Target />
     </div>
   );
