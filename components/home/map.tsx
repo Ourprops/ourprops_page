@@ -179,7 +179,7 @@ const InteractiveMap = () => {
             </div>
 
             {/* Sidebar with house list */}
-            <div className="absolute top-[200px] left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+            <div className="absolute top-[250px] left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
                 <h3 className="font-bold mb-2">Properties</h3>
                 {isLoading ? (
                     <p>Loading properties...</p>
