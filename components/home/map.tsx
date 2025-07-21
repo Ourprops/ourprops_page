@@ -174,8 +174,8 @@ const InteractiveMap = () => {
         <div className="w-full relative py-20">
             {/* Title Section */}
             <div className="mb-6 text-center">
-                <h1 className="text-3xl font-bold text-gray-800">Property Portfolio Map</h1>
-                <p className="mt-2 text-gray-600">Explore and manage your properties with our interactive map</p>
+                <h1 className="text-3xl font-bold text-gray-800">Properties</h1>
+                <p className="mt-2 text-gray-600">Explore properties registered on Our Props</p>
             </div>
 
             {/* Sidebar with house list */}
