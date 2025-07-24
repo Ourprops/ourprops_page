@@ -98,6 +98,15 @@ const InteractiveMap = () => {
     const [selectedShape, setSelectedShape] = useState<Shape | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
 
+    const handleShapeClick = useCallback((shape: Shape) => {
+        setSelectedShape(shape);
+        if (mapRef.current && shape.coordinates.length > 0) {
+            const bounds = new window.google.maps.LatLngBounds();
+            shape.coordinates.forEach(coord => bounds.extend(coord));
+            mapRef.current.fitBounds(bounds);
+        }
+    }, []);
+
     // Load shapes on component mount
     useEffect(() => {
         const loadShapes = async () => {
@@ -151,24 +160,24 @@ const InteractiveMap = () => {
         // Enable 3D buildings
         const buildingsLayer = map.get("buildings");
         if (buildingsLayer) {
-            buildingsLayer.setOptions({
+            buildingsLayer.setMap(map);
+            map.setOptions({
                 styles: [
-                    { stylers: [{ color: '#f5f5f5' }, { lightness: 20 }] },
-                    { stylers: [{ visibility: 'on' }, { color: '#e0e0e0' }, { weight: 2.0 }] }
+                    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#e9e9e9' }] },
+                    { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+                    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+                    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#e0e0e0' }] },
+                    { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#a0a0a0' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ visibility: 'on' }, { color: '#ffffff' }, { weight: 2 }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#000000' }] },
+                    { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'road.local', elementType: 'geometry', stylers: [{ visibility: 'on' }, { color: '#e0e0e0' }, { weight: 2.0 }] }
                 ]
             });
         }
     }, []);
-
-    const handleShapeClick = (shape: Shape) => {
-        setSelectedShape(shape);
-        // Optional: Center the map on the clicked shape
-        if (mapRef.current && shape.coordinates.length > 0) {
-            const bounds = new window.google.maps.LatLngBounds();
-            shape.coordinates.forEach(coord => bounds.extend(coord));
-            mapRef.current.fitBounds(bounds);
-        }
-    };
 
     return (
         <div className="w-full relative py-20">
