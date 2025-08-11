@@ -1,9 +1,9 @@
-import { sanityFetch } from "@/sanity/live";
+"use client"
 import { urlFor } from "@/sanity/url-for";
-import { defineQuery } from "next-sanity";
 import { Montserrat } from "next/font/google";
 import { placeholder } from "./services";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -34,7 +34,12 @@ function AudienceCard({ target, imageUrl, description }: Audience) {
           </p>
         </div>
         <div className="mt-0 md:mt-10">
-          <div className="w-full rounded-lg relative overflow-hidden">
+          <motion.div 
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="w-full rounded-lg relative overflow-hidden">
             <Image
               src={targetImage}
               width={300}
@@ -45,30 +50,16 @@ function AudienceCard({ target, imageUrl, description }: Audience) {
               placeholder="blur"
               blurDataURL={placeholder}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
 
-const TARGETS_QUERY = defineQuery(`*[
-    _type == "targetsType"
-][0]{
-    headline,
-    subheadline,
-    targets[]->{
-        _id,
-        target,
-        "imageUrl": image.asset->url,
-        description
-    }
-}`);
 
-export default async function Target() {
-  const { data: targets } = await sanityFetch({
-    query: TARGETS_QUERY,
-  });
+
+export default function Target({targets}: {targets: {headline: string; targets: Audience[]}}) {
 
   return (
     <div className="h-auto py-24 w-full xl:px-20 lg:px-10 md:px-5 px-4 grid lg:grid-cols-4 grid-cols-1 gap-4 bg-white">

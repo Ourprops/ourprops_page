@@ -26,13 +26,45 @@ const PROBLEM_QUERY = defineQuery(`*[
     imageUrl2,
 }`);
 
+const SERVICES_QUERY = defineQuery(`*[
+    _type == "servicesType"
+][0]{
+    headline,
+    subheadline,
+    services[]->{
+        _id,
+        title,
+        description,
+        "imageUrl": image.asset->url,
+    }
+}`);
+
+const TARGETS_QUERY = defineQuery(`*[
+    _type == "targetsType"
+][0]{
+    headline,
+    subheadline,
+    targets[]->{
+        _id,
+        target,
+        "imageUrl": image.asset->url,
+        description
+    }
+}`);
+
 export default async function Home() {
-  const [{ data: hero }, { data: problems }] = await Promise.all([
+  const [{ data: hero }, { data: problems }, { data: services }, { data: targets }] = await Promise.all([
     sanityFetch({
       query: HERO_QUERY,
     }),
     sanityFetch({
       query: PROBLEM_QUERY,
+    }),
+    sanityFetch({
+      query: SERVICES_QUERY,
+    }),
+    sanityFetch({
+      query: TARGETS_QUERY,
     }),
   ]);
 
@@ -40,9 +72,9 @@ export default async function Home() {
     <div>
       <Hero hero={hero} />
       <Problem problems={problems} />
-      <Services />
+      <Services services={services} />
       <Map />
-      <Target />
+      <Target targets={targets} />
     </div>
   );
 }

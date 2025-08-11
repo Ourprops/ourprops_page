@@ -1,3 +1,4 @@
+"use client";
 import { Montserrat } from "next/font/google";
 import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
 import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
@@ -6,6 +7,7 @@ import { urlFor } from "@/sanity/url-for";
 import Image from "next/image";
 import { PROBLEM_QUERYResult } from "@/sanity/types";
 import { color } from "@/constants/color";
+import { motion } from "motion/react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -40,20 +42,30 @@ export default function Problem({
             className={`sm:text-4xl text-3xl font-medium ${montserrat.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tighter`}
           >
             {`${first4Words}`}{" "}
-            <span className="text-primary italic">{yours}</span>?
+            <span className="text-red-500 italic">{yours}</span>?
           </h2>
         </div>
       </div>
       <div className="mt-10 grid lg:grid-cols-4 grid-rows-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full h-auto">
-        <div className="h-[22rem] rounded-lg md:block hidden relative overflow-hidden">
+        <motion.div 
+        initial={{opacity: 0, y: 40}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg md:block hidden relative overflow-hidden">
           <Image
             src={imageUrl1 || "/placeholder.jpg"}
             alt="alt"
             className="object-cover"
             fill
           />
-        </div>
-        <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
+        </motion.div>
+        <motion.div 
+        initial={{opacity: 0, x: -40}}
+        whileInView={{opacity: 1, x: 0}}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
           <h3 className={`${montserrat.className} text-xl font-medium`}>
             {problems?.problems?.[0]?.title}
           </h3>
@@ -65,9 +77,14 @@ export default function Problem({
               <GppMaybeOutlinedIcon fontSize="large" className="text-primary" />
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="h-[20rem] bg-white lg:block hidden"></div>
-        <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
+        <motion.div 
+        initial={{opacity: 0, y: 40}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
           <h3 className={`${montserrat.className} text-xl font-medium`}>
             {problems?.problems?.[1]?.title}
           </h3>
@@ -82,12 +99,22 @@ export default function Problem({
               />
             </div>
           </div>
-        </div>
-        <div className="h-[22rem] rounded-lg md:block hidden relative overflow-hidden">
+        </motion.div>
+        <motion.div 
+        initial={{opacity: 0, x: 40}}
+        whileInView={{opacity: 1, x: 0}}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg md:block hidden relative overflow-hidden">
           <Image src={imageUrl2} alt="alt" className="object-cover" fill />
-        </div>
+        </motion.div>
         <div className="h-[20rem] bg-white lg:block hidden"></div>
-        <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
+        <motion.div 
+        initial={{opacity: 0, y: -40}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
           <h3 className={`${montserrat.className} text-xl font-medium`}>
             {problems?.problems?.[2]?.title}
           </h3>
@@ -99,8 +126,13 @@ export default function Problem({
               <FileX size={30} color={color.blue.default} />
             </div>
           </div>
-        </div>
-        <div className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
+        </motion.div>
+        <motion.div 
+        initial={{opacity: 0, x: -40}}
+        whileInView={{opacity: 1, x: 0}}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+        className="h-[22rem] rounded-lg bg-neutral-100 p-4 flex justify-between flex-col">
           <h3 className={`${montserrat.className} text-xl font-medium`}>
             {problems?.problems?.[3]?.title}
           </h3>
@@ -112,7 +144,7 @@ export default function Problem({
               <Scale size={30} color={color.blue.default} />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
