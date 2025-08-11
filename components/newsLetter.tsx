@@ -22,7 +22,7 @@ export default function Newsletter() {
   const handleSubscribe = async () => {
     setLoading(true);
     try {
-      await api.post("/email/subscribe", { email });
+      await api.post("/email/subscribe", { email, website: "ourprops" });
       toast({
         title: "Thank you for subscribing!",
         description: "You will now receive our newsletter",

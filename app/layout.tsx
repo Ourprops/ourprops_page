@@ -16,7 +16,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: "Ourprops",
-  description: "Ourprops",
+  description: "Ourprops - Discover a Smarter Way to Own and Trade Property with Ourprops",
 };
 
 export default function RootLayout({
