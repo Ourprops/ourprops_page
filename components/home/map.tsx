@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GoogleMap, LoadScript, Polygon, Marker } from '@react-google-maps/api';
+import { Montserrat } from 'next/font/google';
+import { Button } from '../ui/button';
 
 // Google Maps API libraries we need to load
 const libraries: ('drawing' | 'geometry' | 'places' | 'visualization')[] = [];
@@ -28,6 +30,11 @@ interface Shape {
         strokeWeight?: number;
     };
 }
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700", "900"],
+});
 
 // Mock data for shapes - smaller house plots
 const mockShapes: Shape[] = [
@@ -143,7 +150,8 @@ const InteractiveMap = () => {
                 elementType: 'geometry',
                 stylers: [{ visibility: 'simplified' }]
             }
-        ]
+        ],
+        
     };
 
     const onLoad = useCallback((map: google.maps.Map) => {
@@ -171,18 +179,20 @@ const InteractiveMap = () => {
     };
 
     return (
-        <div className="w-full relative py-20">
+        <div className="w-full relative pt-20">
             {/* Title Section */}
-            <div className="mb-6 text-center">
-                <h1 className="text-3xl font-bold text-gray-800">Properties</h1>
-                <p className="mt-2 text-gray-600">Explore properties registered on Our Props</p>
+            <div className="mb-6 px-4 xl:px-20 lg:px-10 md:px-5">
+                <h1 className={`sm:text-4xl text-3xl font-medium ${montserrat.className} lg:leading-[3rem] md:mt-2 mt-4 tracking-tighter text-black`}>From North to South – Verified Properties at Your Fingertips</h1>
+                <p className="mt-2 text-sm sm:text-base text-muted-foreground">Real properties, real owners — verified and mapped for your confidence.</p>
             </div>
 
             {/* Sidebar with house list */}
-            <div className="absolute top-[250px] left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+            <div className="absolute top-[250px] left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs sm:block hidden">
                 <h3 className="font-bold mb-2">Properties</h3>
                 {isLoading ? (
-                    <p>Loading properties...</p>
+                    <div className="">
+
+                    </div>
                 ) : (
                     <div className="space-y-2 max-h-96 overflow-y-auto">
                         {shapes.map(shape => (
@@ -278,6 +288,13 @@ const InteractiveMap = () => {
                         </div>
                     </div>
                 )}
+            </div>
+
+            {/* CTA */}
+            <div className="flex items-center justify-center mt-6">
+                <Button>
+                    Add Your Property to the Map
+                </Button>
             </div>
         </div>
     );
