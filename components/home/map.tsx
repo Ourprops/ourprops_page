@@ -246,7 +246,7 @@ const InteractiveMap = () => {
             {/* Map */}
             <div className="relative border border-gray-200 rounded-lg overflow-hidden">
                 <LoadScript
-                    googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+                    googleMapsApiKey="AIzaSyCvuZmy0Phh1P4BAf3S9yW5XtqArKyLAoU"
                     libraries={libraries}
                     onLoad={() => setMapLoaded(true)}
                 >
