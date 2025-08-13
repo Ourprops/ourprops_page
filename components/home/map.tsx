@@ -103,7 +103,17 @@ const InteractiveMap = () => {
     const [shapes, setShapes] = useState<Shape[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedShape, setSelectedShape] = useState<Shape | null>(null);
+    const [mapLoaded, setMapLoaded] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
+
+    const handleShapeClick = useCallback((shape: Shape) => {
+        setSelectedShape(shape);
+        if (mapRef.current && shape.coordinates.length > 0) {
+            const bounds = new window.google.maps.LatLngBounds();
+            shape.coordinates.forEach(coord => bounds.extend(coord));
+            mapRef.current.fitBounds(bounds);
+        }
+    }, []);
 
     // Load shapes on component mount
     useEffect(() => {
@@ -154,29 +164,42 @@ const InteractiveMap = () => {
         
     };
 
+    // Add loading state for the map
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
+        setMapLoaded(true);
         // Enable 3D buildings
         const buildingsLayer = map.get("buildings");
         if (buildingsLayer) {
-            buildingsLayer.setOptions({
+            buildingsLayer.setMap(map);
+            map.setOptions({
                 styles: [
-                    { stylers: [{ color: '#f5f5f5' }, { lightness: 20 }] },
-                    { stylers: [{ visibility: 'on' }, { color: '#e0e0e0' }, { weight: 2.0 }] }
+                    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#e9e9e9' }] },
+                    { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+                    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+                    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#e0e0e0' }] },
+                    { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#a0a0a0' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ visibility: 'on' }, { color: '#ffffff' }, { weight: 2 }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#000000' }] },
+                    { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'road.local', elementType: 'geometry', stylers: [{ visibility: 'on' }, { color: '#e0e0e0' }, { weight: 2.0 }] }
                 ]
             });
         }
     }, []);
 
-    const handleShapeClick = (shape: Shape) => {
-        setSelectedShape(shape);
-        // Optional: Center the map on the clicked shape
-        if (mapRef.current && shape.coordinates.length > 0) {
-            const bounds = new window.google.maps.LatLngBounds();
-            shape.coordinates.forEach(coord => bounds.extend(coord));
-            mapRef.current.fitBounds(bounds);
-        }
-    };
+    if (!process.env.NEXT_PUBLIC_GOOGLE_API_KEY) {
+        return (
+            <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+                <div className="text-center p-6">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">Google Maps API Key Missing</h3>
+                    <p className="text-gray-600">Please add your Google Maps API key to the environment variables.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-full relative pt-20">
@@ -223,69 +246,64 @@ const InteractiveMap = () => {
             {/* Map */}
             <div className="relative border border-gray-200 rounded-lg overflow-hidden">
                 <LoadScript
-                    googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
+                    googleMapsApiKey="AIzaSyCvuZmy0Phh1P4BAf3S9yW5XtqArKyLAoU"
                     libraries={libraries}
+                    onLoad={() => setMapLoaded(true)}
                 >
-                    <GoogleMap
-                        mapContainerStyle={mapContainerStyle}
-                        center={defaultCenter}
-                        zoom={18}
-                        onLoad={onLoad}
-                        options={{
-                            ...mapOptions,
-                            disableDefaultUI: false,
-                        }}
-                    >
-                        {/* Render house plots */}
-                        {shapes.map(shape => (
-                            <React.Fragment key={shape.id}>
-                                <Polygon
-                                    paths={shape.coordinates}
-                                    options={{
-                                        fillColor: shape.properties.color,
-                                        fillOpacity: shape.properties.fillOpacity || 0.3,
-                                        strokeColor: shape.properties.color,
-                                        strokeOpacity: 0.8,
-                                        strokeWeight: shape.properties.strokeWeight || 2,
-                                        clickable: true,
-                                        zIndex: 1,
-                                    }}
-                                    onClick={() => handleShapeClick(shape)}
-                                />
-                                
-                                {/* House label */}
-                                {shape.coordinates.length > 0 && (
-                                    <Marker
-                                        position={{
-                                            lat: shape.coordinates[0].lat - 0.0001, // Slightly above the plot
-                                            lng: shape.coordinates[0].lng
-                                        }}
-                                        label={{
-                                            text: shape.properties.name,
-                                            color: '#ffffff',
-                                            className: 'font-bold text-sm',
-                                            fontWeight: 'bold',
-                                        }}
+                    {!mapLoaded ? (
+                        <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+                            <div className="animate-pulse text-gray-500 text-center mt-[50px]">Loading map...</div>
+                        </div>
+                    ) : (
+                        <GoogleMap
+                            mapContainerStyle={mapContainerStyle}
+                            options={mapOptions}
+                            onLoad={onLoad}
+                        >
+                            {/* Render house plots */}
+                            {shapes.map(shape => (
+                                <React.Fragment key={shape.id}>
+                                    <Polygon
+                                        paths={shape.coordinates}
                                         options={{
-                                            icon: {
-                                                url: 'data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjwvc3ZnPg==',
-                                                anchor: new window.google.maps.Point(0, 0),
-                                                labelOrigin: new window.google.maps.Point(0, 0)
-                                            }
+                                            fillColor: shape.properties.color,
+                                            fillOpacity: shape.properties.fillOpacity || 0.3,
+                                            strokeColor: shape.properties.color,
+                                            strokeOpacity: 0.8,
+                                            strokeWeight: shape.properties.strokeWeight || 2,
+                                            clickable: true,
+                                            zIndex: 1,
                                         }}
+                                        onClick={() => handleShapeClick(shape)}
                                     />
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </GoogleMap>
+                                    
+                                    {/* House label */}
+                                    {shape.coordinates.length > 0 && (
+                                        <Marker
+                                            position={{
+                                                lat: shape.coordinates[0].lat - 0.0001, // Slightly above the plot
+                                                lng: shape.coordinates[0].lng
+                                            }}
+                                            clickable={true}
+                                            icon="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                                        />
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </GoogleMap>
+                    )}
                 </LoadScript>
 
-                {isLoading && (
-                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                        <div className="bg-white p-4 rounded-lg shadow-lg flex items-center space-x-2">
-                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-                            <span>Loading properties...</span>
-                        </div>
+                {selectedShape && (
+                    <div className="absolute top-4 right-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+                        <h3 className="font-bold mb-2">{selectedShape.properties.name}</h3>
+                        <p className="text-sm text-gray-700 mb-2">{selectedShape.properties.description}</p>
+                        <button 
+                            onClick={() => setSelectedShape(null)}
+                            className="text-sm text-blue-600 hover:text-blue-800"
+                        >
+                            Close
+                        </button>
                     </div>
                 )}
             </div>
