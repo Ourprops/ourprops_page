@@ -1,3 +1,4 @@
+"use client";
 import {
   internalGroqTypeReferenceTo,
   OUR_PURPOSE_QUERYResult,
@@ -5,6 +6,7 @@ import {
   SanityImageHotspot,
 } from "@/sanity/types";
 import { urlFor } from "@/sanity/url-for";
+import { motion } from "motion/react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 
@@ -48,7 +50,12 @@ function SubSection({
         </p>
       </div>
       <div className="mt-5 md:mt-0">
-        <div className="relative overflow-hidden w-full rounded-lg h-[350px] aspect-square">
+        <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative overflow-hidden w-full rounded-lg h-[350px] aspect-square">
           <Image
             src={sectionImage}
             fill
@@ -59,7 +66,7 @@ function SubSection({
             placeholder="blur"
             blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg=="
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
