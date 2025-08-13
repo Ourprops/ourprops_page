@@ -2,9 +2,8 @@
 import { ABOUT_HERO_QUERYResult } from "@/sanity/types";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
-import { Link as L } from "react-scroll";
 import { Button } from "../ui/button";
-import { ArrowRight, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -19,6 +18,7 @@ import { useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "motion/react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -109,18 +109,22 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
           <span className="bg-[#003366]/10 rounded-full px-4 py-2 text-sm font-thin text-black">
             Map-Based Property Registration and Verification System
           </span>
-          <h1 className={`lg:text-6xl sm:text-5xl text-4xl text-black font-medium tracking-tighter mt-5 lg:leading-[4rem] ${montserrat.className}`}>
+          <motion.h1 
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          className={`lg:text-6xl sm:text-5xl text-4xl text-black font-medium tracking-tighter mt-5 lg:leading-[4rem] ${montserrat.className}`}>
             {hero?.headline}
-          </h1>
-          <p className="sm:text-base text-sm text-muted-foreground mt-6">
+          </motion.h1>
+          <p
+          className="sm:text-base text-sm text-muted-foreground mt-6">
             {hero?.subheadline}
           </p>
           <div className="mt-10">
-            <L smooth={true} to="newsletter">
               <Button className="shadow-lg font-semibold" size="lg">
-                Join our waitlist <ArrowRight className="ml-2" />
+              Register Your Property
               </Button>
-            </L>
           </div>
         </div>
         <div className="mt-10 flex flex-row items-center">
@@ -134,7 +138,12 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
           </div>
         </div>
       </div>
-      <div className="h-full flex relative overflow-hidden min-h-[20rem]">
+      <motion.div 
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      className="h-full flex relative overflow-hidden min-h-[20rem]">
         <div className="flex-1 rounded-lg overflow-hidden absolute inset-0 w-full h-full">
           <Image
             src="https://images.pexels.com/photos/16754490/pexels-photo-16754490/free-photo-of-forest-near-road-near-town.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -144,7 +153,6 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
             priority
             quality={100}
           />
-          <div className="absolute inset-0 bg-black opacity-10 rounded-lg"></div>
         </div>
         <div className="flex-1 p-4 flex justify-between z-10 flex-col">
           <div className="flex justify-end w-full">
@@ -159,7 +167,8 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
             </p>
           </div>
         </div>
-      </div>
+        <div className="absolute left-0 right-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent rounded-b-lg"></div>
+      </motion.div>
     </div>
   );
 }
