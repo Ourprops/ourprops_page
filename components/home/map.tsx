@@ -190,16 +190,16 @@ const InteractiveMap = () => {
         }
     }, []);
 
-    if (!process.env.NEXT_PUBLIC_GOOGLE_API_KEY) {
-        return (
-            <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
-                <div className="text-center p-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Google Maps API Key Missing</h3>
-                    <p className="text-gray-600">Please add your Google Maps API key to the environment variables.</p>
-                </div>
-            </div>
-        );
-    }
+    // if (!process.env.NEXT_PUBLIC_GOOGLE_API_KEY) {
+    //     return (
+    //         <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+    //             <div className="text-center p-6">
+    //                 <h3 className="text-lg font-medium text-gray-900 mb-2">Google Maps API Key Missing</h3>
+    //                 <p className="text-gray-600">Please add your Google Maps API key to the environment variables.</p>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="w-full relative pt-20">
