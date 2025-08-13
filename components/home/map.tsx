@@ -96,6 +96,7 @@ const InteractiveMap = () => {
     const [shapes, setShapes] = useState<Shape[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedShape, setSelectedShape] = useState<Shape | null>(null);
+    const [mapLoaded, setMapLoaded] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
 
     const handleShapeClick = useCallback((shape: Shape) => {
@@ -155,8 +156,10 @@ const InteractiveMap = () => {
         ]
     };
 
+    // Add loading state for the map
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
+        setMapLoaded(true);
         // Enable 3D buildings
         const buildingsLayer = map.get("buildings");
         if (buildingsLayer) {
@@ -179,6 +182,17 @@ const InteractiveMap = () => {
         }
     }, []);
 
+    if (!process.env.NEXT_PUBLIC_GOOGLE_API_KEY) {
+        return (
+            <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+                <div className="text-center p-6">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">Google Maps API Key Missing</h3>
+                    <p className="text-gray-600">Please add your Google Maps API key to the environment variables.</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="w-full relative py-20">
             {/* Title Section */}
@@ -187,104 +201,109 @@ const InteractiveMap = () => {
                 <p className="mt-2 text-gray-600">Explore properties registered on Our Props</p>
             </div>
 
-            {/* Sidebar with house list */}
-            <div className="absolute top-[250px] left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
-                <h3 className="font-bold mb-2">Properties</h3>
-                {isLoading ? (
-                    <p>Loading properties...</p>
-                ) : (
-                    <div className="space-y-2 max-h-96 overflow-y-auto">
-                        {shapes.map(shape => (
-                            <div 
-                                key={shape.id}
-                                className={`p-3 rounded cursor-pointer hover:bg-gray-50 transition-colors ${
-                                    selectedShape?.id === shape.id 
-                                        ? 'bg-blue-50 border-l-4 border-blue-500' 
-                                        : 'border-l-4 border-transparent'
-                                }`}
-                                onClick={() => handleShapeClick(shape)}
-                            >
-                                <div className="font-medium">{shape.properties.name}</div>
-                                <div className="text-sm text-gray-500">{shape.properties.description}</div>
-                                <div className="flex items-center mt-1">
-                                    <span 
-                                        className="inline-block w-3 h-3 rounded-full mr-2"
-                                        style={{ backgroundColor: shape.properties.color }}
-                                    ></span>
-                                    <span className="text-xs text-gray-400">Double click to view</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            {/* Map */}
-            <div className="relative border border-gray-200 rounded-lg overflow-hidden">
+            <div className="relative">
                 <LoadScript
-                    googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
+                    googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
                     libraries={libraries}
+                    onLoad={() => setMapLoaded(true)}
                 >
-                    <GoogleMap
-                        mapContainerStyle={mapContainerStyle}
-                        center={defaultCenter}
-                        zoom={18}
-                        onLoad={onLoad}
-                        options={{
-                            ...mapOptions,
-                            disableDefaultUI: false,
-                        }}
-                    >
-                        {/* Render house plots */}
-                        {shapes.map(shape => (
-                            <React.Fragment key={shape.id}>
-                                <Polygon
-                                    paths={shape.coordinates}
-                                    options={{
-                                        fillColor: shape.properties.color,
-                                        fillOpacity: shape.properties.fillOpacity || 0.3,
-                                        strokeColor: shape.properties.color,
-                                        strokeOpacity: 0.8,
-                                        strokeWeight: shape.properties.strokeWeight || 2,
-                                        clickable: true,
-                                        zIndex: 1,
-                                    }}
-                                    onClick={() => handleShapeClick(shape)}
-                                />
-                                
-                                {/* House label */}
-                                {shape.coordinates.length > 0 && (
-                                    <Marker
-                                        position={{
-                                            lat: shape.coordinates[0].lat - 0.0001, // Slightly above the plot
-                                            lng: shape.coordinates[0].lng
-                                        }}
-                                        label={{
-                                            text: shape.properties.name,
-                                            color: '#ffffff',
-                                            className: 'font-bold text-sm',
-                                            fontWeight: 'bold',
-                                        }}
+                    {!mapLoaded ? (
+                        <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+                            <div className="animate-pulse text-gray-500 text-center mt-[50px]">Loading map...</div>
+                        </div>
+                    ) : (
+                        <GoogleMap
+                            mapContainerStyle={mapContainerStyle}
+                            options={mapOptions}
+                            onLoad={onLoad}
+                        >
+                            {/* Render house plots */}
+                            {shapes.map(shape => (
+                                <React.Fragment key={shape.id}>
+                                    <Polygon
+                                        paths={shape.coordinates}
                                         options={{
-                                            icon: {
-                                                url: 'data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjwvc3ZnPg==',
-                                                anchor: new window.google.maps.Point(0, 0),
-                                                labelOrigin: new window.google.maps.Point(0, 0)
-                                            }
+                                            fillColor: shape.properties.color,
+                                            fillOpacity: shape.properties.fillOpacity || 0.3,
+                                            strokeColor: shape.properties.color,
+                                            strokeOpacity: 0.8,
+                                            strokeWeight: shape.properties.strokeWeight || 2,
+                                            clickable: true,
+                                            zIndex: 1,
                                         }}
+                                        onClick={() => handleShapeClick(shape)}
                                     />
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </GoogleMap>
+                                    
+                                    {/* House label */}
+                                    {shape.coordinates.length > 0 && (
+                                        <Marker
+                                            position={{
+                                                lat: shape.coordinates[0].lat - 0.0001, // Slightly above the plot
+                                                lng: shape.coordinates[0].lng
+                                            }}
+                                            label={{
+                                                text: shape.properties.name,
+                                                color: '#ffffff',
+                                                className: 'font-bold text-sm',
+                                                fontWeight: 'bold',
+                                            }}
+                                            options={{
+                                                icon: {
+                                                    url: 'data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjwvc3ZnPg==',
+                                                    anchor: new window.google.maps.Point(0, 0),
+                                                    labelOrigin: new window.google.maps.Point(0, 0)
+                                                }
+                                            }}
+                                        />
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </GoogleMap>
+                    )}
                 </LoadScript>
 
-                {isLoading && (
-                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                        <div className="bg-white p-4 rounded-lg shadow-lg flex items-center space-x-2">
-                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-                            <span>Loading properties...</span>
+                {/* Sidebar with house list */}
+                <div className="absolute top-4 left-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+                    <h3 className="font-bold mb-2">Properties</h3>
+                    {isLoading ? (
+                        <p>Loading properties...</p>
+                    ) : (
+                        <div className="space-y-2 max-h-96 overflow-y-auto">
+                            {shapes.map(shape => (
+                                <div 
+                                    key={shape.id}
+                                    className={`p-3 rounded cursor-pointer hover:bg-gray-50 transition-colors ${
+                                        selectedShape?.id === shape.id 
+                                            ? 'bg-blue-50 border-l-4 border-blue-500' 
+                                            : 'border-l-4 border-transparent'
+                                    }`}
+                                    onClick={() => handleShapeClick(shape)}
+                                >
+                                    <div className="font-medium">{shape.properties.name}</div>
+                                    <div className="text-sm text-gray-500">{shape.properties.description}</div>
+                                    <div className="flex items-center mt-1">
+                                        <span 
+                                            className="inline-block w-3 h-3 rounded-full mr-2"
+                                            style={{ backgroundColor: shape.properties.color }}
+                                        ></span>
+                                        <span className="text-xs text-gray-400">Double click to view</span>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
+                    )}
+                </div>
+
+                {selectedShape && (
+                    <div className="absolute top-4 right-4 z-10 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+                        <h3 className="font-bold mb-2">{selectedShape.properties.name}</h3>
+                        <p className="text-sm text-gray-700 mb-2">{selectedShape.properties.description}</p>
+                        <button 
+                            onClick={() => setSelectedShape(null)}
+                            className="text-sm text-blue-600 hover:text-blue-800"
+                        >
+                            Close
+                        </button>
                     </div>
                 )}
             </div>
