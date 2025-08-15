@@ -286,19 +286,8 @@ const InteractiveMap = () => {
                                                         lat: shape.coordinates[0].lat - 0.0001, // Slightly above the plot
                                                         lng: shape.coordinates[0].lng
                                                     }}
-                                                    label={{
-                                                        text: shape.properties.name,
-                                                        color: '#ffffff',
-                                                        className: 'font-bold text-sm',
-                                                        fontWeight: 'bold',
-                                                    }}
-                                                    options={{
-                                                        icon: {
-                                                            url: 'data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjwvc3ZnPg==',
-                                                            anchor: new window.google.maps.Point(0, 0),
-                                                            labelOrigin: new window.google.maps.Point(0, 0)
-                                                        }
-                                                    }}
+                                                    clickable={true}
+                                                    icon="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
                                                 />
                                             )}
                                         </React.Fragment>
