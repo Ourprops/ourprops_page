@@ -62,8 +62,8 @@ export default function Waitlist() {
                     <DialogTitle className="text-center text-2xl">
                         Secure Your Property’s Boundaries
                     </DialogTitle>
-                    <DialogDescription className="text-center text-muted-foreground text-sm">
-                        Be the first to claim and protect your property&apos;s digital boundaries. By securing your space, you&apos;ll join our exclusive waitlist and ensure your property cannot be claimed by anyone else when we launch.
+                    <DialogDescription className="text-center text-muted-foreground md:text-sm text-xs">
+                        Be the first to know and protect your property&apos;s digiital boundaries. On our platform, you can be free from scammers selling your proerty or buying a conflictual property. Join now!
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
