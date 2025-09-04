@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import Image from "next/image";
-// import Waitlist from "./waitlist";
-import { Button } from "./ui/button";
+import Waitlist from "./waitlist";
 
 const navs = [
     {
@@ -81,12 +80,12 @@ export default function Header() {
                     ))}
                 </nav>
                 <div className="md:block hidden">
-                    {/* <Waitlist /> */}
-                    <a href="https://app.ourprops.net">
+                    <Waitlist />
+                    {/* <a href="https://app.ourprops.net">
                         <Button>
                             Register Your Property
                         </Button>
-                    </a>
+                    </a> */}
                 </div>
             </div>
         </div>

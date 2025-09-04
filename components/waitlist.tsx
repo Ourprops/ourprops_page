@@ -8,11 +8,9 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { ArrowRight } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { useState } from "react";
-import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -25,16 +23,25 @@ export default function Waitlist() {
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            await api.post("/waitlist", {
-                fullname,
-                email,
-                website: "ourprops"
+            const res = await fetch("https://api.ourprops.net/email/waitlist", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    fullname,
+                    email,
+                    website: "ourprops"
+                 }),
             });
+            if (!res.ok) {
+                throw new Error("Failed to join waitlist");
+            }
             setFullname("");
             setEmail("");
             toast({
                 title: "Success!",
-                description: "You have successfully joined the waitlist.",
+                description: "You have successfully secured your spot!",
             })
         } catch (error) {
             console.error(error);
@@ -47,17 +54,16 @@ export default function Waitlist() {
         <Dialog>
             <DialogTrigger asChild>
                 <Button className="shadow-lg font-semibold" size="lg">
-                    Join our waitlist <ArrowRight className="ml-2" />
+                    Secure My Property
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl">
-                        Join our waitlist
+                        Secure Your Property’s Boundaries
                     </DialogTitle>
                     <DialogDescription className="text-center text-muted-foreground text-sm">
-                        Be the first to know when we launch! Join our waitlist and
-                        stay updated with the latest news and updates.
+                        Be the first to claim and protect your property&apos;s digital boundaries. By securing your space, you&apos;ll join our exclusive waitlist and ensure your property cannot be claimed by anyone else when we launch.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -79,10 +85,10 @@ export default function Waitlist() {
                         {loading ? (
                             <div className="flex items-center">
                                 <span className="loader mr-2"></span>
-                                Joining...
+                                Securing...
                             </div>
                         ) : (
-                            "Join Waitlist"
+                            "Secure My Property"
                         )}
                     </Button>
                 </DialogFooter>

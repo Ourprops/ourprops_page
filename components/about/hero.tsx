@@ -19,6 +19,7 @@ import { Textarea } from "../ui/textarea";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "motion/react";
+import Waitlist from "../waitlist";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -122,15 +123,13 @@ export default function Hero({ hero }: { hero: ABOUT_HERO_QUERYResult }) {
             {hero?.subheadline}
           </p>
           <div className="mt-10">
-              <Button className="shadow-lg font-semibold" size="lg">
-              Register Your Property
-              </Button>
+              <Waitlist />
           </div>
         </div>
         <div className="mt-10 flex flex-row items-center">
           <div className="flex flex-col items-center">
             <h4 className="md:text-3xl text-2xl font-semibold">
-              2k+
+              1k+
             </h4>
             <p className="text-sm text-muted-foreground">
               Land Owners Waitlisted

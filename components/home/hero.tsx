@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroImage from '../../public/property1.jpg'
 import { motion } from 'motion/react';
+import Waitlist from "../waitlist";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -47,7 +48,7 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
             <motion.h1
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.2 }}
             viewport={{ once: true }}
               className={`lg:text-6xl sm:text-5xl text-4xl lg:w-[60%] md:w-[80%] w-[100%] text-white font-medium tracking-tighter mt-3 lg:leading-[4rem] ${montserrat.className} text-center`}
             >
@@ -57,16 +58,16 @@ export default function Hero({ hero }: { hero: HERO_QUERYResult }) {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
             viewport={{ once: true }}
           className="sm:text-base text-sm text-white mt-6 text-center max-w-3xl">
             {hero?.subheadline}
           </motion.p>
           <div className="flex flex-row items-center gap-4 mt-10">
-            {/* <Waitlist /> */}
-            <a href="https://app.ourprops.net">
-              <Button size="lg">Register Your Property</Button>
-            </a>
+            <Waitlist />
+            {/* <a href="https://app.ourprops.net">
+              <Button size="lg">Register My Property</Button>
+            </a> */}
             <Link href="/about">
               <Button
                 size="lg"
