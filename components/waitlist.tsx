@@ -6,6 +6,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    DialogClose
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
@@ -19,6 +20,7 @@ export default function Waitlist() {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { toast } = useToast();
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleSubmit = async () => {
         setLoading(true);
@@ -37,6 +39,7 @@ export default function Waitlist() {
             if (!res.ok) {
                 throw new Error("Failed to join waitlist");
             }
+            setIsSuccess(true);
             setFullname("");
             setEmail("");
             toast({
@@ -60,12 +63,17 @@ export default function Waitlist() {
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl">
-                        Secure Your Property’s Boundaries
+                        {isSuccess ? "You're on the waitlist!" : "Secure Your Property’s Boundaries"}
                     </DialogTitle>
                     <DialogDescription className="text-center text-muted-foreground md:text-sm text-xs">
-                        Be the first to know and protect your property&apos;s digiital boundaries. On our platform, you can be free from scammers selling your proerty or buying a conflictual property. Join now!
+                       {
+                        isSuccess ? 
+                        "Thank you for joining our waitlist! We'll keep you updated with the latest news and let you know as soon as you can secure your property on our platform." :
+                        "Be the first to know and protect your property&apos;s digital boundaries. On our platform, you can be free from scammers selling your proerty or buying a conflictual property. Join now!"
+                       }
                     </DialogDescription>
                 </DialogHeader>
+                {!isSuccess && 
                 <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="name" className="text-right">
@@ -79,9 +87,9 @@ export default function Waitlist() {
                         </Label>
                         <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="col-span-3" />
                     </div>
-                </div>
+                </div>}
                 <DialogFooter>
-                    <Button onClick={handleSubmit} type="submit">
+                    {!isSuccess && <Button onClick={handleSubmit} type="submit">
                         {loading ? (
                             <div className="flex items-center">
                                 <span className="loader mr-2"></span>
@@ -90,7 +98,10 @@ export default function Waitlist() {
                         ) : (
                             "Secure My Property"
                         )}
-                    </Button>
+                    </Button>}
+                    {isSuccess && <DialogClose asChild>
+                        <Button>Close</Button>
+                    </DialogClose>}
                 </DialogFooter>
             </DialogContent>
         </Dialog>
